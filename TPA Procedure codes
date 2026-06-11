@@ -1,0 +1,8 @@
+ID	Level1	Level2	Level3	Code	FHPLCode	ParentID	TreatmentType_P19	Inclusions	Exclusions	LOS	EffectiveDate	isCI	isDayCare	isPED	isGIPSA	ICDCode	PCSCode	Deleted	TypeofTreatment_P19	PPNCode	PPNDescription	Level	IsCongenital	InvestigationID	Investigation Name		Diagnosis
+597	Orthopedics	Joint Replacement Surgery	Knee Replacement Surgery - Right	6001	9.10.4	593	66			NULL	NULL	1	NULL	0	1	M17	0SRC	0	66	NULL	NULL	3	NULL	7,70	#N/A		Osteoarthritis knee
+598	Orthopedics	Joint Replacement Surgery	Knee Replacement Surgery - Left	6001	9.10.5	593	66			NULL	NULL	1	NULL	0	1	M17	0SRD	0	66	NULL	NULL	3	NULL	7,70	#N/A		Osteoarthritis knee
+599	Orthopedics	Joint Replacement Surgery	Knee Replacement Surgery - Bilateral	6002	9.10.6	593	66			NULL	NULL	1	NULL	0	1	M17		0	66	NULL	NULL	3	NULL	7,70	#N/A		Osteoarthritis knee
+1195	Orthopedics	Dislocations -Surgery	Surgical Correction-Dislocation Knee-Right		9.9.31	576	66	NULL	NULL	NULL	NULL	NULL	NULL	0	NULL	S83.1	0SQC0ZZ	0	NULL	NULL	NULL	3	NULL	NULL	#N/A		Dislocation Knee
+1196	Orthopedics	Dislocations -Surgery	Surgical Correction-Dislocation Knee-Left		9.9.32	576	66	NULL	NULL	NULL	NULL	NULL	NULL	0	NULL	S83.1	0SQD0ZZ	0	NULL	NULL	NULL	3	NULL	NULL	#N/A		Dislocation Knee
+1342	Orthopedics	Joint Replacement Surgery	Re-do Total knee replacement- bilateral	6001	NULL	593	66	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	T84	NULL	0	66	NULL	NULL	3	NULL	NULL	#N/A		Re-do Total knee replacement- bilateral
+1343	Orthopedics	Joint Replacement Surgery	Re-do Total knee replacement- unilateral	6001	NULL	593	66	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	T84	NULL	0	66	NULL	NULL	3	NULL	NULL	#N/A		Re-do Total knee replacement- unilateral
