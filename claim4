@@ -1,0 +1,30 @@
+ClaimID              MemberPolicyID
+-------------------- --------------
+26051592214          106976615
+
+(1 row affected)
+
+ID                   TPAProcedureID TPALevel1   TPALevel2   TPALevel3   Deleted
+-------------------- -------------- ----------- ----------- ----------- -------
+25271878             597            529         593         597         0
+25242657             597            529         593         597         0
+25242257             597            529         593         597         1
+25242254             597            529         593         597         1
+25242233             597            529         593         597         1
+25240839             597            529         593         597         1
+25238636             597            529         593         597         0
+25236852             599            529         593         599         1
+25120311             599            529         593         599         0
+25119070             599            529         593         599         1
+
+(10 rows affected)
+
+BPSIID               BPSIConditionID      ParentName                                                                                           ConditionName                                                                                        isCovered Deleted ClaimLimit            IndividualLimit       FamilyLimit           PolicyLimit           CorporateLimit        LimitAmt              TPAProcedureID                                                                                                                                                                                                                                                   Remarks
+-------------------- -------------------- ---------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------- ------- --------------------- --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+971566               9934927              Ailment Conditions                                                                                   Ailment Cappings                                                                                     1         0       250000.00             NULL                  NULL                  NULL                  NULL                  250000.00             597,599,598                                                                                                                                                                                                                                                      CAPPING LIMIT OF 8 LISTED AILMENTS IS APPLICABLE ON COMBINE SUM INSURED IN THE POLICY I.E. INCLUDING BASE SUM INSURED AND TOP-UP SUM INSURED :-  Surgical Procedure +Implant (If any) + Pre & Post Hospitalization expenses subject to limit of 10% of SI for ea
+971566               9934929              Ailment Conditions                                                                                   Ailment Cappings                                                                                     1         0       450000.00             NULL                  NULL                  NULL                  NULL                  450000.00             597,599,598                                                                                                                                                                                                                                                      CAPPING LIMIT OF 8 LISTED AILMENTS IS APPLICABLE ON COMBINE SUM INSURED IN THE POLICY I.E. INCLUDING BASE SUM INSURED AND TOP-UP SUM INSURED :-  Surgical Procedure +Implant (If any) + Pre & Post Hospitalization expenses subject to limit of 10% of SI for ea
+
+(2 rows affected)
+
+
+Completion time: 2026-06-12T11:35:33.3388328+05:30
