@@ -1,14 +1,1 @@
-Remove Clinical examination
- 
-Thats done for all ailments
- 
-Keep the word X Ray
- 
-and show it available or missing
- 
-got it okay
- 
-X Rays can be different
- 
-Weight bearing.. simple alignment etc
- 
+<img width="1902" height="550" alt="image" src="https://github.com/user-attachments/assets/7c0fd429-e24a-4ed3-a731-ac78867112fb" />
