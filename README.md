@@ -1,5 +1,4 @@
-SELECT ID, ClaimLimit,
-       LEN(Remarks)               AS RemarksLen,
-       SUBSTRING(Remarks, 200, 900) AS RemarksTail
-FROM BPSIConditions WITH(NOLOCK)
-WHERE ID IN (9934927, 9934929);
+ID                   ClaimLimit            RemarksLen           RemarksTail
+-------------------- --------------------- -------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9934927              250000.00             668                  italization expenses subject to limit of 10% of SI for each Hospitalization. Disease wise Cappings for each hospitalization : f) Knee Replacement Unilateral - Rs.2,50,000/-, In case of complications arising out of any of the above capped ailments or if the
+9934929              450000.00             667                  italization expenses subject to limit of 10% of SI for each Hospitalization. Disease wise Cappings for each hospitalization : g) Knee replacement Bilateral - Rs.4,50,000/-, In case of complications arising out of any of the above capped ailments or if ther
