@@ -1,4 +1,11 @@
-<img width="1177" height="620" alt="image" src="https://github.com/user-attachments/assets/8f56f4f5-4a06-4cab-96cb-f4468344ed4c" />
+PSU 
+1.GIC tariff- applies for all Insurers
+2.check if GIPSA provider true, pick the latest GIPSA tariff 
+3.only if GIPSA=false,check FHPL/PVT for all insurer tariff to be picked ** check on the naming**
 
-<img width="1218" height="598" alt="image" src="https://github.com/user-attachments/assets/5ef0f2fd-0ea6-436d-9ddd-4934dc0491e1" />
 
+PVT
+
+1.GIC tariff- applies for all Insurers
+2.Insurer Specific first, FHPL/PVT for all insurer specific next
+10 years cut-off
