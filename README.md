@@ -1,11 +1,7 @@
-PSU 
-1.GIC tariff- applies for all Insurers
-2.check if GIPSA provider true, pick the latest GIPSA tariff 
-3.only if GIPSA=false,check FHPL/PVT for all insurer tariff to be picked ** check on the naming**
+<img width="1091" height="234" alt="image" src="https://github.com/user-attachments/assets/5f078376-c71a-4f93-beef-2487c8226b6c" />
+
+<img width="1184" height="506" alt="image" src="https://github.com/user-attachments/assets/80ce3be8-1c43-4299-bab9-2d8b85d1defa" />
 
 
-PVT
 
-1.GIC tariff- applies for all Insurers
-2.Insurer Specific first, FHPL/PVT for all insurer specific next
-10 years cut-off
+<img width="1202" height="618" alt="image" src="https://github.com/user-attachments/assets/9f235ecc-ed46-4257-820e-7d07a251eb71" />
