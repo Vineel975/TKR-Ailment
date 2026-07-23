@@ -1,3 +1,6 @@
+<img width="1365" height="484" alt="image" src="https://github.com/user-attachments/assets/17fb948d-4a86-4773-a576-0e6f89d8e286" />
+
+
 As WorkOS is hosted and operated by third-party providers, in line with our Information Security compliance requirements, we cannot integrate it with our infrastructure without a legal/business agreement and a Non-Disclosure Agreement (NDA) with the provider.
 
 Additionally, we need to perform a security risk assessment of the platform before onboarding access to our infrastructure for any third-party provider.
