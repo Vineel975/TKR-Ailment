@@ -1,4 +1,5 @@
 <img width="1365" height="484" alt="image" src="https://github.com/user-attachments/assets/17fb948d-4a86-4773-a576-0e6f89d8e286" />
+<img width="1340" height="519" alt="image" src="https://github.com/user-attachments/assets/bb899910-00e8-455d-a5b7-2e381f6d968d" />
 
 
 As WorkOS is hosted and operated by third-party providers, in line with our Information Security compliance requirements, we cannot integrate it with our infrastructure without a legal/business agreement and a Non-Disclosure Agreement (NDA) with the provider.
