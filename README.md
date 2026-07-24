@@ -1,1 +1,5 @@
-<img width="1122" height="367" alt="image" src="https://github.com/user-attachments/assets/ff842156-d8df-48eb-b642-81cd994eb1a6" />
+sudo du -xh --max-depth=1 /var/lib | sort -h | tail
+
+docker image prune -a -f      # unused images — usually the biggest win by far
+docker builder prune -a -f    # build cache
+docker container prune -f     # stopped containers
