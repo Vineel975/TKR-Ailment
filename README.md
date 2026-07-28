@@ -2,3 +2,4 @@
 
 <img width="689" height="182" alt="image" src="https://github.com/user-attachments/assets/aec0b25d-abf9-4d0c-bf2d-8d8789e842ee" />
 
+14339 - DRISHTI SPECIALITY EYE CLINIC,Davangere,KA (27-May-2025) Tariff for ALL Insurers
