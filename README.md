@@ -1,4 +1,6 @@
 Information button on availability of Tariff file/availability of procedure within in the file.
+a.) Is file identified
+b.) Is a procedure identified within the file
 Lens Cost to be made a editable text box. Derive value however, it must editable to fulfill R&C requirements.
 Validation: When close match procedure is not found in tariff- dont bring default lens cost. User should manage with editable text box.
 Validation on total bill amount/any amounts that are editable. Must not exceed the total bill amount estimate.
