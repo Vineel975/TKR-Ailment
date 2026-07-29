@@ -1,15 +1,11 @@
-<img width="1187" height="401" alt="image" src="https://github.com/user-attachments/assets/15239c7d-26ad-48ea-9f12-87b3a2121dff" />
-
-
-<img width="1264" height="517" alt="image" src="https://github.com/user-attachments/assets/5d3d3897-69da-48c3-816d-46fa97984c54" />
-
-<img width="1165" height="534" alt="image" src="https://github.com/user-attachments/assets/49f1e0ab-bbbd-41ee-b2c6-7532af3d68ec" />
-
-
-[ClaimAI][Tariff] Selection detail: Sent 3 files: [10353- Dr.Sreekanth Eye Care And Research Centre Kottooli KL ( 07-OCT-2022 )_OTHERS.xlsx | 10353-Dr Sreekanth Eye Care  Research Centre Kozhikode Kerala  (27-May-2019) Only For Chola Ms Insurer.pdf | 10353-Dr.Sreekanth Eye Care And Research Centre Calicut KR ( 04 Nov 2017 ).pdf] | insurerCode=UIIC UIIC isPsu=True -> AI selected: 10353-Dr.Sreekanth Eye Care And Research Centre Calicut KR ( 04 Nov 2017 ).pdf | tier=P7 | reason=No higher-tier tariffs (GIC, GIPSA, FHPL, or insurer-specific for UIIC) are present; the 2022 file is excluded because it is marked 'OTHERS' and the 2019 file is specific to Chola MS insurer only, leaving the 2017 general tariff as the only eligible file at the lowest tier.
-
-
-<img width="853" height="365" alt="image" src="https://github.com/user-attachments/assets/b4b1a073-f048-4559-9e3d-58b3f5394bd1" />
-
-
-
+Information button on availability of Tariff file/availability of procedure within in the file.
+Lens Cost to be made a editable text box. Derive value however, it must editable to fulfill R&C requirements.
+Validation: When close match procedure is not found in tariff- dont bring default lens cost. User should manage with editable text box.
+Validation on total bill amount/any amounts that are editable. Must not exceed the total bill amount estimate.
+Text should show up dynamically
+26063043405 -- Text is wrong "Edof seen in tariff"  (its not in the tariff) 21300+30000  Upto monofocal
+26072443427 -- Text is wrong stating
+Rule: Looks for lens type coverage from benefit plan. If mono found-then standard rule. If Multi found, then text should state "Multifocal covered-<<lenstypefromdocument>> is not found" 
+<<Lenstype>> is covered as per BP. <<lenstypefromdocument>> is not found in Tariff
+<<Lenstype>> is covered as per BP. <<lenstypefromdocument>> is found in Tariff
+No mention of Lenstype in BP, mono-standard rule applies
