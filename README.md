@@ -1,4 +1,1 @@
-<dependentAssembly>
-	<assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
-	<bindingRedirect oldVersion="0.0.0.0-4.0.5.0" newVersion="4.0.5.0"/>
-</dependentAssembly>
+<img width="955" height="712" alt="image" src="https://github.com/user-attachments/assets/809e0d9d-bb0a-46ec-9b74-60bb121e2f8f" />
