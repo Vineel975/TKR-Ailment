@@ -2,3 +2,6 @@
 
 
 {"Success":true,"Processed":1,"Skipped":0,"Failed":0,"Total":1,"Details":[{"claimId":26072443441,"disease":"cataract","status":"done","jobId":"jh7fsp9152r55jj7wx9gt5fmdn8bsq5k","autoApproved":false,"autoReason":"basis \u0027bill\u0027 pre-selected; post-save action is refer_crm (not a clean approve).","autoSaved":true,"autoSaveStatus":"success"}]}
+
+
+{"ailmentSublimitAmount":null,"approvalBasis":"bill","autoApproved":false,"manualBillAmount":""}
