@@ -1,3 +1,5 @@
-{"ailmentSublimitAmount":null,"approvalBasis":"bill","autoApproved":false,"manualBillAmount":""}
-
-
+<appSettings>
+  <!-- ... your existing keys ... -->
+  <add key="EnableAutoApprovalSave" value="false" />
+  <add key="AutoApprovalSystemUserID" value="YOUR_USERREGIONID" />
+</appSettings>
