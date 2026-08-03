@@ -1,1 +1,1 @@
-{"Success":true,"Processed":0,"Skipped":0,"Failed":1,"Total":1,"Details":[{"claimId":26072443469,"status":"failed","error":"Must declare the scalar variable \"@BillingStateJson\"."}]}
+{"Success":true,"Processed":1,"Skipped":0,"Failed":0,"Total":1,"Details":[{"claimId":26072443469,"disease":"cataract","status":"done","jobId":"jh777e4nr6x8j6whs5ppdsjh4d8brn3h","autoApproved":false,"autoReason":"basis \u0027bill\u0027 pre-selected; post-save action is refer_crm (not a clean approve)."}]}
