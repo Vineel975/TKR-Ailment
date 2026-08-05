@@ -1,7 +1,7 @@
-SELECT physical_device_name
-FROM msdb.dbo.backupmediafamily bmf
-JOIN msdb.dbo.backupset bs ON bmf.media_set_id = bs.media_set_id
-WHERE bs.database_name = 'Mcareplus_AI'
-ORDER BY bs.backup_finish_date DESC;
+SELECT name, type_desc
+FROM sys.master_files
+WHERE database_id = DB_ID('Mcareplus_AI') AND type_desc = 'LOG';
 
-BACKUP LOG [Mcareplus_AI] TO DISK = 'D:\Backups\Mcareplus_AI_log.trn';
+ALTER DATABASE [Mcareplus_AI] SET RECOVERY SIMPLE;
+
+DBCC SHRINKFILE (N'<the name from step 1>', 512);
