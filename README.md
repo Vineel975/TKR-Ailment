@@ -1,2 +1,2 @@
-When PA form is not available at all, raise query
-"Please submit detailed Preauth form with plan of treatment, estimate and date of surgery"
+Rule: When only PA form is available-without any medical prescription, medical report, medical record etc, ask for query 26080243613
+"Kindly provide treating doctor's advice for surgery"
