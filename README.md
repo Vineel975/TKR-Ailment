@@ -1,5 +1,3 @@
-SELECT Type, StageID, COUNT(*) AS Cnt, SUM(Amount) AS TotalAmt
-FROM MemberUtilization WITH (NOLOCK)      -- adjust table if the rows live elsewhere
-WHERE ISNULL(Deleted,0) = 0
-GROUP BY Type, StageID
-ORDER BY Type, StageID;
+https://spectra-ai.fhpl.net/MedicalScrutiny/GetBSI?MemberPolicyID=113522792&SITypeID=5&ClaimID=0&SlNo=0
+
+{"Suminsured":[{"Name":null,"FamilyLimit":null,"MemberLimit":null,"BPSIID":1034739,"MemberSIID":120017513,"SITypeID":5,"SICategery":69,"Suminsured":750000.0000,"CBAmount":0.0000,"Reserved":38000.0000,"Blocked":54820.0000,"Utilized":0.0,"Balance":695180.0000,"EffectiveBalance":657180.0000,"Utilization":[{"BPSIID":1034739,"MemberSIID":120017513,"ReceivedDate":"2026-08-11T12:51:36","MemberName":"Nibedita Laha","RelationshipID":3,"ClaimID":26081143701,"Slno":1,"ClaimTypeID":1,"RequestTypeID":1,"StageID":29,"Type":2,"CRDR":true,"Amount":54820.0000,"Balance":0.0,"EffectedBalance":0.0,"ServicesubTypeID":3},{"BPSIID":1034739,"MemberSIID":0,"ReceivedDate":"2026-08-11T15:17:45","MemberName":"Nibedita Laha","RelationshipID":3,"ClaimID":26081143702,"Slno":1,"ClaimTypeID":1,"RequestTypeID":1,"StageID":0,"Type":4,"CRDR":true,"Amount":38000.0000,"Balance":0.0,"EffectedBalance":0.0,"ServicesubTypeID":4}],"TypeOfBSI":2}],"OtherBenefits":[],"Sublimits":[],"OPDLimits":[],"OPD_Balancelist":[]}
