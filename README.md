@@ -1,1 +1,3 @@
-<img width="635" height="325" alt="image" src="https://github.com/user-attachments/assets/666e86a1-41e8-4045-8030-5e0268b0afb5" />
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Claimsdetails'
+  AND (COLUMN_NAME LIKE '%Nature%' OR COLUMN_NAME LIKE '%Admission%');
