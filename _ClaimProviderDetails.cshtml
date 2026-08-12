@@ -1,0 +1,1592 @@
+
+<style>
+    #tblThresholdDetails th {
+        text-align: center;
+        background-color: #79afce;
+        color: white;
+        border-radius: 15px 50px 30px 5px;
+        font-size: smaller;
+    }
+</style>
+
+<div id="ProviderDetailsDiv" class="widget-box widget-color-blue ui-sortable-handle">
+    <div class="widget-header widget-header-small">
+        <h6 class="widget-title">
+            <i class="ace-icon fa fa-sort"></i>
+            Provider Details
+
+        </h6>
+
+        <div class="widget-toolbar">
+            <a id="lnkCashlessLog" class="lnkCashlessLog" title="Automation" onclick="openNav(this,'8')"><img src="~/Content/images/CL-automation.png" style="height: 20px; width: 20px; margin-right: 12px; padding: 2px; background-color: #fad6fb; border-radius: 50%; " /></a>
+            <span> Hotkey : Alt +8 </span>
+            <a href="#" data-action="reload">
+                <i class="ace-icon fa fa-refresh"></i>
+            </a>
+            <a href="#" data-action="collapse" id="divProviderDetailsModeldataaction" onclick="LoadProviderDetails($('#hdnClaimID').val(),0,0,null,$('#hdnIsFrmArchived').val())" " accesskey="8">
+                <i class="ace-icon fa fa-plus" data-icon-show="fa-plus" data-icon-hide="fa-minus"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="widget-body" id="divProviderDetailsModel">
+
+        <div class="alert alert-info">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div id="myNav2" class="overlay-rule overlay-rule-s" style="display:none">
+                        <a href="javascript:void(0)" class="closebtn-rule" onclick="closeNav2()">&times;</a>
+                        <div class="overlay-content-rule">
+                            <h5>Claim Cashless Rules Approved/Rejected Status</h5>
+                            <div class="rules-ht">
+                                <table class="tablenew">
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fa fa-close" style="color:#ff0000"></i></td>
+                                            <td>101-Inactive MOU/Cautious/Excluded/Blacklist/Inactive</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-check" style="color:#82af6f"></i></td>
+                                            <td>102-MOU/Cautious/Excluded/Blacklist/Inactive</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-check" style="color:#82af6f"></i></td>
+                                            <td>102-MOU/Cautious/Excluded/Blacklist/Inactive</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-check" style="color:#82af6f"></i></td>
+                                            <td>102-MOU/Cautious/Excluded/Blacklist/Inactive</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 wow fadeInDown" id="grupprovider">
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Hospital Name</strong></label>
+                        <br>
+                        <a onclick="EnableProviderDiv();"> <span id="spnSystemPatient_HospitalName"></span></a>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>PRC No</strong></label>
+                        <br>
+                        <span id="spnSystemPatient_PRCNo"></span>
+                    </div>
+
+                    <div class="form-group col-sm-3" style="display:none;">
+                        <label for="exampleInputEmail1"><strong>City Name</strong></label>
+                        <br>
+                        <span id="spnSystemPatient_City"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Pin Code</strong></label><label style="color:red"> *</label>
+                        <br>
+
+                        <input type="text" id="spnSystemPatient_PinCode" onkeypress="return isNumber(event)" />
+
+                        <span id="spnSystemPatient_PinCode_v" />
+
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Address1</strong></label>
+
+                        <label style="color:red"> *</label>
+
+
+                        <input type="text" id="spnSystemPatient_Address" multiple @*class="label label-success arrowed-in arrowed-in-right"*@></input>
+
+
+                        <span id="spnSystemPatient_Address_v" multiple @*class="label label-success arrowed-in arrowed-in-right"*@></span>
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputAddress2"><strong>Address2</strong></label>
+                        <br>
+                        <input type="text" id="spnSystemPatient_Address2" multiple @*class="label label-success arrowed-in arrowed-in-right"*@></input>
+
+                        <span id="spnSystemPatient_Address2_v"></span>
+
+                    </div>
+                </div>
+                <div class="col-sm-12 wow fadeInDown" id="grupprovider">
+
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputCountry"><strong>Country</strong></label>
+                        @if (ViewData["ClaimType"] != null && string.Equals(ViewData["ClaimType"].ToString(), "Reimbursement", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <label style="color:red"> *</label><br />
+                        }
+                        <span class="input-icon input-icon-right">
+                            <select class="input-medium" id="txt_nonnetwork_hd_add_country" name='txt_nonnetwork_hd_add_country' autofocus required></select>
+                        </span>
+
+
+                        <span id="txt_nonnetwork_hd_add_country_v" class="input-icon input-icon-right"></span>
+
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputState"><strong>State</strong></label>
+                        @if (ViewData["ClaimType"] != null && string.Equals(ViewData["ClaimType"].ToString(), "Reimbursement", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <label style="color:red"> *</label><br />
+                        }
+                        <span class="input-icon input-icon-right">
+                            <select class="input-medium" id="txt_nonnetwork_hd_add_state" name='txt_nonnetwork_hd_add_state' autofocus required></select>
+                        </span>
+
+                        <span id="txt_nonnetwork_hd_add_state_v" />
+
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputDistrict"><strong>District</strong></label>
+                        @if (ViewData["ClaimType"] != null && string.Equals(ViewData["ClaimType"].ToString(), "Reimbursement", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <label style="color:red" id="lbl1"> *</label>
+                        }
+
+                        <span class="input-icon input-icon-right">
+                            <select class="input-medium" id="txt_nonnetwork_hd_add_district" name='txt_nonnetwork_hd_add_district' required></select>
+                        </span>
+
+
+                        <span id="txt_nonnetwork_hd_add_district_v" class="input-icon input-icon-right" />
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputCity"><strong>City</strong></label>
+                        @if (ViewData["ClaimType"] != null && string.Equals(ViewData["ClaimType"].ToString(), "Reimbursement", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <label style="color:red"> *</label><br />
+
+                        }
+                        <span class="input-icon input-icon-right">
+                            <select class="input-medium" id="txt_nonnetwork_hd_add_city" name='txt_nonnetwork_hd_add_city' required></select>
+                        </span>
+
+                        <br>
+                        <span id="txt_nonnetwork_hd_add_city_v" class="input-icon input-icon-right" />
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Location Name</strong></label>
+                        <br>
+
+                        <input type="text" id="spnSystemPatient_Location" />
+
+                        <sapn type="text" id="spnSystemPatient_Location_v" />
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-12 wow fadeInDown" id="grupprovider">
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Registered Email</strong></label>
+
+                        <label style="color:red"> *</label>
+
+                        <input type="text" id="spnSystemPatient_RegEmailID" />
+                        <span id="spnSystemPatient_RegEmailID_v" />
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Registered MobileNo</strong></label>
+
+                        <label style="color:red"> *</label>
+                        <input id="spnSystemPatient_RegMobileNo" maxlength="10" autocomplete="off" onkeypress="return  MobileNoValidation(event,this)" onpaste="var e=this; setTimeout(function(){PasteWithCorrectMobileNumFormat(e)}, 4);" onblur="ValidateMobileNumber('spnSystemPatient_RegMobileNo')" type="text" class="form-control" value="" placeholder="">
+
+                        <br>
+                        <span id="spnSystemPatient_RegMobileNo_v" />
+
+
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>IRDA Code</strong></label>
+                        <br>
+                        <span id="spnSystemPatient_IRDACode" class="label label-success arrowed-in arrowed-in-right"></span>
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Rohini Code</strong></label>
+                        <br>
+                        <span id="spnSystemPatient_RohiniCode"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Zone Name</strong></label><br>
+                        <span id="spnZoneName"></span>
+                    </div>
+                    @*Added by Charan*@
+
+                    <div class="form-group col-sm-3" style="display :none">
+                        <label for="exampleInputEmail1"><strong>FAX NwO</strong></label><br>
+                        <span id="spnFaxNO"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 wow fadeInDown" id="grupprovider">
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Phone No</strong></label>
+                        <br>
+                        <span id="spnPhoneNo"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>PRN NO</strong></label>
+                        <br>
+                        <span id="spnPrnNo"></span>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Total No of Beds</strong></label>
+                        <br>
+                        <span id="spnTotalNoofBeds"></span>
+
+                    </div>
+
+                    <div class="form-group col-sm-3" style="display:none;">
+                        <!-- Leena SP3V-411 SP3V-1058 SP3V-1058" -->
+                        <label for="exampleInputEmail1"><strong>Package Discount Remarks</strong></label>
+                        <br>
+                        <span id="spnPackageDiscountRemarks"></span>
+
+                    </div>
+                    <div class="form-group col-sm-3" style="display:none;">
+                        <!-- Leena SP3V-411 SP3V-1058 SP3V-1058" -->
+                        <label for="exampleInputEmail1"><strong>Service Discount Remarks</strong></label>
+                        <br>
+                        <span id="spnServiceDiscountRemarks"></span>
+
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="exampleInputEmail1"><strong>Is GIPSA PPN</strong></label><br>
+                        <span id="spnIsGipsaPPN"></span>
+                    </div>
+                    <!-- Leena SP3V-411 SP3V-1058 SP3V-1058" -->
+                    <div class="form-group col-sm-3">
+                        <a href="#" id="divProviderDetailsModeldataaction" onclick="FillProviderServicePkgDisc();">
+                            Current Service Discount & Package Discount
+                            <input type="hidden" id="hdnProviderID" name="hdnProviderID">
+                            <input type="hidden" id="hdnMOUID" name="hdnMOUID">
+                        </a>
+
+                    </div>
+                    @if (ViewData["ClaimType"] != null && string.Equals(ViewData["ClaimType"].ToString(), "Reimbursement", StringComparison.OrdinalIgnoreCase))
+                    {
+                        <div class="form-group col-sm-12">
+                            <button id="btn_UpdatebyProviderid" type="button" class="btn btn-xs btn-success" style="float:left !important;margin-left :1000px!important;">
+                                SAVE
+                            </button>
+
+                        </div>
+                    }
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+            <div id="dvServiceDisc" style="scroll-behavior:auto;">
+                <div class="widget-body">
+                    <div id="tab">
+                        <ul class="nav nav-tabs">
+                            <li title="Servicedisc" class="active"><a href="#tab5default" data-toggle="tab" onclick="FillServiceDiscount();"><strong>Service Discount</strong></a></li>
+                            <li title="Packagedisc"><a href="#tab6default" data-toggle="tab" onclick="BindPackageDiscData()"><strong>Package Discount</strong></a></li>
+                            <li title="mouID" style="float:right; margin-top:10px"><strong><span id="spanMouId"></span></strong></li>
+                        </ul>
+                        <div class="tab-pane collapse" id="tab6default">
+                            <div class="row" style="width:100%">
+                                <div>
+                                    <h3 class="header smaller lighter blue"> Package Discount</h3>
+                                    <div id="no-more-tables">
+                                        <table id="tbl_package_rates" class="tablenew col-md-12 table-bordered table-striped table-condensed cf">
+                                            <thead class="cf">
+                                                <tr>
+                                                    <th>Procdedure ID</th>
+                                                    <th class="numeric">SPECIALITY</th>
+                                                    <th class="numeric">PROCEDURE_NAME</th>
+                                                    <th class="numeric">IP Discount</th>
+                                                    <th class="numeric">Remark</th>
+                                                    <th>CreatedUserName</th>
+                                                    <th>Created Date</th>
+                                                    <th>ModifiedUserName</th>
+                                                    <th>Modified Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab5default" style="display:none">
+                            <div class="row" style="width:100%">
+                                <div>
+                                    <h3 class="header smaller lighter blue">Service Discount</h3>
+                                    <div id="no-more-tables">
+                                        <table class="tablenew col-md-12 table-bordered cf" id="tbServiceDisc" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <th>Service Name</th>
+                                                    <th>IP Discount</th>
+                                                    <th class="numeric">OP Discount</th>
+                                                    <th>Remark</th>
+                                                    <th>CreatedUserName</th>
+                                                    <th>Created Date</th>
+                                                    <th>ModifiedUserName</th>
+                                                    <th>Modified Date</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Leena SP3V-411 SP3V-1058 -->
+        </div>
+
+        <div id="DivProviderDetails" hidden>
+            <!-- Hospital Name -->
+            <div class="space"></div>
+            <div class="row" id="divHospitalselection" style=" margin-left: 25px !important;">
+                <div class="row">
+                    <div class="col-md-12" style="padding-right:50px">
+                        <button class="btn btn-pink btn-sm pull-right" type="button" style="border-radius: 4px; font-weight: 700;" onclick="OpenViewAllRequests();">View All Requests</button>
+                        <button class="btn btn-warning btn-sm pull-right" type="button" style="border-radius: 4px; font-weight: 700; margin-right:10px" onclick="OpenNetworkHospitals();">New Hospital</button>
+
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-bottom:20px">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>State</label>
+                            <select id="ddlState" class="form-control" name="ddlState" onchange="StateChange(this.value, 'ddlCity')"><option value="">Select State</option></select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="lbl">City</label>
+                            <select id="ddlCity" name="ddlCity" class="form-control">
+                                <option value="">Select City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>
+                                Provider Type
+                                <span style="color: red;">*</span>
+                            </label>
+                            <select id="ddlProvider" name="ddlProvider" onchange="removecountvalue();" class="form-control">
+                                <option value="">Select</option>
+                                <option value="1">Network Hospitals</option>
+                                <option value="2">Non-Network Hospitals</option>
+                                <option value="3">Both</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label> Hospital</label>
+                            <input type="text" class="form-control" id="txtHospitalname" name="txtHospitalname">
+                            <span> <input type="hidden" id="hospitalName1"></span>
+                            <input type="hidden" class="form-control" id="hdnProviderId" name="hdnProviderId">
+                            <input type="hidden" class="form-control" id="hdnPrcno" name="hdnPrcno">
+                        </div>
+                        <div class="col-md-3 ps-0">
+                            <button type="button" class="btn btn-primary btn-sm" style="padding:0px 4px;font-weight:600; height: 25px;margin-top: 26px;" onclick="FindProvederDetials();">Get Details</button>
+                            <button type="button" class="btn btn-primary btn-sm" style="padding: 0px 4px; border-radius: 4px; font-weight: 600; height: 25px; margin-top: 27px;" data-toggle="modal" data-target="#exampleModalfh">
+                                <i class="fa fa-search me-2"></i> Find Hospital
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Hospital Name -->
+
+            <div class="space"></div>
+            <!--  Hospital - Results -->
+            <div class="widget-box widget-color-green ui-sortable-handle">
+                <div class="widget-header">
+                    <h5 class="widget-title">
+                        <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer white"></i>
+                        Hospital - Results
+                    </h5>
+                    <div class="widget-toolbar">
+                        <a href="#" data-action="collapse">
+                            <i class="1 ace-icon fa fa-chevron-up bigger-125"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <div class="alert alert-success">
+                        <div class="row">
+                            <div id="no-more-tables">
+                                <table class="col-md-12 table-bordered table-striped table-condensed cf" align="center" id="tblProviderResults"><tr><td>No Data Found</td></tr></table>
+                            </div>
+                            <div class="row" style="float:right;">
+                                <h3 class="header blue lighter smaller">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="UpdateProvederDetials();">Reset</button>	&nbsp;
+                                    <button type="button" class="btn btn-success btn-sm" onclick="UpdateProvederDetials();">Update</button>	&nbsp;
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END Hospital - Results -->
+        </div>
+
+
+        <div class="space"></div>
+        <div class="space"></div>  <!----Flag Details Started-->
+        <div class="widget-box widget-color-blue ui-sortable-handle" id="divflagServices">
+            <div class="widget-header widget-header-small" style="border-radius: 25px 25px 0px 0px;">
+                <h5 class="widget-title" style="font-size:small;">
+                    <i class=" ace-icon fa fa-hand-o-right icon-animated-hand-pointer white">
+                    </i>
+                    Flag Details
+                </h5>
+            </div>
+            <div id="tab9" class="tab-pane">
+                <div id="no-more-tables">
+                    <table class="table table-bordered" id="tblCategory">
+                        <thead>
+                            <tr>
+                                <th> Status</th>
+                                <th> Service Type</th>
+                                <th>Remarks</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>CreatedDateTime</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!--Flag Details End-->
+        <div class="space"></div>
+        <div class="widget-box widget-color-blue ui-sortable-handle" id="divTDSServices">
+            <div class="widget-header widget-header-small" style="border-radius: 25px 25px 0px 0px;">
+                <h5 class="widget-title" style="font-size:small;">
+
+                    <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer white"></i>
+
+                    TDS Details
+
+
+                </h5>
+            </div>
+            <div id="tab8" class="tab-pane">
+                <div id="no-more-tables">
+                    <table class="table table-bordered" id="tblTDS">
+                        <thead>
+                            <tr>
+                                <th>FinYearStartDate</th>
+                                <th>FinYearEndDate</th>
+                                <th>EffectiveFrom</th>
+                                <th>EffectiveTO</th>
+                                <th>TDSPerc</th>
+                                <th>TDSAmount</th>
+                                <th>Remarks</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!---End TDS Details-->
+        <!----Flag Details Started-->
+        <div class="widget-box widget-color-blue ui-sortable-handle" id="divflagServices">
+            <div class="widget-header widget-header-small" style="border-radius: 25px 25px 0px 0px;">
+                <h5 class="widget-title" style="font-size:small;">
+                    <i class=" ace-icon fa fa-hand-o-right icon-animated-hand-pointer white">
+                    </i>
+                    TDS Exemption Threshold Amount Details
+                </h5>
+            </div>
+            <div id="tab9" class="tab-pane">
+                <div id="no-more-tables">
+                    <table class="table table-bordered" id="tblThresholdDetails">
+                        <thead>
+                            <tr>
+                                <th>TAN no</th>
+                                <th>CertificateNo</th>
+                                <th>Total Amount</th>
+                                <th>Utilized amount</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!--Flag Details End-->
+        <div class="space"></div><!--Start MOU Details-->
+        <div class="widget-box widget-color-blue ui-sortable-handle" id="divMOUServices">
+            <div class="widget-header widget-header-small" style="border-radius: 25px 25px 0px 0px;">
+                <h5 class="widget-title" style="font-size:small;">
+                    <i class=" ace-icon fa fa-hand-o-right icon-animated-hand-pointer white">
+                    </i>
+                    MOU Details
+                </h5>
+            </div>
+            <div id="tab10" class="tab-pane">
+                <div id="no-more-tables">
+                    <table class="table table-bordered" id="tblMOU">
+                        <thead>
+                            <tr>
+                                <th>MOU StartDate</th>
+                                <th>MOU EndDate</th>
+                                <th>IP Percentage</th>
+                                <th>OP Percentage</th>
+                                <th>PackagePercentage</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--Start Early Payment Discount Details (Added for Task: SP-1307)-->
+        <div class="space"></div>
+        <div class="widget-box widget-color-blue ui-sortable-handle" id="divEPDData">
+            <div class="widget-header widget-header-small" style="border-radius: 25px 25px 0px 0px;">
+                <h5 class="widget-title" style="font-size:small;">
+                    <i class=" ace-icon fa fa-hand-o-right icon-animated-hand-pointer white"></i>
+                    Early Payment Discount Details
+                </h5>
+            </div>
+            <div id="tab11" class="tab-pane">
+                <div id="no-more-tables">
+                    <table class="table table-bordered" id="tblEPDDetails">
+                        <thead>
+                            <tr>
+                                <th>EPD (%)</th>
+                                <th>Effective From</th>
+                                <th>Effective To</th>
+                                <th>Created Date Time</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*</div>*@ @*Commented by leena*@
+</div>
+
+<div class="modal fade" id="exampleModalfh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style=" width:900px !important">
+        <div class="modal-content" style="border-radius:4px; ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Advance Hospital Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -28px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="divPSsearch">
+
+                    <div class="row">
+                        <div class="col-md-2 mb-2">
+                            <label>PRC No :</label>
+                            <input type="text" id="txtPSprcno">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label>Location :</label>
+                            <input type="text" id="txtPSlocation">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label>PAN No :</label>
+                            <input type="text" id="txtPSpanno">
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label>RegistrationNo :</label>
+                            <input type="text" id="txtPSregno">
+                        </div>
+                        <div class="col-md-2  mb-2">
+                            <label>Ins. PRC :</label>
+                            <input type="text" id="txtPSinsprc">
+                        </div>
+                        <div class="col-md-2 mb-2"><button type="button" style="margin-top: 25px; height: 26px; padding: 0px 16px;" class="btn btn-sm btn-primary btn-sm" onclick="FindProvederDetials(1);"><span class="bigger-110 no-text-shadow"><i class="fa fa-search"></i> Find</span></button></div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jss/CommonUtils.js?v=4.8.8"></script>
+<script src="~/Scripts/jss/ContactUtils.js?v=4.8.8"></script>
+<script>
+
+    //4398-start--
+     ////4398--stART
+      var MasterData = [];
+    MasterData.Mst_State =@Html.Raw(Json.Encode(@ApplicationInstance.Application["Mst_State"]));
+    MasterData.Mst_City =@Html.Raw(Json.Encode(HttpContext.Current.Application["Mst_City"]));
+    MasterData.Mst_District =@Html.Raw(Json.Encode(HttpContext.Current.Application["Mst_District"]));
+    MasterData.ProviderType =@Html.Raw(Json.Encode(@ApplicationInstance.Application["Provider Type"]));
+    BindDropDowns(1,0);
+    BindDropdown(MasterData.Mst_State, 'ddlState');
+    //4398-start--
+     function BindDropDowns(CountryID,StateID1) {
+
+            $("#txt_nonnetwork_hd_add_country").html("");
+            var verified_country = '< select id="1"><option>India</option>';
+            //$.each(result.Table, function (i, Country) {
+               $("#txt_nonnetwork_hd_add_country").append(
+                   $('<option></option>').val(1).html("India"));
+            //});
+
+            var cid1 = $("#txt_nonnetwork_hd_add_country option:selected").val();
+            $("#txt_nonnetwork_hd_add_state").html("");
+            $("#txt_nonnetwork_hd_add_state").append($('<option></option>').val("0").html("Select State"));
+            var data =  MasterData.Mst_State;
+            var result2 = data;
+            BindDropdown(MasterData.Mst_State, 'txt_nonnetwork_hd_add_state');
+
+            var StateID = $("#txt_nonnetwork_hd_add_state option:selected").val();
+            bindDistric(StateID);
+
+    }
+
+      $("#txt_nonnetwork_hd_add_state").change(function (e) {
+        {
+            var StateID = $("#txt_nonnetwork_hd_add_state option:selected").val();
+            bindDistric(StateID);
+
+        }
+    });
+
+    $("#txt_nonnetwork_hd_add_district").change(function () {
+        {
+            var DistrictID = $("#txt_nonnetwork_hd_add_district option:selected").val();
+            bindcity(DistrictID,0);
+        }
+    });
+
+    function bindcity(DistrictID,CityID) {
+        var StateID = $("#txt_nonnetwork_hd_add_state option:selected").val();
+
+        $("#txt_nonnetwork_hd_add_city").html("");
+        $("#txt_nonnetwork_hd_add_city").append($('<option></option>').val("0").html("Select City"));
+        GetCascadingCities('txt_nonnetwork_hd_add_city', StateID,CityID);
+      }
+
+      function bindDistric(StateID) {
+        var data =  MasterData.Mst_District["Result"];
+
+
+        if (data != null) {
+            $("#txt_nonnetwork_hd_add_district").html("");
+            $("#txt_nonnetwork_hd_add_district").append($('<option></option>').val("0").html("Select District"));
+            $.each(data, function (i) {
+                var sid=data[i].StateID;
+                if(StateID==sid)
+                {
+                    $("#txt_nonnetwork_hd_add_district").append($('<option></option>').val(data[i].ID).html(data[i].Name));
+                }
+
+            });
+            var DistrictID = $("#txt_nonnetwork_hd_add_district option:selected").val();
+            bindcity(DistrictID,0);
+
+        }
+    }
+
+    function BindDropdown(Data, control) {
+        $("#" + control + " :gt(0)").remove();
+        if (Data != null) {
+            $.each(Data, function (i) {
+                if (Data[0].ParentID == undefined) {
+                    var optionhtml = '<option value="' +
+                Data[i].ID + '">' + Data[i].Name + '</option>';
+                    $("#" + control).append(optionhtml);
+                }
+                else {
+                    if (Data[i].ParentID == 0 || Data[i].ParentID == 1) {
+                        var optionhtml = '<option value="' +
+                    Data[i].ID + '">' + Data[i].Name + '</option>';
+                        $("#" + control).append(optionhtml);
+                    }
+                }
+
+            });
+        }
+    }
+    //4398  ----
+
+    $("#btn_UpdatebyProviderid").click(function (e) {
+        var providerID=0;
+
+        providerID=$("#hdnProviderID").val();
+
+        if(providerID!="0"&&providerID!="")
+        {
+            var Name = $('#spnSystemPatient_HospitalName').text();
+            var CountryID = $("#txt_nonnetwork_hd_add_country option:selected").val();
+            var StateID = $("#txt_nonnetwork_hd_add_state option:selected").val();
+            var DistrictID = $("#txt_nonnetwork_hd_add_district option:selected").val();
+            var CityID = $("#txt_nonnetwork_hd_add_city option:selected").val();
+            var Location = $("#txt_hd_add_location").val();
+            var Location = $("#spnSystemPatient_Location").val();
+            var PINCode = $("#spnSystemPatient_PinCode").val();
+            var MobileNo = $("#spnSystemPatient_RegMobileNo").val();
+            var RegEmailID = $("#spnSystemPatient_RegEmailID").val();
+            var Address1 = $("#spnSystemPatient_Address").val();
+            var Address2 = '';$("#spnSystemPatient_Address2").val();
+
+            var bmo=false;
+            var brmo=false;
+
+
+            if(MobileNo.length <=12 &&MobileNo.length>=8)
+                brmo=true;
+
+              if(MobileNo=='00000000' || MobileNo=='N/A')
+                bmo=false;
+
+            var bEmail=false;
+            var RegExEmail = /\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            if (RegExEmail.test(RegEmailID))
+                bEmail=true;
+
+            var bPinCode=false;
+            if(PINCode.length==6)
+                bPinCode=true;
+
+
+
+
+
+
+
+            if (CountryID > 0 && StateID > 0 && CityID > 0 && DistrictID  > 0 && bEmail && Location.trim()!=""&& bPinCode && Address1.trim()!="" && brmo) {
+
+                $.ajax({
+                    url: '/Provider/UpdateByProviderId',
+                    type: 'GET',
+                    data: {
+                        ProviderID: providerID,
+                        Name: Name,
+                        CountryID:CountryID,
+                        StateID:StateID,
+                        DistrictID:DistrictID,
+                        CityID:CityID,
+                        Address1: Address1,
+                        Address2: Address2,
+                        Location: Location,
+                        PINCode: PINCode,
+                        MobileNo:MobileNo,
+                        RegEmailID: RegEmailID
+                    },
+                    success: function (data) {
+
+                                alert("Provider Data Saved successfully.");
+                                window.location.href = "/MedicalScrutiny/Index";
+
+
+                    },
+                    error: function (res) {
+                        alert('Plroblem while Processing');
+                    }
+                });
+            }
+            else {
+               if(PINCode=="" || PINCode.trim() == "N/A"){
+                      alert("Please Enter Pincode");
+                }
+
+                else if (Address1.trim() === "" || Address1.trim() == "N/A") {
+                    alert("Please Enter Provider Address");
+                }
+                 else if (CountryID == "0") {
+                    alert("Please select Country");
+                }
+
+                else if (StateID == "0") {
+                    alert("Please select State");
+                }
+              else if (DistrictID == "0") {
+                    alert("Please select Country");
+                }
+                else if (CityID == "0") {
+                    alert("Please select City");
+                }
+                else if(Location=="")
+                {
+                    alert("Please Enter Location");
+                }
+                else if(Location=="" || Location.trim() == "N/A")
+                {
+                    alert("Please Enter Location");
+                }
+                else if(!bPinCode)
+                {
+                    if(PINCode=="" || PINCode.trim() == "N/A")
+                        alert("Please Enter Pincode");
+                    else
+                        alert("Please Enter Valid Pincode");
+                }
+
+
+                else if (!bEmail) {
+                    if (RegEmailID.trim() === "" || RegEmailID.trim() == "N/A")
+                      alert("Please Enter EmailID");
+                    else
+                      alert("Please Enter Valid EmailID");
+                }
+                else if (!brmo) {
+                    if(MobileNo=="" ||  MobileNo.trim() == "N/A")
+                        alert("Please Enter Mobile  Number");
+                    else
+                        alert("Please Enter Valid Mobile Number");
+                }
+
+
+            }
+        }
+        else
+        {
+            alert("Provider deatils can not  updated");
+        }
+
+    });
+    //4398-End--
+    //Leena SP3V-411  SP3V-1058 Discount Issue
+    var dtServiceDiscount;
+    var dtPackageDiscount;
+    var dtProviderPackage;
+    var dtFacility;
+    var dtProcedures;
+    //End-------------------------------------
+    $('#ProviderDetailsDiv').addClass('collapsed');
+
+    function LoadProviderDetails(_ClaimID, _ProviderID, _memberPolicyID, _dateofadmission, IsFrmArchived) {
+
+      //  if (document.getElementById("ProviderDetailsDiv").classList.contains("collapsed")) {
+
+            try {
+
+                $.ajax({
+                    //type: "POST",
+                    url: "/MedicalScrutiny/ProviderDetails_Retrieve",
+                    contentType: 'application/json;charset=utf-8',
+                    //processData: false,
+                    data: { ClaimID: _ClaimID, ProviderID: _ProviderID, MemberPolicyID: _memberPolicyID, DOA: _dateofadmission, IsFrmArchived: IsFrmArchived },
+                    success: function (data) {
+
+                    data = $.parseJSON(data);
+                    debugger;
+                    if (data == null || data == "") {
+                        //alert('Data not found.');
+                    }
+                    else {
+                        $('#ProviderDetailsDiv').removeClass('collapsed');
+                        $("#tblTDS tbody").empty();
+                        $("#tblCategory tbody").empty();
+                        $("#tblMOU tbody").empty();
+                        $("#tblEPDDetails tbody").html(""); //Added for Task: SP-1307
+                        $("#tblThresholdDetails tbody").empty();
+                        $("#spnSystemPatient_HospitalName").text("");
+                        $("#spnSystemPatient_PRCNo").text("");
+
+                        $("#txt_nonnetwork_hd_add_state option[value='0']").attr("selected", "selected");
+                        $("#txt_nonnetwork_hd_add_district option[value='0']").attr("selected", "selected");
+                        $("#txt_nonnetwork_hd_add_city option[value='0']").attr("selected", "selected");
+
+                        $("#spnSystemPatient_Location").val("");
+                        $("#spnSystemPatient_City").text("");
+                        $("#spnSystemPatient_PinCode").val("");
+                        $("#spnSystemPatient_Address").val("");
+                        $("#spnSystemPatient_Address2").val("");
+                        $("#spnSystemPatient_RegEmailID").val("");
+                        $("#spnSystemPatient_RegMobileNo").val("");
+                        $("#spnSystemPatient_IRDACode").text("");
+                        $("#spnSystemPatient_RohiniCode").text("");
+                        $("#spnZoneName").text("");
+                        $("#spnFaxNO").text("");
+                        $("#spnPhoneNo").text("");
+                        $("#spnTotalNoofBeds").text("");
+                        $("#spnPrnNo").text("");
+                        $("#spnPackageDiscountRemarks").text("");
+                        $("#spnServiceDiscountRemarks").text("");
+                        var CategoryDetails = data.Table1;
+                        var TDSDetails = data.Table2;
+                        var MOUDetails = data.Table3;
+                        var TDSThresholdDetails = data.Table4;
+                        var EPDDetails = data.Table5; //Added for Task: SP-1307
+                        //Added for Task: SP3v-411 Leena
+                        //dtServiceDiscount = data.Table6;
+                        ////Added for Task: SP3v-1058 Leena
+                        //dtPackageDiscount = data.Table7;
+                        //dtProviderPackage = data.Table8;
+                        //dtFacility = data.Table9;
+                        //dtProcedures = data.Table10;
+                        //End SP3V-411 SP3V-1058
+                        var _newRelation = null;
+
+
+                        $("#hdnMOUID").val(data.Table[0].MOUID); //SP3V-411 11May2023 Leena
+                        $("#spnSystemPatient_HospitalName").text(data.Table[0].HospitalName == null || data.Table[0].HospitalName == "" ? 'N/A' : data.Table[0].HospitalName);
+                        $("#spnSystemPatient_PRCNo").text(data.Table[0].PRCNo == null || data.Table[0].PRCNo == "" ? 'N/A' : data.Table[0].PRCNo);
+                        $("#spnSystemPatient_Location").val(data.Table[0].Location == null || data.Table[0].Location == "" ? 'N/A' : data.Table[0].Location);
+    $("#spnSystemPatient_Location_v").text(data.Table[0].Location == null || data.Table[0].Location == "" ? 'N/A' : data.Table[0].Location);
+                        ////////4398
+                           var CountryID=data.Table[0].CountryID;
+                            var StateID=data.Table[0].StateID;
+                            var DistrictID=data.Table[0].DistrictID;
+                            var CityID=data.Table[0].CityID;
+                            var statename=data.Table[0].Statename;
+                            var cityname=data.Table[0].CityName;
+                            var districtname=data.Table[0].Districtname;
+                            var countryname=data.Table[0].Countryname;
+
+                            $("#txt_nonnetwork_hd_add_state option[value='"+StateID+"']").attr("selected", "selected");
+                            debugger;
+                            bindDistric(StateID);
+                            $("#txt_nonnetwork_hd_add_district option[value='"+DistrictID+"']").attr("selected", "selected");
+                            bindcity(DistrictID,CityID);
+                            $("#txt_nonnetwork_hd_add_city option[value='"+CityID+"']").attr("selected", "selected");
+                            $("#txt_nonnetwork_hd_add_state_v").text(statename);
+                            $("#txt_nonnetwork_hd_add_district_v").text(districtname);
+                            $("#txt_nonnetwork_hd_add_city_v").text(cityname);
+                            $("#txt_nonnetwork_hd_add_country_v").text(countryname);
+
+                            $("#spnSystemPatient_City").text(data.Table[0].CityName == null || data.Table[0].CityName == "" ? 'N/A' : data.Table[0].CityName);
+                            $("#spnSystemPatient_PinCode").val(data.Table[0].pinCode == null || data.Table[0].pinCode == "" ? 'N/A' : data.Table[0].pinCode);
+                            $("#spnSystemPatient_PinCode_v").text(data.Table[0].pinCode == null || data.Table[0].pinCode == "" ? 'N/A' : data.Table[0].pinCode);
+                            $("#spnSystemPatient_Address").val(data.Table[0].Address1 == null || data.Table[0].Address1 == "" ? 'N/A' : data.Table[0].Address1);
+                            $("#spnSystemPatient_Address_v").text(data.Table[0].Address1 == null || data.Table[0].Address1 == "" ? 'N/A' : data.Table[0].Address1);
+                            $("#spnSystemPatient_Address2").val(data.Table[0].Address2 == null || data.Table[0].Address2 == "" ? 'N/A' : data.Table[0].Address2);
+                            $("#spnSystemPatient_Address2_v").text(data.Table[0].Address2 == null || data.Table[0].Address2 == "" ? 'N/A' : data.Table[0].Address2);
+                            $("#spnSystemPatient_RegEmailID").val(data.Table[0].RegEmailID == null || data.Table[0].RegEmailID == "" ? 'N/A' : data.Table[0].RegEmailID);
+                            $("#spnSystemPatient_RegMobileNo").val(data.Table[0].RegMobileNo == null || data.Table[0].RegMobileNo == "" ? 'N/A' : data.Table[0].RegMobileNo);
+                                ////yes
+                            $("#spnSystemPatient_RegEmailID_v").text(data.Table[0].RegEmailID == null || data.Table[0].RegEmailID == "" ? 'N/A' : data.Table[0].RegEmailID);
+                            $("#spnSystemPatient_RegMobileNo_v").text(data.Table[0].RegMobileNo == null || data.Table[0].RegMobileNo == "" ? 'N/A' : data.Table[0].RegMobileNo);
+
+                            $("#spnSystemPatient_IRDACode").text(data.Table[0].IRDACode == null || data.Table[0].IRDACode == "" ? 'N/A' : data.Table[0].IRDACode);
+                            $("#spnSystemPatient_RohiniCode").text(data.Table[0].RohiniCode == null || data.Table[0].RohiniCode == "" ? 'N/A' : data.Table[0].RohiniCode);
+                            $("#spnZoneName").text(data.Table[0].ZoneName == null || data.Table[0].ZoneName == "" ? 'N/A' : data.Table[0].ZoneName);
+                            $("#spnIsGipsaPPN").text(data.Table[0].isgipsappn == null || data.Table[0].isgipsappn == "false" ? 'false' : data.Table[0].isgipsappn); //Added by Bhgayaraj
+
+
+                            $("#spnFaxNO").text(data.Table[0].RegFaxNo == null || data.Table[0].RegFaxNo == "" ? 'N/A' : data.Table[0].RegFaxNo);
+                            $("#spnPhoneNo").text(data.Table[0].RegLandlineNo == null || data.Table[0].RegLandlineNo == "" ? 'N/A' : data.Table[0].RegLandlineNo);
+                            $("#spnTotalNoofBeds").text(data.Table[0].TotalNoofBeds == null || data.Table[0].TotalNoofBeds == "" ? 'N/A' : data.Table[0].TotalNoofBeds);
+                            $("#spnPrnNo").text(data.Table[0].PRNnumber == null || data.Table[0].PRNnumber == "" ? 'N/A' : data.Table[0].PRNnumber);
+                            $("#spnPackageDiscountRemarks").text(data.Table[0].PackageDiscountRemarks == null || data.Table[0].PackageDiscountRemarks == "" ? 'N/A' : data.Table[0].PackageDiscountRemarks);
+                            $("#spnServiceDiscountRemarks").text(data.Table[0].ServiceDiscountRemarks == null || data.Table[0].ServiceDiscountRemarks == "" ? 'N/A' : data.Table[0].ServiceDiscountRemarks);
+    ///start
+                 if((data.Table[0].PRCNo == null || data.Table[0].PRCNo == "" || data.Table[0].PRCNo == "N/A") && ($("#hdnClaimTypeID").val() == "2") )
+                        {
+                        $("#btn_UpdatebyProviderid").css("display", "block");
+    //none-no showing
+
+ $("#txt_nonnetwork_hd_add_state").css("display", "block");
+$("#txt_nonnetwork_hd_add_district").css("display", "block");
+$("#txt_nonnetwork_hd_add_city").css("display", "block");
+$("#txt_nonnetwork_hd_add_country").css("display", "block");
+$("#spnSystemPatient_PinCode").css("display", "block");
+$("#spnSystemPatient_Address").css("display", "block");
+$("#spnSystemPatient_Address2").css("display", "block");
+$("#spnSystemPatient_RegEmailID").css("display", "block");
+$("#txt_nonnetwork_hd_add_state_v").css("display", "none");
+$("#txt_nonnetwork_hd_add_district_v").css("display", "none");
+$("#txt_nonnetwork_hd_add_city_v").css("display", "none");
+$("#txt_nonnetwork_hd_add_country_v").css("display", "none");
+$("#spnSystemPatient_Location_v").css("display", "none");
+$("#spnSystemPatient_Location").css("display", "block");
+
+$("#spnSystemPatient_PinCode_v").css("display", "none");
+$("#spnSystemPatient_Address_v").css("display", "none");
+$("#spnSystemPatient_Address2_v").css("display", "none");
+$("#spnSystemPatient_RegEmailID_v").css("display", "none");
+$("#spnSystemPatient_RegMobileNo").css("display", "block");
+$("#spnSystemPatient_RegMobileNo_v").css("display", "none");
+
+                        }
+                        else
+                        {
+        $("#spnSystemPatient_Location_v").css("display", "block");
+     $("#spnSystemPatient_Location").css("display", "none");
+     $("#txt_nonnetwork_hd_add_state").css("display", "none");
+$("#txt_nonnetwork_hd_add_district").css("display", "none");
+$("#txt_nonnetwork_hd_add_city").css("display", "none");
+$("#txt_nonnetwork_hd_add_country").css("display", "none");
+$("#spnSystemPatient_PinCode").css("display", "none");
+$("#spnSystemPatient_Address").css("display", "none");
+$("#spnSystemPatient_Address2").css("display", "none");
+$("#spnSystemPatient_RegEmailID").css("display", "none");
+    $("#spnSystemPatient_RegMobileNo").css("display", "none");
+
+                        $("#btn_UpdatebyProviderid").css("display", "none");
+      $("#txt_nonnetwork_hd_add_state_v").css("display", "block");
+$("#txt_nonnetwork_hd_add_district_v").css("display", "block");
+$("#txt_nonnetwork_hd_add_city_v").css("display", "block");
+$("#txt_nonnetwork_hd_add_country_v").css("display", "block");
+$("#spnSystemPatient_PinCode_v").css("display", "block");
+$("#spnSystemPatient_Address_v").css("display", "block");
+$("#spnSystemPatient_Address2_v").css("display", "block");
+$("#spnSystemPatient_RegEmailID_v").css("display", "block");
+    $("#spnSystemPatient_RegMobileNo_v").css("display", "block");
+
+                        }
+                            if (CategoryDetails.length > 0) {
+                                $.each(CategoryDetails, function (i, item) {
+
+
+                                    var StatusWiseColor = "";
+                                    var status = item.ProviderStatusName;
+
+                                    if (status == "Excluded") {
+                                        StatusWiseColor = StatusWiseColor + '<p class="label label-danger arrowed-in arrowed-in-right" data-title="providerStatusID" style="text-align:center"> ' + (status == null || status == "" ? 'N/A' : status) + ' </p>';
+
+                                    }
+                                    else if (status == "Cautious") {
+                                        StatusWiseColor = StatusWiseColor + '<p class="label label-success arrowed-in arrowed-in-right" data-title="providerStatusID" style="text-align:center"> ' + (status == null || status == "" ? 'N/A' : status) + ' </p>';
+                                    }
+                                    else {
+                                        StatusWiseColor = StatusWiseColor + '<p class="label label-dark arrowed-in arrowed-in-right" data-title="providerStatusID" style="text-align:center"> ' + (status == null || status == "" ? 'N/A' : status) + ' </p>';
+                                    }
+
+
+                                    _newRelation = '<td data-title="providerStatusID" style="text-align:center"> ' + (StatusWiseColor) + ' </label> </td>'
+                                       + '<td  data-title="ProviderServiceID" style="text-align:center"><p class="label label-success arrowed-in arrowed-in-right">' + (item.ProviderServiceName == null || item.ProviderServiceName == "" ? 'N/A' : item.ProviderServiceName) + '</p></td>'
+                                       + '<td data-title="Description" style="text-align:center"> ' + (item.Description == null || item.Description == "" ? 'N/A' : item.Description) + '  </td>'
+                                       + '<td data-title="StartDate" style="text-align:center"> ' + (item.StartDate == null || item.StartDate == "" ? 'N/A' : JSONDate2(item.StartDate)) + '  </td>'
+                                       + '<td data-title="EndDate" style="text-align:center">' + (item.EndDate == null || item.EndDate == "" ? 'N/A' : JSONDate2(item.EndDate)) + '  </td>'
+                                       + '<td data-title="CreatedDateTime" style="text-align:center">' + (item.CreatedDateTime == null || item.CreatedDateTime == "" ? 'N/A' : JSONDate2(item.CreatedDateTime)) + '  </td>';
+
+                                    $('<tr/>').html(_newRelation).appendTo('#tblCategory tbody');
+
+
+
+
+
+                                });
+                            }
+                            else {
+                                _newRelation = $('<tr class="tr">').append($('<td colspan="8" style=" font-size:small; color:#3A798C;text-align:center;">').text("No Flag Records Found")
+                                                                               ).appendTo('#tblCategory tbody');
+                            }
+
+
+
+                            //---TDS Details---!>
+                            if (TDSDetails.length > 0) {
+                                $.each(TDSDetails, function (i, item) {
+
+                                    _newRelation = '<td data-title="FinYearStartDate" style="text-align:center">' + (item.FinYearStartDate == null || item.FinYearStartDate == "" ? 'N/A' : JSONDate2(item.FinYearStartDate)) + '  </label></td>'
+                                     + '<td data-title="FinYearEndDate" style="text-align:center"> ' + (item.FinYearEndDate == null || item.FinYearEndDate == "" ? 'N/A' : JSONDate2(item.FinYearEndDate)) + '</td>'
+                                     + '<td data-title="EffectiveFrom" style="text-align:center"> ' + (item.EffectiveFrom == null || item.EffectiveFrom == "" ? 'N/A' : JSONDate2(item.EffectiveFrom)) + ' </td>'
+                                     + '<td data-title="EffectiveTO" style="text-align:center"> ' + (item.EffectiveTO == null || item.EffectiveTO == "" ? 'N/A' : JSONDate2(item.EffectiveTO)) + '  </td>'
+                                     + '<td data-title="TDSPerc" style="text-align:center"> ' + (item.TDSPerc == null || item.TDSPerc == "" ? 'N/A' : item.TDSPerc) + '  </td>'
+                                     + '<td data-title="TDSAmount" style="text-align:center">' + (item.TDSAmount == null || item.TDSAmount == "" ? 'N/A' : item.TDSAmount) + '  </td>'
+                                     + '<td data-title="Remarks" style="text-align:center">' + (item.Remarks == null || item.Remarks == "" ? 'N/A' : item.Remarks) + '  </td>';
+
+
+
+                                    $('<tr/>').html(_newRelation).appendTo('#tblTDS tbody');
+
+                                });
+                            }
+                            else {
+                                _newRelation = $('<tr class="tr">').append($('<td colspan="8" style=" font-size:small; color:#3A798C;text-align:center;">').text("Default 10% TDS is Applicable")
+                                                                             ).appendTo('#tblTDS tbody');
+                            }
+                            //---TDS Details End--\\
+
+                            //--MOU Details--\\
+
+                            if (MOUDetails.length > 0) {
+
+                                $.each(MOUDetails, function (i, item) {
+
+                                    _newRelation = '<td data-title="MOUStartDate" style="text-align:center">' + (item.MOUStartDate == null || item.MOUStartDate == "" ? 'N/A' : JSONDate2(item.MOUStartDate)) + '  </label></td>'
+                                        + '<td data-title="MOUEndDate" style="text-align:center"> ' + (item.MOUEndDate == null || item.MOUEndDate == "" ? 'N/A' : JSONDate2(item.MOUEndDate)) + '</td>'
+                                        + '<td data-title="IPPercentage" style="text-align:center"> ' + (item.IPPercentage == null || item.IPPercentage == "" ? 'N/A' : item.IPPercentage) + ' </td>'
+                                        + '<td data-title="OPPercentage" style="text-align:center"> ' + (item.OPPercentage == null || item.OPPercentage == "" ? 'N/A' : item.OPPercentage) + '  </td>'
+                                        + '<td data-title="PackagePercentage" style="text-align:center"> ' + (item.PackagePercentage == null || item.PackagePercentage == "" ? 'N/A' : item.PackagePercentage) + '  </td>';
+                                    $('<tr/>').html(_newRelation).appendTo('#tblMOU tbody');
+
+                                });
+                            }
+                            else {
+                                _newRelation = $('<tr class="tr">').append($('<td colspan="8" style=" font-size:small; color:#3A798C;text-align:center;">').text("No MOU Records Found")
+                                                                             ).appendTo('#tblMOU tbody');
+                            }
+                            if (TDSThresholdDetails.length > 0) {
+                                $.each(TDSThresholdDetails, function (i, item) {
+
+                                    _newRelation = '<td data-title="TANNo" style="text-align:center">' + (item.TANNo == null || item.TANNo == "" ? 'N/A' : item.TANNo) + '  </label></td>'
+                                         + '<td data-title="CertificateNo" style="text-align:center"> ' + (item.CertificateNo == null || item.CertificateNo == "" ? 'N/A' : item.CertificateNo) + '</td>'
+                                     + '<td data-title="ThresholdAmount" style="text-align:center"> ' + (item.ThresholdAmount == null || item.ThresholdAmount == "" ? 'N/A' : item.ThresholdAmount) + '</td>'
+                                     + '<td data-title="TotalSanctionAmt" style="text-align:center"> ' + (item.TotalSanctionAmt == null || item.TotalSanctionAmt == "" ? 'N/A' : item.TotalSanctionAmt) + ' </td>'
+                                     + '<td data-title="Balance" style="text-align:center"> ' + (item.Balance == null || item.Balance == "" ? 'N/A' : item.Balance) + '  </td>';
+                                    $('<tr/>').html(_newRelation).appendTo('#tblThresholdDetails tbody');
+
+                                });
+                            }
+                            else {
+                                _newRelation = $('<tr class="tr">').append($('<td colspan="8" style=" font-size:small; color:#3A798C;text-align:center;">').text("No  Records Found")
+                                                                             ).appendTo('#tblThresholdDetails tbody');
+                            }
+                            //---TDS Threshold Details End--\\
+
+                            //EPD Details For Task: SP-1307)
+                            if (EPDDetails.length > 0) {
+                                for (var a = 0; a < EPDDetails.length; a++) {
+                                    var row = $('<tr>');
+                                    row.append($('<td style="text-align:center">').html(EPDDetails[a].EarlyPaymentDiscount));
+                                    row.append($('<td style="text-align:center">').html(EPDDetails[a].EPDEffectiveFrom));
+                                    row.append($('<td style="text-align:center">').html(EPDDetails[a].EPDEffectiveTo));
+                                    row.append($('<td style="text-align:center">').html(EPDDetails[a].CreatedDateTime));
+                                    row.append($('<td style="text-align:center">').html(EPDDetails[a].EarlyPaymentDiscountRemarks));
+                                    $('#tblEPDDetails tbody').append(row);
+                                }
+                            }
+                            else {
+                                $('#tblEPDDetails tbody').append('<tr><td colspan="5" style=" font-size:small; color:#3A798C;text-align:center;">No Records Found</td></tr>');
+                            }
+                            //***********
+                        }
+                        // provdataloaded = true;
+                    },
+                    error: function (e, x) {
+                        ShowResultMessage('ErrorMessage', e.responseText);
+                        //provdataloaded = false;
+                    }
+                });
+            } catch (e) {
+                alert(e.message);
+            }
+       // }
+    }
+    //SP3V-411 Leena Provider Discounts Display Issues on Claims
+    /*SP3V-1058*/
+    function FillProviderServicePkgDisc() {
+        try {
+            $.ajax({
+                //type: "POST",
+                url: "/MedicalScrutiny/GetProviderServicePackageDisc",
+                contentType: 'application/json;charset=utf-8',
+                //processData: false,
+                data: { ClaimID: $('#hdnClaimID').val(), ProviderID: $("#hdnProviderID").val(), MouId: $('#hdnMOUID').val(), isFrmArchived: $('#hdnIsFrmArchived').val() },
+                success: function (data) {
+
+                    data = $.parseJSON(data);
+                    debugger;
+                    if (data == null || data == "") {
+                        //alert('Data not found.');
+                    }
+                    else {
+                        dtServiceDiscount = data.Table;
+                        dtPackageDiscount = data.Table1;
+                        dtProviderPackage = data.Table2;
+                        dtFacility = data.Table3;
+                        dtProcedures = data.Table4;
+                        FillDiscGrid();
+                    }
+
+                },
+                error: function (e, x) {
+                    ShowResultMessage('ErrorMessage', e.responseText);
+
+                }
+            });
+        } catch (e) {
+            alert(e.message);
+        }
+        // }
+    }
+    $(function () {
+
+        $("#dvServiceDisc").dialog({
+            autoOpen: false,
+            width: 1200,
+            height: 500,
+            title: "",
+            dialogClass: "no-close",
+            closeOnEscape: true,
+            draggable: true,
+            hide: { effect: "drop", duration: 500 },
+            show: { effect: "drop", duration: 500 },
+            modal: true,
+            close: function (event, ui) {
+                $('body').css('overflow', 'scroll');
+            },
+            buttons: [
+                {
+                    html: "<button class='btn btn-xs btn-grey'>Close</button>",
+                    click: function () {
+                        $(this).dialog("close");
+                        $('body').css('overflow', 'scroll');
+                    }
+                }
+            ]
+        });
+
+    });
+    function FillDiscGrid() {
+        FillServiceDiscount();
+        //LoadPackageDetails();
+        BindPackageDiscData();
+        $("#spanMouId").text("MOU ID: " + $("#hdnMOUID").val());
+    }
+       function isNumber(event) {
+      // Get the key code of the pressed key
+      var key = event.keyCode || event.which;
+
+      // Allow: backspace, tab, delete, arrows, and numbers (0-9)
+      if (key === 8 || key === 9 || key === 46 || key >= 48 && key <= 57 || key >= 37 && key <= 40) {
+        return true;
+      } else {
+        event.preventDefault(); // Prevent non-numeric input
+        return false;
+      }
+    }
+    function FillServiceDiscount() {
+
+        $("#dvServiceDisc").dialog("open");
+        $('#tbServiceDisc tbody').empty();
+        var tblbody = '';
+        var Discount = '';
+        var OPDiscount = '';
+        var CreatedUserName = '';
+        var ModifiedUserName = '';
+        var Createddatetime = '';
+        var ModifiedDate = '';
+        var html = '';
+        var Modifiedhtml = '';
+        var mdate;
+        var strServiceDiscountRemarks = '';
+        var strServiceCreatedUserName = '';
+        var strServiceModifiedUserName = '';
+        var strServiceCreateddatetime = '';
+        var strServiceModifiedDate = '';
+        var strServiceDiscount = '';
+        var strServiceOPDiscount = '';
+
+        strServiceDiscountRemarks = dtPackageDiscount[0].ServiceDiscountRemarks
+        strServiceCreatedUserName = dtPackageDiscount[0].CreatedUserName;
+        strServiceModifiedUserName = dtPackageDiscount[0].ModifiedUserName;
+        strServiceCreateddatetime = dtPackageDiscount[0].Createddatetime;
+        strServiceModifiedDate = dtPackageDiscount[0].ModifiedDate;
+
+        strServiceDiscount = dtPackageDiscount[0].IPPercentage;
+        strServiceOPDiscount = dtPackageDiscount[0].OPPercentage;
+
+        if ((dtServiceDiscount != null) && dtServiceDiscount.length > 0) {
+            for (var i = 0; i < dtServiceDiscount.length; i++) {
+
+                Discount = '0%';
+                CreatedUserName = '';
+                ModifiedUserName = '';
+                Createddatetime = '';
+                ModifiedDate = '';
+
+
+                if (dtServiceDiscount[i].Discount != 0) {
+                    Discount = dtServiceDiscount[i].Discount + '%';
+                }
+                else {
+                    Discount = strServiceDiscount + '%';
+                }
+
+                if (dtServiceDiscount[i].OpDiscount != 0) {
+                    OPDiscount = dtServiceDiscount[i].OpDiscount + '%';
+                }
+                else {
+                    OPDiscount = strServiceOPDiscount + '%';
+                }
+
+                if ((Discount > 0 || OPDiscount>0) && dtServiceDiscount[i].CreatedUserName != null) {
+                    CreatedUserName = dtServiceDiscount[i].CreatedUserName;
+                }
+                else {
+                    CreatedUserName = strServiceCreatedUserName ;
+                }
+
+
+                if ((Discount > 0 || OPDiscount > 0) && dtServiceDiscount[i].Createddatetime != null) {
+                    Createddatetime = dtServiceDiscount[i].Createddatetime;
+                }
+                else {
+                    Createddatetime = strServiceCreateddatetime;
+                }
+
+
+                if ((Discount > 0 || OPDiscount > 0) && dtServiceDiscount[i].ModifiedUserName != null) {
+                    ModifiedUserName = dtServiceDiscount[i].ModifiedUserName;
+                }
+                else {
+                    ModifiedUserName = strServiceModifiedUserName;
+                }
+
+                if ((Discount > 0 || OPDiscount > 0) && dtServiceDiscount[i].ModifiedDate != null) {
+                    ModifiedDate = dtServiceDiscount[i].ModifiedDate;
+                }
+                else {
+                    ModifiedDate = strServiceModifiedDate;
+                }
+                var className;
+                var color;
+                if (dtServiceDiscount[i].ParentID == 0) {
+
+                    className = "level3";
+                    //color = 'white';
+                }
+                else {
+                    className = 'background-color:lightgrey';
+
+                    color = '#3c763d';
+                }
+                html = '';
+                Modifiedhtml = ''
+                if (Createddatetime != null && Createddatetime != undefined && Createddatetime != '') {
+                    mdate = Createddatetime; //dtServiceDiscount[i].Createddatetime.split("T")[0];
+                    html = DisplayDateasIcon_DayandMonthYear(mdate);
+
+                }
+                if (ModifiedDate != null && ModifiedDate != undefined && ModifiedDate != '') {
+                    mdate = ModifiedDate; //dtServiceDiscount[i].ModifiedDate.split("T")[0];
+                    Modifiedhtml = DisplayDateasIcon_DayandMonthYear(mdate);
+                }
+
+                var body = '<tr id="tr_' + dtServiceDiscount[i].ServiceID + "_" + i + '" class="' + className + '"  style="color:' + color + ' !important;font-size:14px !important;">'
+                    + '<td ><label  id="">' + dtServiceDiscount[i].SlNo + '</label></td>';
+                body += '<td data-title="Services" style="text-align: left;"><label id="">' + dtServiceDiscount[i].ServiceName + '</label></td>'
+                body += '<td data-title="Discount" style="text-align: right;"><label id="">' + Discount + '</label></td>'
+                body += '<td data-title="OPDiscount" style="text-align: right;"><label id="">' + OPDiscount + '</label></td>'
+                body += '<td data-title="Remark" style="text-align: right;"><label id="">' + strServiceDiscountRemarks + '</label></td>'
+                body += '<td><label id="">' + CreatedUserName + '</label></td>'
+                body += '<td data-title="Created Date">' + html + '</td>'
+                body += '<td><label id="">' + ModifiedUserName + '</label></td>'
+                body += '<td data-title="Modified Date">' + Modifiedhtml + '</td>'
+
+
+                body += '</tr>';
+                tblbody += body;
+            }
+
+            $('#tbServiceDisc tbody').append(tblbody);
+        }
+
+    }
+    function BindPackageDiscData() {
+        //var data = dtPackageDiscount;
+        var Discount = '';
+        var CreatedUserName = '';
+        var ModifiedUserName = '';
+        var strPackageDiscountRemarks = '';
+        var ModifiedDate = '';
+
+        Discount = dtPackageDiscount[0].PackagePercentage + '%';
+        strPackageDiscountRemarks = dtPackageDiscount[0].PackageDiscountRemarks;
+
+        if (dtPackageDiscount[0].CreatedUserName != null) {
+            CreatedUserName = dtPackageDiscount[0].CreatedUserName;
+        }
+        if (dtPackageDiscount[0].Createddatetime != null) {
+
+            Createddatetime = dtPackageDiscount[0].Createddatetime;
+        }
+        if (dtPackageDiscount[0].ModifiedUserName != null) {
+            ModifiedUserName = dtPackageDiscount[0].ModifiedUserName;
+        }
+        if (dtPackageDiscount[0].ModifiedDate != null) {
+            ModifiedDate = dtPackageDiscount[0].ModifiedDate;
+        }
+
+        var html = '';
+        var Modifiedhtml = ''
+        if (Createddatetime != null && Createddatetime != undefined && Createddatetime != '') {
+            mdate = dtPackageDiscount[0].Createddatetime.split("T")[0];
+            html = DisplayDateasIcon_DayandMonthYear(mdate);
+
+        }
+        if (ModifiedDate != null && ModifiedDate != undefined && ModifiedDate != '') {
+            mdate = dtPackageDiscount[0].ModifiedDate.split("T")[0];
+            Modifiedhtml = DisplayDateasIcon_DayandMonthYear(mdate);
+        }
+        $("#tbl_package_rates").html("");
+
+        //var trRows = ' <thead class="cf"><tr><th>Procdedure ID</th><th>Speciality	</th><th>Procedures</th><th>MOU Discount</th> <th>All Facility Discount</th>';
+        var trRows = ' <thead class="cf"><tr><th>Procdedure ID</th><th>Speciality</th><th>Procedures</th><th>MOU Discount</th><th>Remark</th><th>CreatedUserName</th><th>Created Date</th><th>ModifiedUserName</th><th>Modified Date</th>';
+        //$.each(dtFacility, function (j, mValue) {
+        //    trRows += '<th>' + mValue.Name + '</th>';
+        //});
+        trRows += "<tbody >";
+        $.each(dtProcedures, function (j, ProcVal) {
+            trRows += '<tr><td data-title="Procedure ID"> ' + ProcVal.TPAProcID + '</td>' +
+                '<td data-title="SPECIALITY"><label id=""> ' + ProcVal.SPECIALITY + '</label> </td>' +
+                '<td data-title="Procedure Name"><label id=""> ' + ProcVal.Name + '</label> </td>';
+            var s = 0;
+            $.each(dtFacility, function (k, FacVal) {
+                if (s == 0) {
+                    trRows += '<td data-title="Discount" style="text-align: right;"> <label  id="txt_Disscount_' + ProcVal.TPAProcID + '" name="txt_Disscount_' + ProcVal.TPAProcID + '"> </td>';
+                    trRows += '<td data-title="Remark" style="text-align: right;"> <label  id="txt_Remark_' + ProcVal.TPAProcID + '" name="txt_Remark_' + ProcVal.TPAProcID + '"> </td>';
+                    trRows += '<td data-title="CreatedUserName" style="text-align: right;"> <label  id="txt_CreatedUserName_' + ProcVal.TPAProcID + '" name="txt_CreatedUserName_' + ProcVal.TPAProcID + '"> </td>';
+                    trRows += '<td data-title="Createddatetime" style="text-align: right;"> ' + html + ' </td>';
+                    trRows += '<td data-title="ModifiedUserName" style="text-align: right;"> <label  id="txt_ModifiedUserName_' + ProcVal.TPAProcID + '" name="txt_ModifiedUserName_' + ProcVal.TPAProcID + '"> </td>';
+                    trRows += '<td data-title="ModifiedDate" style="text-align: right;"> ' + Modifiedhtml + ' </td>';
+
+                    //trRows += '<td  data-title="Discount"> <div style="display: inline-flex"><input type="text" style="width:80px" onkeypress="return  onlydigits(event)" class="form-control discount" id="txt_AllProvAmount_' + ProcVal.TPAProcID + '" name="txt_AllProvAmount_' + ProcVal.TPAProcID + '" placeholder="" maxlength="5"  ><input type="text" style="width:80px" onkeypress="return  onlydigits(event)" class="form-control discount" id="txt_AllProvDisscount_' + ProcVal.TPAProcID + '" name="txt_AllProvDisscount_' + ProcVal.TPAProcID + '" placeholder="" maxlength="5"  ></div></td>';
+                    s++;
+                }
+                // trRows += '<td data-title="Procedure ID"><div style="display: inline-flex"><input type="text" style="width:50px" onkeypress="return  onlydigits(event)" class="form-control txt_gen" id="txt_Amount_' + ProcVal.TPAProcID + "_" + FacVal.FacilityID + '" name="txt_Amount_' + ProcVal.TPAProcID + "_" + FacVal.FacilityID + '" placeholder="" maxlength="10"><input type="text" style="width:30px" onkeypress="return  onlydigits(event)" class="form-control txt_gen" id="txt_Discount_' + ProcVal.TPAProcID + "_" + FacVal.FacilityID + '" name="txt_Discount_' + ProcVal.TPAProcID + "_" + FacVal.FacilityID + '" placeholder="" maxlength="10"></div></td>';
+            });
+            trRows += '</tr>';
+        });
+        trRows = trRows + "</tr></thead>";
+
+        trRows += "</tbody>";
+        $("#tbl_package_rates").html("");
+        $('#tbl_package_rates').html(trRows);
+        //if (data.Table1 != undefined) {
+        //    $.each(data.Table1, function (i, dataval) {
+
+        //        //$("#txt_Disscount_" + dataval.TPAProcID).val(Discount);
+        //        if (dataval.FacilityID == null) {
+        //            $("#txt_AllProvAmount_" + dataval.TPAProcID).val(dataval.Amount);
+        //            $("#txt_AllProvDisscount_" + dataval.TPAProcID).val(dataval.Discount);
+        //        }
+        //        else {
+        //            $("#txt_Amount_" + dataval.TPAProcID + "_" + dataval.FacilityID).val(dataval.Amount);
+        //            $("#txt_Discount_" + dataval.TPAProcID + "_" + dataval.FacilityID).val(dataval.Discount);
+        //        }
+        //    });
+        //}
+        //$("#tbl_package_rates").dataTable().fnDestroy();
+        if (dtProcedures != undefined) {
+            $.each(dtProcedures, function (i, dataval) {
+                $("#txt_Disscount_" + dataval.TPAProcID).text(Discount);
+                $("#txt_Remark_" + dataval.TPAProcID).text(strPackageDiscountRemarks);
+                $("#txt_CreatedUserName_" + dataval.TPAProcID).text(CreatedUserName);
+                //$("#txt_Createddatetime_" + dataval.TPAProcID).text(Createddatetime);
+                $("#txt_ModifiedUserName_" + dataval.TPAProcID).text(ModifiedUserName);
+                //$("#txt_ModifiedDate_" + dataval.TPAProcID).text(ModifiedDate);
+            });
+        }
+    }
+    $(function () {
+        $("#tab").tabs();
+    });
+    /*End SP3V-1058*/
+    function EnableProviderDiv() {
+        if ($("#hdnClaimTypeID").val() == "2" && ($('#hdnClaimStageID').val() == "4" || $('#hdnClaimStageID').val() == "24") && $('#hdnRequestTypeID').val() != 7 && $('#hdnRequestTypeID').val() != 8) {
+            $("#DivProviderDetails").removeAttr("hidden");
+            $("#DivProviderDetails").focus();
+        }
+        }
+        function UpdateProvederDetials() {
+
+            if ($('input[name="provider"]:checked').val() == null || $('input[name="provider"]:checked').val() == "") {
+                alert('Please choose provider');
+                return;
+            }
+             $.ajax({
+                    type: "POST",
+                    async: true,
+                 url: '@Url.Action("SaveClaimProviderDetails", "MedicalScrutiny")',
+                 data: { ClaimID: $("#hdnClaimID").val(), ProviderID: $('input[name="provider"]:checked').val()},
+                    dataType: "json",
+                    success: function (data)
+                    {
+                        if (data == "null")
+                        {
+                            alert('Error while saving data');
+                        }
+                        else
+                        {
+                            window.location = "/MedicalScrutiny/NavIndex?ClaimID=" + $('#hdnClaimID').val() + "&SlNo=" + $('#hdnClaimSlNo').val() + "&SID=" + $('#hdnClaimStageID').val() + "&AID=" + $('#hdnClaimActionID').val() + "&QMS=" + $("#hdnQMS").val() + "&QMSadmin" + $("#hdnQMS").val();
+                        }
+                    },
+                    complete: function ()
+                    {
+
+                    },
+                    error: function (xhr, status, error)
+                    {
+                    alert(error);
+                    console.log(xhr.responseText + "--" + status + "--" + error);
+                    }
+                });
+    }
+
+    function OpenViewAllRequests() {
+
+        const url = '/Provider/ProviderRequests'; // URL to open
+        const windowName = 'Provider Requests'; // Name of the new window
+        const windowSize = 'width=900,height=550,left=100,top=100'; // Window dimensions: 800px width and 600px height
+
+        // Open the window with the specified URL, name, and size
+        window.open(url, windowName, windowSize);
+
+
+    }
+    function OpenNetworkHospitals() {
+        try {
+
+            const windowName = 'Provider Requests'; // Name of the new window
+            const windowSize = 'width=900,height=550,left=100,top=100'; // Window dimensions: 800px width and 600px height
+            var paramString = [
+                0, 0, $('#hdnUserRegionID').val()
+            ].join('|');
+            $.ajax({
+                url: '/Common/EncryptParameters',
+                type: 'POST',
+                data: { Q: paramString },
+                success: function (encryptedValue) {
+                    if (encryptedValue) {
+                        if ($('#hdnAppURL').val().toUpperCase().match('20.198.75.184')) {
+                            window.open('https://20.198.75.184/Provider/NonNetWorkProvider?Q=' + encodeURIComponent(encryptedValue), windowName, windowSize);
+                        }
+                        else {
+                            window.open('/Provider/NonNetWorkProvider?Q=' + encodeURIComponent(encryptedValue), windowName, windowSize);
+                        }
+                    }
+                    else {
+                        DialogWarningMessage('Error encrypting parameter details');
+                    }
+                },
+                error: function (err) {
+                    DialogWarningMessage('Encryption failed');
+                }
+            });
+        } catch (e) {
+            alert('Error occured while add DMS document');
+        }
+    }
+</script>
