@@ -1,0 +1,37 @@
+@{
+    Layout = "~/Views/Shared/_ClaimAIFrameLayout.cshtml";
+    ViewBag.Title = "Provider Details";
+    var claimID = Convert.ToInt64(ViewBag.ClaimID ?? 0);
+    var providerID = Convert.ToInt64(ViewBag.ProviderID ?? 0);
+    var memberPolicyID = Convert.ToInt64(ViewBag.MemberPolicyID ?? 0);
+}
+
+@*
+    Standalone frameable Provider Details for the ClaimAI iframe.
+    Place at: Views/MedicalScrutiny/ProviderDetailsFrame.cshtml
+
+    The _ClaimProviderDetails partial defines LoadProviderDetails(...) which calls
+    /MedicalScrutiny/ProviderDetails_Retrieve. We render the partial, seed the
+    hidden fields, and fire LoadProviderDetails on load (same as the + button).
+*@
+
+@* Hidden fields the _ClaimProviderDetails partial reads from. *@
+<input type="hidden" id="hdnClaimID" value="@claimID" />
+<input type="hidden" id="hdnClaimSlNo" value="0" />
+<input type="hidden" id="hdnProviderID" value="@providerID" />
+<input type="hidden" id="hdnMemberPolicyID" value="@memberPolicyID" />
+<input type="hidden" id="hdnMOUID" value="0" />
+<input type="hidden" id="hdnIsFrmArchived" value="false" />
+
+@Html.Partial("_ClaimProviderDetails")
+
+@section scripts {
+    <script>
+        $(function () {
+            try {
+                // Same call the "+" toggle on Provider Details makes.
+                LoadProviderDetails(@claimID, @providerID, @memberPolicyID, null, false);
+            } catch (e) { console.error('[ClaimAI] LoadProviderDetails failed', e); }
+        });
+    </script>
+}
