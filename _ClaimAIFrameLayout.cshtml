@@ -1,0 +1,71 @@
+@*
+    Bare layout for pages embedded as iframes inside ClaimAI (Member View /
+    Provider Details). It intentionally omits the top nav, sidebar and app chrome
+    so the widget renders cleanly inside ClaimAI's right panel � it only pulls in
+    the CSS + JS the _MemberView / _ClaimProviderDetails partials depend on.
+
+    Place at: Views/Shared/_ClaimAIFrameLayout.cshtml
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Core styles used by the widgets (mirrors _Layout.cshtml, chrome omitted) -->
+    <link rel="stylesheet" href="/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/Content/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="/Content/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="/Content/css/style.css" />
+    <link rel="stylesheet" href="/Content/css/stylesheet.css" />
+    <link rel="stylesheet" href="/Content/css/MyStyle.css" />
+    <link rel="stylesheet" href="/Content/css/table.css" />
+    <link rel="stylesheet" href="/Content/css/tooltip.css" />
+    <link rel="stylesheet" href="/Content/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/Content/css/select2.min.css" />
+    <link rel="stylesheet" href="/Content/css/sumoselect.css" />
+    <link rel="stylesheet" href="/Content/css/overlaypopup.css" />
+    <link rel="stylesheet" href="/Content/css/busySymbol.css" />
+    <link rel="stylesheet" href="/Scripts/DataTable.css" />
+
+    <style>
+        /* Trim page chrome so the widget fills the iframe neatly. */
+        html, body {
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+            body.claimai-frame {
+                padding: 8px 10px;
+            }
+
+                body.claimai-frame .page-content {
+                    padding: 0 !important;
+                }
+
+                body.claimai-frame .page-header {
+                    margin: 0 0 8px 0;
+                }
+    </style>
+</head>
+<body class="claimai-frame">
+    @RenderBody()
+
+    <!-- Core scripts + the util files that define the bind/retrieve functions -->
+    <script src="/Scripts/js/jquery.min.js"></script>
+    <script src="/Scripts/js/jquery-ui.min.js"></script>
+    <script src="/Scripts/js/ace-extra.min.js"></script>
+    <script src="/Scripts/js/custom.js"></script>
+    <script src="/Scripts/js/jquery.sumoselect.js"></script>
+    <script src="/Scripts/js/busySymbol.js"></script>
+    <script src="/Scripts/DataTable.js"></script>
+    <script src="/Scripts/jss/CommonUtils.js"></script>
+    <script src="/Scripts/jss/ClaimsCommonUtils.js"></script>
+    <script src="/Scripts/jss/MedicalScrutiny.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
