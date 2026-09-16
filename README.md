@@ -1,1 +1,2 @@
-[ClaimAI] direct save FAILED: Cannot insert the value NULL into column 'BillingType_P51', table 'Mcareplus_AI.dbo.ClaimsCoding'; column does not allow nulls. INSERT fails.
+Msg 207, Level 16, State 1, Procedure USP_ClaimAI_SaveClaimBundle, Line 180 [Batch Start Line 0]
+Invalid column name 'ClaimID'.
