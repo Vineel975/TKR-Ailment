@@ -1,1 +1,1 @@
-<img width="599" height="359" alt="image" src="https://github.com/user-attachments/assets/5e738a49-3902-406b-9999-43e5ef0c873c" />
+https://claims-helixview.fhpl.net/job/jh7es2t0tmhrbeasgss0q042eh8dbhkb?embedded=1&roleId=20&regionId=&slNo=1
