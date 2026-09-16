@@ -1,5 +1,1 @@
-const u = performance.getEntriesByType('resource')
-  .map(r => r.name).find(n => n.includes('f70063540735db1a.js'));
-const t = await fetch(u).then(r => r.text());
-const i = t.indexOf('CLAIMAI_DIRECT_SAVE');
-console.log(JSON.stringify(t.slice(i - 120, i + 120)));
+"e strict\";let t,a,i,r,n,l;var s,o,c,d,u,m,p,f=e.i(43476),h=e.i(71645);let g=\"true\"===e.i(47167).default.env.NEXT_PUBLIC_CLAIMAI_DIRECT_SAVE,b=[1,2,3,4,5,6,7,8,9,10,11],y=e=>{let t=\"number\"==typeof e?e:parseFloat(String(e??\"\").trim());return"
