@@ -1,12 +1,14 @@
-curl -s -X POST https://helixview.fhpl.net/api/claim/save \
-  -H "Content-Type: application/json" -d '{}'
+await fetch('/api/claim/save', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: '{}'
+}).then(r => r.json())
 
-
-
-curl -s -X POST https://helixview.fhpl.net/api/claim/save \
-  -H "Content-Type: application/json" -d '{
-    "claimId": "99999999999",
-    "slNo": 1,
-    "userId": 1,
-    "context": { "roleId": 1, "regionId": 1, "createdUserRegionId": 1 }
-  }'
+await fetch('/api/claim/save', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    claimId: "99999999999", slNo: 1, userId: 1,
+    context: { roleId: 1, regionId: 1, createdUserRegionId: 1 }
+  })
+}).then(r => r.json())
