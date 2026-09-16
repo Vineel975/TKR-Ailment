@@ -1,1 +1,11 @@
-https://claims-helixview.fhpl.net/job/jh7es2t0tmhrbeasgss0q042eh8dbhkb?embedded=1&roleId=20&regionId=&slNo=1
+document.querySelector('script[src*="_next"]') ? 'app loaded' : ''
+
+SELECT ClaimID, Slno, BillingCorrection, PackageAmount, Sanctionedamount,
+       DoctorNotes, ClaimDiagnosis
+FROM   dbo.Claimsdetails WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND Slno = <slno> AND ISNULL(Deleted,0)=0;
+
+SELECT ServiceID, BillAmount, DeductionAmount, EligibleAmount, SanctionedAmount
+FROM   dbo.ClaimsServiceDetails WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND Slno = <slno> AND Deleted = 0
+ORDER  BY ServiceID;
