@@ -1,1 +1,3 @@
-<img width="622" height="328" alt="image" src="https://github.com/user-attachments/assets/2d656685-9e60-459b-aec4-013b9c46a217" />
+SELECT HAS_PERMS_BY_NAME('dbo.ClaimBillDetails', 'TYPE', 'EXECUTE') AS bill,
+       HAS_PERMS_BY_NAME('dbo.ClaimDeductionDetails', 'TYPE', 'EXECUTE') AS deduction,
+       HAS_PERMS_BY_NAME('dbo.ClaimsServiceDetails', 'TYPE', 'EXECUTE') AS service;
