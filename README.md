@@ -1,3 +1,1 @@
-SELECT Sanctionedamount, EligibleAmount, BillingType_P51
-FROM   dbo.Claimsdetails WITH (NOLOCK)
-WHERE  ClaimID = <a recently saved claim> AND Slno = 1 AND ISNULL(Deleted,0)=0;
+<img width="362" height="86" alt="image" src="https://github.com/user-attachments/assets/1432bc95-3779-45f7-960e-682b598467ea" />
