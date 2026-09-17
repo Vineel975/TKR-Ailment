@@ -1,10 +1,10 @@
-TPAProcedureID ICDCode     BillingType_P51 BillAmount            EligibleAmount        DisallowedAmount      PayableAmount
--------------- ----------- --------------- --------------------- --------------------- --------------------- ---------------------
-497            13323       201             22000.00              12345.00              9655.00               12345.00
-497            13323       201             22000.00              12345.00              9655.00               12345.00
-497            13323       201             22000.00              8731.00               13269.00              8731.00
+SELECT ID, ClaimID, Slno, ICDCode, EligibleAmount, Deleted
+FROM   dbo.ClaimsCoding WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND Slno = <slno>
+ORDER  BY ID;
 
-Msg 207, Level 16, State 1, Line 1
-Invalid column name 'ProvisionalDiagnosis'.
-Msg 207, Level 16, State 1, Line 1
-Invalid column name 'FinalDiagnosis'.
+SELECT c.name, TYPE_NAME(c.user_type_id) AS type
+FROM   sys.columns c
+WHERE  c.object_id = OBJECT_ID('dbo.Claimsdetails')
+  AND  c.name LIKE '%iagnos%'
+ORDER  BY c.column_id;
