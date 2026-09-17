@@ -1,10 +1,16 @@
-SELECT ID, ClaimID, Slno, ICDCode, EligibleAmount, Deleted
-FROM   dbo.ClaimsCoding WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND Slno = <slno>
-ORDER  BY ID;
+ID                   ClaimID              Slno ICDCode     EligibleAmount        Deleted
+-------------------- -------------------- ---- ----------- --------------------- -------
+25355870             26082743934          1    13323       30000.00              1
+25355879             26082743934          1    28145       22000.00              1
+25355880             26082743934          1    28145       22000.00              1
+25355900             26082743934          1    28145       22000.00              1
+25355901             26082743934          1    28145       22000.00              1
+25355909             26082743934          1    13323       8731.00               1
+25355910             26082743934          1    13323       12345.00              1
+25355911             26082743934          1    13323       12345.00              0
+name                                                                                                                             type
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Diagnosis                                                                                                                        varchar
+claimdiagnosis                                                                                                                   int
 
-SELECT c.name, TYPE_NAME(c.user_type_id) AS type
-FROM   sys.columns c
-WHERE  c.object_id = OBJECT_ID('dbo.Claimsdetails')
-  AND  c.name LIKE '%iagnos%'
-ORDER  BY c.column_id;
+
