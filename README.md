@@ -1,8 +1,10 @@
-SELECT ID, TPAProcedureID, TPALevel1, TPALevel2, TPALevel3, PCSCode, ICDCode
-FROM   dbo.ClaimsCoding WITH (NOLOCK)
-WHERE  ID = 25355911;
+ID                   TPAProcedureID TPALevel1   TPALevel2   TPALevel3   PCSCode    ICDCode
+-------------------- -------------- ----------- ----------- ----------- ---------- -----------
+25355911             497            494         495         497         08RK3JZ    13323
 
 
-SELECT Diagnosis, claimdiagnosis
-FROM   dbo.Claimsdetails WITH (NOLOCK)
-WHERE  ClaimID = 26082743934 AND Slno = 1 AND ISNULL(Deleted,0)=0;
+Diagnosis                                                                                                                                                                                                                                                       claimdiagnosis
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------
+Senile cataract                                                                                                                                                                                                                                                 13323
+
+(1 row affected)
