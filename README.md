@@ -1,2 +1,7 @@
-Msg 207, Level 16, State 1, Procedure USP_ClaimAI_SaveClaimBundle, Line 180 [Batch Start Line 0]
-Invalid column name 'ClaimID'.
+SELECT ClaimDiagnosis, DoctorNotes, AdditionalRemarks
+FROM   dbo.Claimsdetails WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND Slno = <slno> AND ISNULL(Deleted,0)=0;
+
+SELECT TPAProcedureID, IssueID, ICD10Code, BillAmount, EligibleAmount
+FROM   dbo.ClaimsCoding WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND Slno = <slno> ORDER BY ID DESC;
