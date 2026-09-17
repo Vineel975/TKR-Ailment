@@ -1,3 +1,3 @@
-[ClaimAI][fin-tab] savedApprovalBasis prop: manual | approvalBasis state: null | applied: false
+[ClaimAI][fin-tab] basis effect ran with: manual
 
-[ClaimAI][med-tab] savedIcdCode: H25.011 | aiCode1 used: H25.011 | diagnosisText: zap Cataract
+<img width="520" height="177" alt="image" src="https://github.com/user-attachments/assets/fee07090-b381-46e4-a31c-fd6c5977aa8e" />
