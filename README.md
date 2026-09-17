@@ -1,9 +1,10 @@
-SELECT TOP 3 TPAProcedureID, ICDCode, BillingType_P51,
-       BillAmount, EligibleAmount, DisallowedAmount, PayableAmount
-FROM   dbo.ClaimsCoding WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND Slno = <slno>
-ORDER  BY ID DESC;
+TPAProcedureID ICDCode     BillingType_P51 BillAmount            EligibleAmount        DisallowedAmount      PayableAmount
+-------------- ----------- --------------- --------------------- --------------------- --------------------- ---------------------
+497            13323       201             22000.00              12345.00              9655.00               12345.00
+497            13323       201             22000.00              12345.00              9655.00               12345.00
+497            13323       201             22000.00              8731.00               13269.00              8731.00
 
-SELECT ClaimDiagnosis, ProvisionalDiagnosis, FinalDiagnosis
-FROM   dbo.Claimsdetails WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND Slno = <slno> AND ISNULL(Deleted,0)=0;
+Msg 207, Level 16, State 1, Line 1
+Invalid column name 'ProvisionalDiagnosis'.
+Msg 207, Level 16, State 1, Line 1
+Invalid column name 'FinalDiagnosis'.
