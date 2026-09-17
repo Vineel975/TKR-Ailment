@@ -1,10 +1,2 @@
-ID                   TPAProcedureID TPALevel1   TPALevel2   TPALevel3   PCSCode    ICDCode
--------------------- -------------- ----------- ----------- ----------- ---------- -----------
-25355911             497            494         495         497         08RK3JZ    13323
-
-
-Diagnosis                                                                                                                                                                                                                                                       claimdiagnosis
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------
-Senile cataract                                                                                                                                                                                                                                                 13323
-
-(1 row affected)
+// the payload is logged? if not, add a temporary check:
+console.log('edited:', document.querySelector('input[placeholder*="iagnos" i]')?.value);
