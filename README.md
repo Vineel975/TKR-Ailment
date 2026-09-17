@@ -1,7 +1,8 @@
-SELECT ClaimDiagnosis, DoctorNotes, AdditionalRemarks
-FROM   dbo.Claimsdetails WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND Slno = <slno> AND ISNULL(Deleted,0)=0;
+SELECT c.name, TYPE_NAME(c.user_type_id) AS type, c.is_nullable
+FROM   sys.columns c
+WHERE  c.object_id = OBJECT_ID('dbo.ClaimsCoding')
+ORDER  BY c.column_id;
 
-SELECT TPAProcedureID, IssueID, ICD10Code, BillAmount, EligibleAmount
-FROM   dbo.ClaimsCoding WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND Slno = <slno> ORDER BY ID DESC;
+SELECT m.definition
+FROM   sys.sql_modules m
+WHERE  m.object_id = OBJECT_ID('dbo.USP_CLA_SaveClaimCodingData');
