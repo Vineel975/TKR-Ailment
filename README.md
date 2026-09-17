@@ -1,3 +1,7 @@
-[ClaimAI][fin-tab] basis effect ran with: manual
+   SELECT p.name, TYPE_NAME(p.user_type_id) AS type
+   FROM   sys.parameters p
+   WHERE  p.object_id = OBJECT_ID('dbo.USP_ClaimQuery_Insert')
+   ORDER  BY p.parameter_id;
 
-<img width="520" height="177" alt="image" src="https://github.com/user-attachments/assets/fee07090-b381-46e4-a31c-fd6c5977aa8e" />
+      SELECT m.definition FROM sys.sql_modules m
+   WHERE m.object_id = OBJECT_ID('dbo.USP_ClaimQuery_Insert');
