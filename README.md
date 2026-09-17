@@ -1,7 +1,13 @@
-SET NOCOUNT ON;
-SELECT m.definition FROM sys.sql_modules m
-WHERE m.object_id = OBJECT_ID('dbo.USP_CLA_SaveClaimCodingData');
+definition
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--exec USP_CLA_SaveClaimCodingData 22101100788,1,403,60000,null,6000,5000,54000,5000,30
+CREATE procedure [dbo].[USP_CLA_SaveClaimCodingData] 
+
+	-- Add the parameters for the stored procedure here
+	(@ClaimID bigint,@Slno tinyint,@TPAProcedureID int,@Bil
 
 
-SELECT claimdiagnosis FROM dbo.Claimsdetails WITH (NOLOCK)
-WHERE ClaimID = 26082743934 AND Slno = 1 AND ISNULL(Deleted,0) = 0;
+
+claimdiagnosis
+--------------
+13323
