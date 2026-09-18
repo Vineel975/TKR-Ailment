@@ -1,1 +1,2 @@
-<img width="579" height="244" alt="image" src="https://github.com/user-attachments/assets/dc6d9411-238d-4c2d-827d-2a66418fff4b" />
+Msg 207, Level 16, State 1, Procedure USP_ClaimAI_SaveClaimBundle, Line 281 [Batch Start Line 0]
+Invalid column name 'IsAprvFacilitychanged'
