@@ -1,8 +1,1 @@
-SELECT cd.ID           AS ClaimDetailsID,
-       cd.ApprovedFacilityID,
-       cad.ClaimDetailsId,
-       cad.IsAprvFacilitychanged
-FROM   dbo.Claimsdetails cd WITH (NOLOCK)
-LEFT   JOIN dbo.ClaimAdditionalDetails cad WITH (NOLOCK)
-       ON cad.ClaimDetailsId = cd.ID
-WHERE  cd.ClaimID = 26082743931 AND cd.Slno = 1 AND ISNULL(cd.Deleted,0) = 0;
+<img width="481" height="38" alt="image" src="https://github.com/user-attachments/assets/dc75ae5b-36b1-4444-8af7-f2aefc1b4dd1" />
