@@ -1,1 +1,4 @@
-<img width="481" height="38" alt="image" src="https://github.com/user-attachments/assets/dc75ae5b-36b1-4444-8af7-f2aefc1b4dd1" />
+Failed to load resource: the server responded with a status of 500 ()
+claims-helixview.fhpl.net/api/benefit-section-summary:1  Failed to load resource: the server responded with a status of 500 ()
+claims-helixview.fhpl.net/api/benefit-cap-select:1  Failed to load resource: the server responded with a status of 500 ()
+claims-helixview.fhpl.net/api/benefit-section-summary:1  Failed to load resource: the server responded with a status of 500 ()
