@@ -1,1 +1,3 @@
-[tariff-file-selection] claim=(none) insurer="SBIG SBI" isPsu=false source=request files=2
+		<add key="sqlConMCarePlus" value="Data Source= AWS-Prod-ReportingSRV02.fhpl.in;Initial Catalog=Mcareplus_AI;User id=ZAPSIGHTREPORTINGUSER;Password=534|]=y12!NK" />
+
+		<add name="McarePlusEntities" connectionString="metadata=res://*/MCAREPlusModel.csdl|res://*/MCAREPlusModel.ssdl|res://*/MCAREPlusModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=AWS-Prod-ReportingSRV02.fhpl.in;initial catalog=Mcareplus_AI;user id=ZAPSIGHTREPORTINGUSER;Password=534|]=y12!NK;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
