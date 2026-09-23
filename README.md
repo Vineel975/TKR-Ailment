@@ -15,6 +15,12 @@ SBI Insurer - Didn't took any tariff
 SBI Insurer - But taken: Only for Agro zip
 
 
+<img width="359" height="160" alt="image" src="https://github.com/user-attachments/assets/f1b454fd-c9f0-4dd5-956b-954f68cfdc7f" />
+
+Taken MOU File instead of PPN file
+
+
+
 
 
 
