@@ -1,1 +1,5 @@
-<img width="1217" height="611" alt="image" src="https://github.com/user-attachments/assets/972368df-d89c-4e02-adbc-69c97aa03ff6" />
+SELECT ClaimID,
+       CHARINDEX('conditionTests', AnalysisJson) AS found_anywhere,
+       DATALENGTH(AnalysisJson)                  AS json_size
+FROM   dbo.ClaimAI_Results WITH (NOLOCK)
+WHERE  ClaimID = <claim> AND SlNo = 1;
