@@ -1,3 +1,1 @@
-SELECT SUBSTRING(AnalysisJson, 2700, 700) AS around_condition_tests
-FROM   dbo.ClaimAI_Results WITH (NOLOCK)
-WHERE  ClaimID = <claim> AND SlNo = 1;
+724,"xMin":339,"yMax":235,"yMin":222},"pageNumber":4,"value":"DR AGARWALS EYE HOSPITAL - HYDERABAD"},"invoiceNumber":{"boundingBox":null,"pageNumber":4,"value":null},"isAllInclusivePackage":true,"lensType":"cant determine","lensTypeApproved":"cant determine","medicalAdmissibility":{"conditionTests":[],"diagnosis":"Cataract in left eye","doctorNotes":"","icdCode1":"H25.9","lineOfTreatment":"PHACO with IOL implant in left eye","lineOfTreatmentPageNumber":5,"presentingComplaint":"Patient presents with cataract in left eye, admitted for planned surgical management via phacoemulsification with intraocular lens (IOL) implantation."},"patientAge":{"boundingBox":{"xMax":154,"xMin":110,"yMax":393,"yM
