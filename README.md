@@ -1,1 +1,1 @@
-<img width="678" height="70" alt="image" src="https://github.com/user-attachments/assets/dceab0bf-ad36-4852-ae77-fb76edd520ce" />
+5365-Dr. Agarwals Healthcare Limited [ Dr. Agarwals Eye hospital ] Bengaluru KA only for HDFC ERGO (20-SEP-2025)_HEGIC-HS-10445_8900080188518_Tariff 1
