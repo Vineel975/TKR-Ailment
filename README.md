@@ -1,3 +1,1 @@
-		<add key="sqlConMCarePlus" value="Data Source= AWS-Prod-ReportingSRV02.fhpl.in;Initial Catalog=Mcareplus_AI;User id=ZAPSIGHTREPORTINGUSER;Password=534|]=y12!NK" />
-
-		<add name="McarePlusEntities" connectionString="metadata=res://*/MCAREPlusModel.csdl|res://*/MCAREPlusModel.ssdl|res://*/MCAREPlusModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=AWS-Prod-ReportingSRV02.fhpl.in;initial catalog=Mcareplus_AI;user id=ZAPSIGHTREPORTINGUSER;Password=534|]=y12!NK;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+<img width="530" height="180" alt="image" src="https://github.com/user-attachments/assets/10b4b05b-d80b-4a21-8373-b8ffffaca86b" />
