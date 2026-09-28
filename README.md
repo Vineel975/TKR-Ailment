@@ -1,1 +1,1 @@
-1>C:\Users\satyavineel.k\source\repos\Spectra.StagingWorker\packages\NPOI.2.8.1\build\NPOI.targets(8,5): warning : NPOI: You must accept the OSMF EULA license to use NPOI. Add <AcceptNPOIOSMFLicense>true</AcceptNPOIOSMFLicense> to your project file.
+ClaimAI audit/start HTTP 504: <html>  <head><title>504 Gateway Time-out</title></head>  <body>  <center><h1>504 Gateway Time-out</h1></center>  <hr><center>nginx/1.28.3 (Ubuntu)</center>  </body>  </html>  
