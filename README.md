@@ -1,1 +1,1 @@
-<img width="1076" height="192" alt="image" src="https://github.com/user-attachments/assets/0b75a244-d69c-4441-bd71-6feb71ab3ee2" />
+1>C:\Users\satyavineel.k\source\repos\Spectra.StagingWorker\packages\NPOI.2.8.1\build\NPOI.targets(8,5): warning : NPOI: You must accept the OSMF EULA license to use NPOI. Add <AcceptNPOIOSMFLicense>true</AcceptNPOIOSMFLicense> to your project file.
