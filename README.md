@@ -1,1 +1,1 @@
-ClaimAI audit/start HTTP 504: <html>  <head><title>504 Gateway Time-out</title></head>  <body>  <center><h1>504 Gateway Time-out</h1></center>  <hr><center>nginx/1.28.3 (Ubuntu)</center>  </body>  </html>  
+<img width="627" height="387" alt="image" src="https://github.com/user-attachments/assets/3c2d781e-0a66-4152-a1e6-35a3e0800da7" />
