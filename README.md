@@ -1,3 +1,9 @@
+SPECTRA_CTX_CLIENT_ID=CLAIMAI
+SPECTRA_CTX_API_KEY=<ApiKey from auth_keys_mst>
+SPECTRA_CTX_PRIVATE_KEY=<PrivateKey from auth_keys_mst>
+SPECTRA_CTX_MAX_AGE_MINUTES=240
+CLAIMAI_ALLOWED_ORIGINS=https://claims-helixview.fhpl.net
+
 <img width="737" height="252" alt="image" src="https://github.com/user-attachments/assets/3080a182-4902-422d-9643-b32b7643095d" />
 
 
