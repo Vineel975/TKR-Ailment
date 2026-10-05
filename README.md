@@ -1,1 +1,8 @@
-<img width="990" height="176" alt="image" src="https://github.com/user-attachments/assets/f671599f-cd76-4294-98eb-ddfa5cdf6234" />
+SELECT ClientID,
+       LEN(ClientID)        AS len,
+       DATALENGTH(ClientID) AS bytes,
+       CONVERT(varbinary(100), ClientID) AS raw_bytes,
+       ReqUrl,
+       CASE WHEN ApiKey     IS NULL OR ApiKey     = '' THEN 'EMPTY' ELSE 'set' END AS ApiKey,
+       CASE WHEN PrivateKey IS NULL OR PrivateKey = '' THEN 'EMPTY' ELSE 'set' END AS PrivateKey
+FROM dbo.auth_keys_mst WITH (NOLOCK);
