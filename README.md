@@ -1,7 +1,5 @@
-
-DECLARE @ClientID varchar(200) = 'CLAIMAI';
-SELECT COUNT(*) AS matches FROM dbo.auth_keys_mst WITH (NOLOCK) WHERE ClientID = @ClientID;
-
-SELECT c.name, t.name AS type, c.max_length, c.collation_name
-FROM sys.columns c JOIN sys.types t ON t.user_type_id = c.user_type_id
-WHERE c.object_id = OBJECT_ID('dbo.auth_keys_mst');
+   SELECT ClientID, LEN(ClientID) AS len, ReqUrl,
+          CASE WHEN ApiKey     IS NULL OR ApiKey     = '' THEN 'EMPTY' ELSE 'set' END AS ApiKey,
+          CASE WHEN PrivateKey IS NULL OR PrivateKey = '' THEN 'EMPTY' ELSE 'set' END AS PrivateKey
+   FROM dbo.auth_keys_mst WITH (NOLOCK)
+   WHERE ClientID LIKE '%FHPL%';
