@@ -1,1 +1,1 @@
-   System.Configuration.ConfigurationManager.AppSettings["sqlConMCarePlus"].Split(';')[0] + " | " + System.Configuration.ConfigurationManager.AppSettings["sqlConMCarePlus"].Split(';')[1]
+   new Enrollment.ViewModel.ClaimAIViewModel().GetClientKeys("FHPL").Rows.Count
