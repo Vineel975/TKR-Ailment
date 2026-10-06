@@ -1,3 +1,1 @@
-root@ip-10-11-2-214:/home/ubuntu/claim-processing# docker compose exec web printenv DOCKER_ENV IN_DOCKER CONVEX_SELF_HOSTED_URL
-0
-http://backend:3210
+   docker compose exec web node -e "fetch('http://backend:3210/version').then(r=>console.log('internal', r.status)).catch(e=>console.log('internal FAILED', e.cause && e.cause.code))"
