@@ -1,5 +1,4 @@
-   cp /var/SSL-Certificate/fullchain.pem /var/SSL-Certificate/fullchain.pem.bak-$(date +%F)
+   openssl x509 -inform DER -in /tmp/intermediate.crt -out /tmp/intermediate.pem 2>/dev/null \
+     || openssl x509 -in /tmp/intermediate.crt -out /tmp/intermediate.pem
 
-      curl -s -o /tmp/intermediate.crt "<CA Issuers URL>"
-
-      
+      cat /tmp/intermediate.pem >> /var/SSL-Certificate/fullchain.pem
