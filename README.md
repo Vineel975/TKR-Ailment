@@ -1,2 +1,2 @@
-grep -c "BEGIN CERTIFICATE" /var/SSL-Certificate/fullchain.pem
-root@ip-10-11-2-214:/home/ubuntu/claim-processing# ^C
+openssl x509 -in /var/SSL-Certificate/fullchain.pem -noout -subject -issuer
+openssl x509 -in /var/SSL-Certificate/fullchain.pem -noout -text | grep "CA Issuers"
