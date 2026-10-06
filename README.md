@@ -1,3 +1,1 @@
-./certs/godaddy-chain.pem:/etc/ssl/extra/godaddy-chain.pem:ro
-
-NODE_EXTRA_CA_CERTS=/etc/ssl/extra/godaddy-chain.pem
+   docker compose exec backend node -e "fetch('https://<convex-host>/version').then(r=>console.log('OK', r.status)).catch(e=>console.log('FAILED', e.cause && e.cause.code))"
