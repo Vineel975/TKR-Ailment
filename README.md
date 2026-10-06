@@ -1,5 +1,5 @@
-root@ip-10-11-2-214:/home/ubuntu/claim-processing# cat /tmp/intermediate.pem /tmp/inter2.pem > /tmp/chain.pem
-openssl verify -untrusted /tmp/chain.pem /var/SSL-Certificate/fullchain.pem
-C=US, O=GoDaddy.com, CN=GoDaddy TLS Root CA - R1
-error 19 at 2 depth lookup: self-signed certificate in certificate chain
-error /var/SSL-Certificate/fullchain.pem: verification failed
+cp app/api/audit/start/route.ts /home/ubuntu/route.ts.bak-$(date +%F)
+mv /home/ubuntu/route.ts app/api/audit/start/route.ts
+grep -n "toInternalUploadUrl" app/api/audit/start/route.ts
+docker compose exec web printenv CONVEX_SELF_HOSTED_URL
+docker compose up -d --build web
