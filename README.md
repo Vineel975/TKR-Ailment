@@ -1,5 +1,8 @@
-Please give this account the following on the Mcareplus_AI database:
-
-Permission to connect to the database.
-Permission to execute stored procedures in the dbo schema.
-Membership of the db_datareader role (read-only access to tables).
+USE Mcareplus_AI;
+SELECT d.referenced_entity_name AS name,
+       d.referenced_class_desc  AS kind,
+       o.type_desc
+FROM sys.sql_expression_dependencies d
+LEFT JOIN sys.objects o ON o.object_id = d.referenced_id
+WHERE d.referencing_id = OBJECT_ID('dbo.USP_ClaimAI_SaveClaimBundle')
+ORDER BY kind, name;
