@@ -1,10 +1,5 @@
-USE Mcareplus_AI;
-SELECT COLUMN_NAME, DATA_TYPE
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_NAME = 'Claims'
-  AND (COLUMN_NAME LIKE '%Admission%' OR COLUMN_NAME LIKE '%Discharge%'
-       OR COLUMN_NAME LIKE '%TimeOf%' OR COLUMN_NAME IN ('TOA', 'TOD', 'RoomDays', 'ICUDays', 'BillDate'))
-ORDER BY COLUMN_NAME;
+<img width="314" height="236" alt="image" src="https://github.com/user-attachments/assets/4d971bc2-d088-4778-ab16-e665fe75339d" />
+
 
 SELECT TOP 5 cd.ClaimID, cd.Slno, cd.RequestTypeID, cd.isFinal, cd.Sanctionedamount
 FROM dbo.Claimsdetails cd WITH (NOLOCK)
