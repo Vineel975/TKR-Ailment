@@ -1,1 +1,4 @@
-<img width="1245" height="423" alt="image" src="https://github.com/user-attachments/assets/dab92fc1-d35a-423f-8a6f-9bb02067bfbf" />
+Msg 50000, Level 16, State 1, Line 25
+USP_ClaimAI_SaveClaimBundle is not the expected version (no $.coding.packageType) - nothing changed.
+
+Completion time: 2026-10-09T19:46:19.5650638+05:30
