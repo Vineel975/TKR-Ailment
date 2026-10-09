@@ -1,1 +1,1 @@
-ClaimAI audit/start HTTP 504: <html>  <head><title>504 Gateway Time-out</title></head>  <body>  <center><h1>504 Gateway Time-out</h1></center>  <hr><center>nginx/1.28.3 (Ubuntu)</center>  </body>  </html>  
+grep -n "proxy_read_timeout\|proxy_send_timeout\|send_timeout\|client_max_body_size\|server_name\|location" /etc/nginx/conf.d/claims-helixview.conf
