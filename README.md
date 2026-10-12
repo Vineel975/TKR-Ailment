@@ -1,4 +1,1 @@
-<img width="1807" height="615" alt="image" src="https://github.com/user-attachments/assets/4ac0db4f-8b2b-43da-847e-cbe623f3d310" />
-
-
-the highlighted fields are not updating when I save the AI summary. When I update those fields manually and click on Save Hospitalization Details those fields gets updated and disappears again when the page gets reloaded because of saving billing details of coding information.
+We have another page load issue, a user creating a claim in one tab and in another tab trying to open a claim by clicking on the Process button the page is keeping loading and the claim details page open when the claim numbers appears in the page where claim was creating. If it happens to one user, the page might CRASH if multiple users try to get into claim when claim processing is happening on one user system or multiple users system.
