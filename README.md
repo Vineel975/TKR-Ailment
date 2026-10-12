@@ -1,1 +1,1 @@
-We have another page load issue, a user creating a claim in one tab and in another tab trying to open a claim by clicking on the Process button the page is keeping loading and the claim details page open when the claim numbers appears in the page where claim was creating. If it happens to one user, the page might CRASH if multiple users try to get into claim when claim processing is happening on one user system or multiple users system.
+It only affects the same user's own tabs. Other users have their own sessions, so they aren't blocked and it won't crash the page for anyone
