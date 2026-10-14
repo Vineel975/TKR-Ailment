@@ -1,23 +1,28 @@
-<img width="999" height="511" alt="image" src="https://github.com/user-attachments/assets/a5c72c58-5ab0-45cb-962e-3b10851cb9c9" />
-
-
-<?definition /*-------------------------------------------------------------------
- Sp Title				: USP_ClaimCoding_Insert
- Author					:
- Date Created			: 
- Description			: 
+USE [McarePlus]
+GO
+/****** Object:  StoredProcedure [dbo].[USP_ClaimCoding_Insert]    Script Date: 14-10-2026 14:35:49 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/*-------------------------------------------------------------------
+ Sp Title    : USP_ClaimCoding_Insert
+ Author     :
+ Date Created   : 
+ Description   : 
  -------------------------------------------------------------
  Modification History
  ------------------------------------------------------------
- Sr No		Date		Modified By					Reason
- 1.         20-11-2025  Ramesh A                    SP3V-5247	Package Selection -Mandatory - Medical Adjudication
- 2.			23-02-2026	Ramesh A					SP3V-5376	SAP : Voluntary Top Up coverage as part of base SI
- 3.			14-04-2026	Ramesh A					SP3V-5376	SAP : Voluntary Top Up coverage as part of base SI
- 4.	        07-05-2026   subbu                      billing NME amount added
+ Sr No  Date  Modified By     Reason
+ 1.         20-11-2025  Ramesh A                    SP3V-5247 Package Selection -Mandatory - Medical Adjudication
+ 2.   23-02-2026 Ramesh A     SP3V-5376 SAP : Voluntary Top Up coverage as part of base SI
+ 3.   14-04-2026 Ramesh A     SP3V-5376 SAP : Voluntary Top Up coverage as part of base SI
+ 4.         07-05-2026   subbu                      billing NME amount added
+ 5           11-09-2026  subbu                      API-1145 changes
  -------------------------------------------------------------------*/
-CREATE procedure [dbo].[USP_ClaimCoding_Insert]
+ALTER PROCEDURE [dbo].[USP_ClaimCoding_Insert]
 (
-	@ClaimID bigint,@Slno tinyint,@BillingType_P51 int,@Table ClaimsCoding readonly,@CreatedUserRegionID int,
+ @ClaimID bigint,@Slno tinyint,@BillingType_P51 int,@Table ClaimsCoding readonly,@CreatedUserRegionID int,
 @PackageType VARCHAR(2)=NULL,@NME_AMOUNT MONEY = NULL,
 @Message varchar(100) OUTPUT
 )    
@@ -34,15 +39,15 @@ SET NOCOUNT ON
 
 --IF(@BILLING_EligibleAmount < @CODING_EligibleAmount)
 --BEGIN
---	SET @NME_AMOUNT = (SELECT CASE WHEN @BILLING_EligibleAmount+@NME_AMOUNT < @PolicySublimit THEN @NME_AMOUNT
---								  WHEN @BILLING_EligibleAmount+@NME_AMOUNT >= @PolicySublimit THEN (@BILLING_EligibleAmount+@NME_AMOUNT)-@PolicySublimit  END )
+-- SET @NME_AMOUNT = (SELECT CASE WHEN @BILLING_EligibleAmount+@NME_AMOUNT < @PolicySublimit THEN @NME_AMOUNT
+--          WHEN @BILLING_EligibleAmount+@NME_AMOUNT >= @PolicySublimit THEN (@BILLING_EligibleAmount+@NME_AMOUNT)-@PolicySublimit  END )
 
 --END
 
 --IF(@BILLING_EligibleAmount > @CODING_EligibleAmount)
 --BEGIN
---	SET @NME_AMOUNT = (SELECT CASE WHEN @CODING_EligibleAmount+@NME_AMOUNT < @PolicySublimit THEN @NME_AMOUNT
---								  WHEN @CODING_EligibleAmount+@NME_AMOUNT >= @PolicySublimit THEN (@CODING_EligibleAmount+@NME_AMOUNT )- @PolicySublimit END )
+-- SET @NME_AMOUNT = (SELECT CASE WHEN @CODING_EligibleAmount+@NME_AMOUNT < @PolicySublimit THEN @NME_AMOUNT
+--          WHEN @CODING_EligibleAmount+@NME_AMOUNT >= @PolicySublimit THEN (@CODING_EligibleAmount+@NME_AMOUNT )- @PolicySublimit END )
 
 --END
 
@@ -74,7 +79,7 @@ begin
  update Claimsdetails set IsRecalculated=1 where   ClaimID=@ClaimID and Slno=@Slno and Deleted=0  and IsoutofSI=1 and RequestTypeID in (4,12)
  
  Declare @Billamount money=0,@Eligibleamount money=0,@Deductionamount money=0,@Billamount1 money=0,@Eligibleamount1 money=0,@Deductionamount1 money=0,@DiscountAmount money=0    
- ,@DiscountAmount1 money=0 ,@PackageAmount money=0  
+ ,@DiscountAmount1 money=0  
      
  --if(@BillingType_P51 in(202,203))    
  --select @Billamount=sum(billamount),@Deductionamount=isnull(sum(deductionamount),0),@Eligibleamount=isnull(sum(eligibleamount),0)    
@@ -83,61 +88,91 @@ begin
  --if(@BillingType_P51 in(201,203))    
  --select @Billamount1=sum(Billamount),@Deductionamount1=isnull(sum(DisallowedAmount),0),@Eligibleamount1=isnull(sum(PayableAmount),0)+isnull(sum(AdditionalAmount),0)    
  --from Claimscoding where claimid=@Claimid and slno=@Slno and deleted=0    
-  IF((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) !=0 and Deleted=0)) and (exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
- SET @BillingType_P51 =203
- ELSE IF ((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) =0 and Deleted=0)) and (exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
- SET @BillingType_P51 =202
- ELSE IF ((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) !=0 and Deleted=0)) and (Not exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
- SET @BillingType_P51 =201   
+ -- IF((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) !=0 and Deleted=0)) and (exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
+ --SET @BillingType_P51 =203
+ --ELSE IF ((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) =0 and Deleted=0)) and (exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
+ --SET @BillingType_P51 =202
+ --ELSE IF ((exists (Select 1 from Claimsdetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(PackageAmount,0) !=0 and Deleted=0)) and (Not exists(Select 1 from ClaimsServiceDetails where ClaimID=@ClaimID and Slno=@slno and ISNULL(BillAmount,0)!=0 and Deleted=0)))
+ --SET @BillingType_P51 =201   
      
- --if(@BillingType_P51 in(203))    
+DECLARE @PackAgeCount INT=0,@BillingCount INT=0,@PackageAmount money=0,@GipsaDiscountflag INT=0,@PackageDis MONEY=0,@CodingPackaage MONEY=0,@Billpackage MONEY=0
+
+  SELECT @GipsaDiscountflag = isGipsa FROM CLAIMSCODING WITH(NOLOCK) WHERE ClaimID=@ClaimID and Slno=@Slno and Deleted=0
+  SELECT @CodingPackaage=isnull(sum(PayableAmount),0)+isnull(sum(AdditionalAmount),0) FROM CLAIMSCODING WITH(NOLOCK) WHERE ClaimID=@ClaimID and Slno=@Slno and Deleted=0
+  
+ IF(@GipsaDiscountflag=1)
+ BEGIN
+ UPDATE ClaimsServiceDetails SET EligibleAmount =(EligibleAmount+ISNULL(DiscountAmount,0)),SanctionedAmount=(SanctionedAmount+ISNULL(DiscountAmount,0)) WHERE claimid=@ClaimID and Slno=@Slno and Deleted=0 AND ServiceID=62
+ UPDATE ClaimsServiceDetails SET DiscountAmount=0 WHERE claimid=@ClaimID and Slno=@Slno and Deleted=0 AND ServiceID=62 
+ END
+
+ SELECT @PackAgeCount = COUNT(*) FROM ClaimsServiceDetails WITH(NOLOCK) WHERE CLAIMID = @ClaimID AND SLNO = @Slno AND ServiceID=62 AND DELETED = 0
+ SELECT @BillingCount =  COUNT(*) FROM ClaimsServiceDetails WITH(NOLOCK) WHERE CLAIMID = @ClaimID AND SLNO = @Slno AND ServiceID!=62  AND DELETED = 0
+
+ IF(@PackAgeCount >0)
+ SELECT @Billpackage = SUM(ISNULL(eligibleamount,0)),@PackageDis=SUM(ISNULL(DiscountAmount,0)) FROM ClaimsServiceDetails WITH(NOLOCK) WHERE CLAIMID = @ClaimID AND SLNO = @Slno AND ServiceID=62  AND DELETED = 0
+ ELSE
+ SELECT  @Billpackage= ISNULL(PackageAmount,0) FROM ClaimsDetails WITH(NOLOCK) WHERE ClaimID=@ClaimID and Slno=@Slno and Deleted=0 
+
+ IF((@PackAgeCount > 0 OR @Billpackage>0) AND @BillingCount > 0)
+ SET @BillingType_P51=203;
+ ELSE IF(@BillingCount > 0)
+ SET @BillingType_P51=202;
+ ELSE IF(@PackAgeCount > 0 OR @Billpackage>0)
+ SET @BillingType_P51=201;
+  
  select @Billamount=sum(billamount),@Deductionamount=isnull(sum(deductionamount),0),@Eligibleamount=isnull(sum(eligibleamount),0),@DiscountAmount=isnull(sum(DiscountAmount),0)    
- from ClaimsServiceDetails with(nolock) where claimid=@ClaimID and Slno=@Slno and Deleted=0    
+ from ClaimsServiceDetails with(nolock) where claimid=@ClaimID and Slno=@Slno and Deleted=0 AND ServiceID!=62   
      
- --if(@BillingType_P51 in(201,202,203))    
- select @Billamount1=sum(Billamount),@Deductionamount1=isnull(sum(DisallowedAmount),0),@Eligibleamount1=isnull(sum(PayableAmount),0)+isnull(sum(AdditionalAmount),0)    
- ,@DiscountAmount1=isnull(sum(Discount),0)    
- from Claimscoding with(nolock) where claimid=@Claimid and slno=@Slno and deleted=0    
+ IF(@CodingPackaage > @Billpackage AND @Billpackage > 0)
+ SELECT @Billamount1=sum(billamount),@Deductionamount1=isnull(sum(deductionamount),0),@Eligibleamount1=@Billpackage,
+ @DiscountAmount1= isnull(sum(DiscountAmount),0),@PackageAmount=@Billpackage FROM ClaimsServiceDetails WITH(NOLOCK) 
+ WHERE claimid=@ClaimID and Slno=@Slno and Deleted=0 AND ServiceID=62  
+
+ ELSE
+ SELECT @Billamount1=sum(Billamount),@Deductionamount1=isnull(sum(DisallowedAmount),0),@Eligibleamount1=@CodingPackaage    
+ ,@DiscountAmount1=isnull(sum(Discount),0),@PackageAmount=@CodingPackaage
+ FROM Claimscoding WITH(NOLOCK) WHERE claimid=@Claimid and slno=@Slno and deleted=0  
+ 
   -- Package and Tariff  
  if(@BillingType_P51 in(203))  
  Begin
- 	insert into Mcareplus_Audit..Claimsdetails
-	Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0   
-	 Update Claimsdetails set BillAmount=@BillAmount+@Billamount1,EligibleAmount=@EligibleAmount+@EligibleAmount1,DeductionAmount=@Deductionamount+@Deductionamount1,    
-   MOUDiscount=@DiscountAmount+@DiscountAmount1    
+  insert into Mcareplus_Audit..Claimsdetails
+ Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0   
+  Update Claimsdetails set BillAmount=@BillAmount+@Billamount1,EligibleAmount=@EligibleAmount+@EligibleAmount1,DeductionAmount=@Deductionamount+@Deductionamount1,    
+   MOUDiscount=@DiscountAmount+@DiscountAmount1 
    ,BillingType_P51=@BillingType_P51,BillingCorrection=2--,PackageLimit=@PackageLimit,TariffValue=@TariffValue,BPCoverageLimit=@BPCoverageLimit     
    where ClaimID=@ClaimID and Slno=@Slno and Deleted=0    
  End   
   -- Only Package  
  else if(@BillingType_P51 in(201))  
   Begin  
-   SET @PackageAmount=(select PackageAmount from ClaimsDetails with(nolock) where ClaimID=@ClaimID and Slno=@Slno and Deleted=0 )  
-     
+   
   if(@PackageAmount<@Eligibleamount1) 
   begin
-   	insert into Mcareplus_Audit..Claimsdetails
-	Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
+    insert into Mcareplus_Audit..Claimsdetails
+ Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
    Update Claimsdetails set BillAmount=@BillAmount,EligibleAmount=@PackageAmount,DeductionAmount=0,moudiscount=0  
    ,BillingType_P51=@BillingType_P51,BillingCorrection=2 ----,PackageLimit=@PackageLimit,TariffValue=@TariffValue,BPCoverageLimit=@BPCoverageLimit   
    where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
    end
-	else 
-	begin
-	 	insert into Mcareplus_Audit..Claimsdetails
-	Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
+ else 
+ begin
+   insert into Mcareplus_Audit..Claimsdetails
+ Select *,getdate() from Claimsdetails with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
  
    Update Claimsdetails set BillAmount=@Billamount1,EligibleAmount=@Eligibleamount1,DeductionAmount=@Deductionamount1,MOUDiscount=@DiscountAmount1,  
    BillingType_P51=@BillingType_P51,BillingCorrection=2--,PackageLimit=@PackageLimit,TariffValue=@TariffValue,BPCoverageLimit=@BPCoverageLimit   
    where ClaimID=@ClaimID and Slno=@Slno and Deleted=0  
-	End 
-	end 
+ End 
+ end 
    -- Only Tariff  
  else if(@BillingType_P51 in(202))  
  Begin     
   if(@Eligibleamount<=@Eligibleamount1)
   Begin
-  	insert into Mcareplus_Audit..Claimsdetails
-	Select *,getdate() from Claimsdetails  with(nolock) where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
+   insert into Mcareplus_Audit..Claimsdetails
+ Select *,getdate() from Claimsdetails  with(nolock) where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
      
    Update Claimsdetails set BillAmount=@BillAmount,EligibleAmount=@EligibleAmount,DeductionAmount=@Deductionamount,MOUDiscount=@DiscountAmount,  
    BillingType_P51=@BillingType_P51,BillingCorrection=2 ----,PackageLimit=@PackageLimit,TariffValue=@TariffValue,BPCoverageLimit=@BPCoverageLimit   
@@ -145,8 +180,8 @@ begin
    end
   else
   Begin
-  	insert into Mcareplus_Audit..Claimsdetails
-	Select *,getdate() from Claimsdetails  with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
+   insert into Mcareplus_Audit..Claimsdetails
+ Select *,getdate() from Claimsdetails  with(nolock)  where ClaimID=@ClaimID and Slno=@Slno and Deleted=0     
    
    Update Claimsdetails set BillAmount=@Billamount1,EligibleAmount=@Eligibleamount1,DeductionAmount=@Deductionamount1,MOUDiscount=@DiscountAmount1,  
    BillingType_P51=@BillingType_P51,BillingCorrection=2--,PackageLimit=@PackageLimit,TariffValue=@TariffValue,BPCoverageLimit=@BPCoverageLimit   
@@ -209,13 +244,13 @@ end
 
 IF(@CODING_EligibleAmount > 0 AND @BILLING_EligibleAmount > 0)
 BEGIN
-	IF((@BILLING_EligibleAmount+@NME_AMOUNT)> @CODING_EligibleAmount)
-	BEGIN
-		IF(@CODING_EligibleAmount = @BILLING_EligibleAmount)
-			SET @NME_AMOUNT = 0
-		ELSE IF (@CODING_EligibleAmount > @BILLING_EligibleAmount)
-			SET @NME_AMOUNT = @CODING_EligibleAmount - @BILLING_EligibleAmount
-	END
+ IF((@BILLING_EligibleAmount+@NME_AMOUNT)> @CODING_EligibleAmount)
+ BEGIN
+  IF(@CODING_EligibleAmount = @BILLING_EligibleAmount)
+   SET @NME_AMOUNT = 0
+  ELSE IF (@CODING_EligibleAmount > @BILLING_EligibleAmount)
+   SET @NME_AMOUNT = @CODING_EligibleAmount - @BILLING_EligibleAmount
+ END
 END
 
 UPDATE CLAIMSCODING SET NME_Amount =  @NME_AMOUNT WHERE CLAIMID = @ClaimID AND SLNO = @Slno AND DELETED = 0
@@ -224,4 +259,4 @@ UPDATE CLAIMSCODING SET NME_Amount =  @NME_AMOUNT WHERE CLAIMID = @ClaimID AND S
     
 end 
 
-?>
+ 
