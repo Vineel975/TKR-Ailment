@@ -1,4 +1,20 @@
-   MEMBER_DB_AUTH=sql
-   MEMBER_DB_USER=ZAPSIGHTREPORTINGUSER
-   MEMBER_DB_USERNAME=ZAPSIGHTREPORTINGUSER
-   MEMBER_DB_PASSWORD=<password>
+/*-------------------------------------------------------------------
+
+Sp Title                : USP_corpPortingvalidations 
+
+Author                  :
+
+Date Created            : 
+
+Description             : 
+
+-------------------------------------------------------------
+
+Modification History
+
+------------------------------------------------------------
+
+Sr No        Date            Modified By            Reason
+
+------------------------------------------------------*/
+ 
