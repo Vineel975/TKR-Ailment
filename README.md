@@ -1,3 +1,3 @@
-server: Spectra-DB-Write.fhpl.in port: 1433 user: PRD_ZPST_DW_USR auth: sql password length: 16
-master FAILED: Failed to connect to Spectra-DB-Write.fhpl.in:1433 in 15000ms
-McarePlus FAILED: Failed to connect to Spectra-DB-Write.fhpl.in:1433 in 15000ms
+<img width="537" height="553" alt="image" src="https://github.com/user-attachments/assets/bfbe01a6-af35-412f-b51b-b0464086f07e" />
+
+<img width="1919" height="1074" alt="image" src="https://github.com/user-attachments/assets/2f289004-2ae4-4ec5-840c-4fd33e4d86f0" />
