@@ -6,3 +6,7 @@ docker pull ghcr.io/adityamiskin/claim-processing/next-convex:preauth-finals
 
 docker run --rm --entrypoint sh ghcr.io/adityamiskin/claim-processing/next-convex:preauth-finals -c "grep -rhoE 'claims-backend-helixview[-a-z]*[.]fhpl[.]net' /app/.next | sort -u"
 
+
+<img width="662" height="99" alt="image" src="https://github.com/user-attachments/assets/fd407ea2-405f-4c26-b2c0-c050cdc2ea08" />
+
+
