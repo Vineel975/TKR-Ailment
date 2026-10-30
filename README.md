@@ -13,3 +13,9 @@ scp -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" claim-pro
 sha256sum /tmp/claim-processing.tgz      # must match the value from step 1
 tar -xzpf /tmp/claim-processing.tgz -C /home/ubuntu
 ls -la /home/ubuntu/claim-processing     # should look the same as on prod
+
+
+<img width="1110" height="303" alt="image" src="https://github.com/user-attachments/assets/03cfea6d-3ac2-46e4-8de8-62add250ac5d" />
+
+<img width="1267" height="623" alt="image" src="https://github.com/user-attachments/assets/0bded6a7-6c4a-4f45-a131-9fbd48cce932" />
+
