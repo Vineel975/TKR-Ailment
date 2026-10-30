@@ -1,12 +1,14 @@
-cd /home/ubuntu/claim-processing
-sed -i '/^CONVEX_SELF_HOSTED_ADMIN_KEY=/d' .env
-grep -E '^(WEB_PORT|CONVEX_BACKEND_PORT|CONVEX_SITE_PORT)=' .env
+sudo grep -E 'ghcr|credsStore|credHelpers' /root/.docker/config.json
+
+sudo cp /root/.docker/config.json /tmp/docker-config.json && sudo chown ubuntu:ubuntu /tmp/docker-config.json && chmod 600 /tmp/docker-config.json
+
+scp -i "C:\Users\satyavineel.k\Downloads\AWS-Prod-Cashless-AI-KP.pem" ubuntu@10.11.2.214:/tmp/docker-config.json "C:\Users\satyavineel.k\Desktop\docker-config.json"
+
+scp -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" "C:\Users\satyavineel.k\Desktop\docker-config.json" ubuntu@10.11.4.180:/tmp/
+
+mkdir -p /root/.docker && install -m 600 -o root -g root /tmp/docker-config.json /root/.docker/config.json && rm /tmp/docker-config.json
+
+Prod: rm /tmp/docker-config.json
+Laptop: del "C:\Users\satyavineel.k\Desktop\docker-config.json"
 
 docker pull ghcr.io/adityamiskin/claim-processing/next-convex:preauth-finals
-
-docker run --rm --entrypoint sh ghcr.io/adityamiskin/claim-processing/next-convex:preauth-finals -c "grep -rhoE 'claims-backend-helixview[-a-z]*[.]fhpl[.]net' /app/.next | sort -u"
-
-
-<img width="662" height="99" alt="image" src="https://github.com/user-attachments/assets/fd407ea2-405f-4c26-b2c0-c050cdc2ea08" />
-
-
