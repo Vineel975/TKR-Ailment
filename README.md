@@ -55,20 +55,24 @@ New server: rm /tmp/convex-images.tar.gz
 Laptop: del "C:\Users\satyavineel.k\Desktop\convex-images.tar.gz"
 
 
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker pull postgres:16-alpine
-16-alpine: Pulling from library/postgres
-d3531b7a4f21: Retrying in 2 seconds
-12eb05ec409b: Retrying in 2 seconds
-4c61df2d098f: Retrying in 2 seconds
-c16ec84c7f8a: Waiting
-3159dc2110dd: Waiting
-83a0667f02af: Waiting
-b17bb49abe22: Waiting
-a5b991b88e79: Waiting
-4f775f9c8b66: Waiting
-340c083268fd: Waiting
-b42df618ae2f: Waiting
-error pulling image configuration: download failed after attempts=6: net/http: TLS handshake timeout
+sudo docker save --platform linux/arm64 -o /tmp/postgres-image.tar postgres:16-alpine
+sudo chown ubuntu:ubuntu /tmp/postgres-image.tar && gzip /tmp/postgres-image.tar
+ls -lh /tmp/postgres-image.tar.gz
+
+scp -i "C:\Users\satyavineel.k\Downloads\AWS-Prod-Cashless-AI-KP.pem" ubuntu@10.11.2.214:/tmp/postgres-image.tar.gz "C:\Users\satyavineel.k\Desktop\postgres-image.tar.gz"
+
+
+scp -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" "C:\Users\satyavineel.k\Desktop\postgres-image.tar.gz" ubuntu@10.11.4.180:/tmp/
+
+docker load -i /tmp/postgres-image.tar.gz
+docker images --format '{{.Repository}}:{{.Tag}}'
+
+Prod: rm /tmp/postgres-image.tar.gz
+New server: rm /tmp/postgres-image.tar.gz
+Laptop: del "C:\Users\satyavineel.k\Desktop\postgres-image.tar.gz"
+
+
+
 
 
 
