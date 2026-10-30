@@ -1,7 +1,1 @@
-sudo docker compose ls
-
-sudo find / -maxdepth 4 -type d -name 'ai-ana-proxy' 2>/dev/null
-
-grep -h "test.sh\|ai-ana-proxy" ~/.bash_history; sudo grep -h "test.sh\|ai-ana-proxy" /root/.bash_history
-
-sudo docker network inspect edge --format '{{range .Containers}}{{.Name}} {{end}}'
+<img width="1362" height="166" alt="image" src="https://github.com/user-attachments/assets/6231c623-e1ba-4ea9-b58a-5d0a9ba4a39c" />
