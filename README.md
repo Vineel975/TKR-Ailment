@@ -1,9 +1,11 @@
-   apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+rm -f /etc/apt/sources.list.d/docker.sources
 
-      docker --version
-   docker compose version
-   docker run --rm hello-world
-<img width="1365" height="484" alt="image" src="https://github.com/user-attachments/assets/704af4f5-c282-4d1d-a514-9586440100ed" />
+printf 'Types: deb\nURIs: https://download.docker.com/linux/ubuntu\nSuites: %s\nComponents: stable\nArchitectures: %s\nSigned-By: /etc/apt/keyrings/docker.asc\n' "$(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")" "$(dpkg --print-architecture)" > /etc/apt/sources.list.d/docker.sources
 
+cat /etc/apt/sources.list.d/docker.sources
 
-![Uploading image.png…]()
+apt update
+
+apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+docker --version && docker compose version && docker run --rm hello-world
