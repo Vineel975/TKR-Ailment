@@ -1,1 +1,4 @@
-docker run --rm --entrypoint sh claim-processing-stage:preauth-finals -c "grep -rhoE 'https?://[a-z0-9.-]*(helixview|127[.]0[.]0[.]1)[a-z0-9.:-]*' /app/.next | sort | uniq -c"
+cd /home/ubuntu/claim-processing
+sed -i 's#^NEXT_IMAGE=.*#NEXT_IMAGE="claim-processing-stage:preauth-finals"#' .env
+sed -i '/^CONVEX_SELF_HOSTED_ADMIN_KEY=/d' .env
+grep -E '^(NEXT_IMAGE|WEB_PORT|CONVEX_BACKEND_PORT|CONVEX_SITE_PORT)=' .env
