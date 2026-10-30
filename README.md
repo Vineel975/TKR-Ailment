@@ -28,5 +28,18 @@ cd /home/ubuntu/claim-processing
 docker compose up -d postgres backend dashboard
 
 
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# for r in ghcr.io/get-convex/convex-backend@sha256:ed68a48786ab5d83aaddf22b86d9d06b146a530957951dd77f541c216b762224 ghcr.io/get-convex/convex-dashboard@sha256:4dd0dd03a4f9d83403c0e895db70dfe868e99b311465a0a05ed0bd6fdcfe923f; do docker pull "$r" && docker tag "$r" "${r%@*}:latest"; done
+Error response from daemon: manifest unknown
+Error response from daemon: manifest unknown
+
+root@ip-10-11-2-214:/home/ubuntu/claim-processing# uname -m
+aarch64
+root@ip-10-11-2-214:/home/ubuntu/claim-processing# sudo docker image inspect ghcr.io/get-convex/convex-backend:latest ghcr.io/get-convex/convex-dashboard:latest --format '{{index .RepoDigests 0}}'
+ghcr.io/get-convex/convex-backend@sha256:ed68a48786ab5d83aaddf22b86d9d06b146a530957951dd77f541c216b762224
+ghcr.io/get-convex/convex-dashboard@sha256:4dd0dd03a4f9d83403c0e895db70dfe868e99b311465a0a05ed0bd6fdcfe923f
+
+
+
+
 
 
