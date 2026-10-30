@@ -50,7 +50,9 @@ scp -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" "C:\Users
 docker load -i /tmp/convex-images.tar.gz
 docker images --format '{{.Repository}}:{{.Tag}}' | grep get-convex
 
-
+Prod: rm /tmp/convex-images.tar.gz
+New server: rm /tmp/convex-images.tar.gz
+Laptop: del "C:\Users\satyavineel.k\Desktop\convex-images.tar.gz"
 
 
 
