@@ -1,16 +1,9 @@
-backend-1  | 2026-11-02T10:25:13.219690Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:25:13.220231Z ERROR local_backend::beacon: Beacon failed, retrying in 231.875579834s
-backend-1  | 2026-11-02T10:29:20.117941Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:29:20.118027Z ERROR local_backend::beacon: Beacon failed, retrying in 298.211425781s
-backend-1  | 2026-11-02T10:34:33.367625Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:34:33.368026Z ERROR local_backend::beacon: Beacon failed, retrying in 168.993225098s
-backend-1  | 2026-11-02T10:37:37.382180Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:37:37.382272Z ERROR local_backend::beacon: Beacon failed, retrying in 469.682312012s
-backend-1  | 2026-11-02T10:45:42.103951Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:45:42.104021Z ERROR local_backend::beacon: Beacon failed, retrying in 764.835632324s
-backend-1  | 2026-11-02T10:58:41.963868Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T10:58:41.963958Z ERROR local_backend::beacon: Beacon failed, retrying in 253.789916992s
-backend-1  | 2026-11-02T11:03:10.787327Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T11:03:10.787416Z ERROR local_backend::beacon: Beacon failed, retrying in 404.447387695s
-backend-1  | 2026-11-02T11:10:10.256491Z ERROR common::errors: Caught error error (RUST_BACKTRACE=1 RUST_LOG=info,common::errors=debug for full trace): Beacon coroutine error: error sending request for url (https://api.convex.dev/api/self_host_beacon): client error (Connect): unexpected EOF (Invalid certificate verification context)
-backend-1  | 2026-11-02T11:10:10.257094Z ERROR local_backend::beacon: Beacon failed, retrying in 594.002563477s
+cd /home/ubuntu/claim-processing
+docker compose exec web node -e "fetch('https://openrouter.ai/api/v1/models').then(r=>console.log('openrouter', r.status)).catch(e=>console.log('openrouter FAILED', e.cause?.code || e.message))"
+
+
+grep -q '^DISABLE_BEACON=' .env || echo 'DISABLE_BEACON=true' >> .env
+grep '^DISABLE_BEACON=' .env
+
+docker compose up -d backend
+docker compose exec backend printenv DISABLE_BEACON
