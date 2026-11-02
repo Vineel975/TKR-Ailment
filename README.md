@@ -1,1 +1,1 @@
-docker compose logs --since 15m backend | grep -c "Beacon failed"
+curl -sS -o /dev/null -w '%{http_code}\n' --max-time 15 https://api.github.com
