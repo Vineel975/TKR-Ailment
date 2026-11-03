@@ -1,5 +1,1 @@
-   SELECT ur.ID AS UserRegionID, ur.RegionID, ur.UserID, u.Name, u.LoginID,
-          u.DefaultRoleID, u.AuthorizedMaxAmount
-   FROM dbo.Lnk_UserRegions ur WITH (NOLOCK)
-   JOIN dbo.Mst_Users u WITH (NOLOCK) ON u.ID = ur.UserID
-   WHERE ur.ID = 11645;
+<img width="627" height="74" alt="image" src="https://github.com/user-attachments/assets/e1c62306-1f5e-4f49-a4d6-603cd230b67a" />
