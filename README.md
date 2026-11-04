@@ -1,4 +1,4 @@
-<add key="ClaimAIAutoAdjudication" value="off" />   <!-- "on" to switch on -->
-<add key="ClaimAIAutoUserRegionID" value="11645" />
-<add key="ClaimAIAutoApproveBelow" value="50000" />
-<add key="ClaimAIAutoTokenMaxAgeMinutes" value="5" />
+Add CLAIMAI_AUTO_RUN=on.
+Add CLAIMAI_AUTO_USER_REGION_ID=11645.
+Delete CLAIMAI_AUTO_INSURER_CONTAINS and CLAIMAI_AUTO_BILL_LOWEST if they’re there.
+Leave everything else as it is
