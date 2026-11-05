@@ -51,6 +51,4 @@ curl -s -o /dev/null -w "site: %{http_code}\n" https://claims-helixview-stage.fh
 
 curl -s -w "\nconvex: %{http_code}\n" http://127.0.0.1:3210/version
 
-2026-11-05T11:16:45.384459540Z [audit/start] Triggering runTariffMatching for jobId: jn79zhybtc5qt5a7kzsczd4a9d8hm7zz tariffStorageId: kg2d1ne0w5ryt8a1vtrwarpkz98hn57q
-2026-11-05T11:16:45.405999347Z [audit/start] Tariff matching FAILED: Error: {"code":"InternalServerError","message":"Your request couldn't be completed. Try again later."}
-
+   docker compose logs -t --since 1h web 2>&1 | grep -E "runTariffMatching completed|Tariff matching FAILED"
