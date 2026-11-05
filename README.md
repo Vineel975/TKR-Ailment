@@ -1,4 +1,4 @@
-CLAIM=26110544142; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
+CLAIM=26110544147; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
 
 
 CLAIMAI_AUTO_INSURER_CONTAINS=*
@@ -39,6 +39,9 @@ echo "   CLAIMAI_AUTO_RUN=$(printenv CLAIMAI_AUTO_RUN)  USER_REGION_ID=$(printen
 echo "   INSURER_CONTAINS=$(printenv CLAIMAI_AUTO_INSURER_CONTAINS)  BILL_LOWEST=$(printenv CLAIMAI_AUTO_BILL_LOWEST)"'
 
 
+
+
+
    docker tag claim-processing-stage:previous claim-processing-stage:preauth-finals
    docker compose up -d web
    docker compose logs -f --tail=50 web
@@ -55,3 +58,33 @@ curl -s -w "\nconvex: %{http_code}\n" http://127.0.0.1:3210/version
 
 
 AUTO APPROVAL CEILING UPTO Rs.50000/-  for Cataract, After AI Engine rules, If Amount amissible Above 50K than the case should be return to Doctor, If Admissible amount is Less than 50K than Auto approval should go.
+
+
+C:\Users\satyavineel.k>ssh -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" -p 22 ubuntu@10.11.4.180
+Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-1016-aws aarch64)
+
+ * Documentation:  https://docs.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Nov  5 17:03:05 UTC 2026
+
+  System load:  0.26               Temperature:           -273.1 C
+  Usage of /:   14.2% of 95.82GB   Processes:             286
+  Memory usage: 88%                Users logged in:       0
+  Swap usage:   0%                 IPv4 address for ens5: 10.11.4.180
+
+  => There is 1 zombie process.
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+7 updates can be applied immediately.
+3 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Thu Nov  5 17:09:08 2026 from 10.10.96.34
