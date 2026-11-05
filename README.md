@@ -116,6 +116,17 @@ none
       ps -o pid,user,lstart,cmd -p 29395
    ls -l /proc/29395/cwd
 
+   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose ps
+   curl --noproxy '*' -s -o /dev/null -w "app: %{http_code}\n" http://127.0.0.1:3000/login
+   curl --noproxy '*' -s -o /dev/null -w "convex: %{http_code}\n" http://127.0.0.1:3210/version
+NAME                           IMAGE                                        COMMAND                  SERVICE     CREATED         STATUS                   PORTS
+claim-processing-backend-1     ghcr.io/get-convex/convex-backend:latest     "./run_backend.sh"       backend     3 days ago      Up 7 minutes (healthy)   127.0.0.1:3310->3210/tcp, 127.0.0.1:3311->3211/tcp
+claim-processing-dashboard-1   ghcr.io/get-convex/convex-dashboard:latest   "node ./server.js"       dashboard   5 days ago      Up 5 days                127.0.0.1:6792->6791/tcp
+claim-processing-postgres-1    postgres:16-alpine                           "docker-entrypoint.s…"   postgres    5 days ago      Up 5 days (healthy)      127.0.0.1:6544->5432/tcp
+claim-processing-web-1         claim-processing-stage:preauth-finals        "/bin/sh /entrypoint…"   web         8 minutes ago   Up 8 minutes (healthy)   127.0.0.1:3100->3000/tcp
+app: 000
+convex: 000
+
    
 
 .0Gi       119Mi       3.9Gi
