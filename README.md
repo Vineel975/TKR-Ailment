@@ -39,4 +39,6 @@ echo "   CLAIMAI_AUTO_RUN=$(printenv CLAIMAI_AUTO_RUN)  USER_REGION_ID=$(printen
 echo "   INSURER_CONTAINS=$(printenv CLAIMAI_AUTO_INSURER_CONTAINS)  BILL_LOWEST=$(printenv CLAIMAI_AUTO_BILL_LOWEST)"'
 
 
-<img width="669" height="506" alt="image" src="https://github.com/user-attachments/assets/79c224b1-e3f5-4711-ad4e-55eed9fdd4b0" />
+   docker tag claim-processing-stage:previous claim-processing-stage:preauth-finals
+   docker compose up -d web
+   docker compose logs -f --tail=50 web
