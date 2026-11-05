@@ -88,6 +88,22 @@ free -h
    grep -n swapfile /etc/fstab
    findmnt --verify
 
+   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# grep -n swapfile /etc/fstab
+   cp /etc/fstab /etc/fstab.bak
+   awk '$1=="/swapfile" { if (seen++) next } { print }' /etc/fstab.bak > /etc/fstab
+   grep -n swapfile /etc/fstab
+   findmnt --verify
+4:/swapfile none swap sw 0 0
+5:/swapfile none swap sw 0 0
+6:/swapfile none swap sw 0 0
+4:/swapfile none swap sw 0 0
+none
+   [W] non-bind mount source /swapfile is a directory or regular file
+   [W] your fstab has been modified, but systemd still uses the old version;
+       use 'systemctl daemon-reload' to reload
+
+0 parse errors, 0 errors, 2 warnings
+
       cat /proc/sys/vm/swappiness
 
          sysctl vm.swappiness=30
