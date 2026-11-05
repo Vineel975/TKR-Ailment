@@ -37,3 +37,6 @@ echo "2 SBI scope code:          $(grep -rlq --include=*.js CLAIMAI_AUTO_INSURER
 echo "3 lens query removed:      $(grep -rlq --include=*.js "Kindly clarify the type of lens used" /app/.next && echo NO || echo YES)";
 echo "   CLAIMAI_AUTO_RUN=$(printenv CLAIMAI_AUTO_RUN)  USER_REGION_ID=$(printenv CLAIMAI_AUTO_USER_REGION_ID)";
 echo "   INSURER_CONTAINS=$(printenv CLAIMAI_AUTO_INSURER_CONTAINS)  BILL_LOWEST=$(printenv CLAIMAI_AUTO_BILL_LOWEST)"'
+
+
+<img width="669" height="506" alt="image" src="https://github.com/user-attachments/assets/79c224b1-e3f5-4711-ad4e-55eed9fdd4b0" />
