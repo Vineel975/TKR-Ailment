@@ -45,6 +45,9 @@ echo "   INSURER_CONTAINS=$(printenv CLAIMAI_AUTO_INSURER_CONTAINS)  BILL_LOWEST
 
 
 
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# CLAIM=26110544142; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
-2026-11-05T10:31:55.809862563Z [staging/result] autoDecision claim 26110544142 -> refer_crm | amount 24000 | basis tariff | Patient age differs from the policy by more than 5 years.
-2026-11-05T10:32:00.690225427Z [auto-run] on claim 26110544142/1: doctor (crm), saved - saved; claim 26110544142/1: crm - not done: Spectra did not complete the action - see results.; Adjudication_Actions_Insert: Procedure or function 'USP_ClaimReason_Insert' expects parameter '@GroundofRepudiation', which was not supplied.; open stages now 5  [reason CRM Clarification; pre-fill on the claim]
+curl -s -o /dev/null -w "app: %{http_code}\n" http://127.0.0.1:3000/login
+
+curl -s -o /dev/null -w "site: %{http_code}\n" https://claims-helixview-stage.fhpl.net/login
+
+curl -s -w "\nconvex: %{http_code}\n" http://127.0.0.1:3210/version
+
