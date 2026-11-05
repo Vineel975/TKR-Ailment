@@ -1,1 +1,1 @@
-   docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/auto/run',{method:'POST'}).then(r=>console.log(r.status))"
+docker exec claim-processing-web-1 sh -c 'ls /app/.next/server/app/api/auto /app/.next/server/app/api/checks 2>&1'
