@@ -60,31 +60,27 @@ curl -s -w "\nconvex: %{http_code}\n" http://127.0.0.1:3210/version
 AUTO APPROVAL CEILING UPTO Rs.50000/-  for Cataract, After AI Engine rules, If Amount amissible Above 50K than the case should be return to Doctor, If Admissible amount is Less than 50K than Auto approval should go.
 
 
-C:\Users\satyavineel.k>ssh -i "C:\Users\satyavineel.k\Desktop\KP-AWS-PreProd-Cashless-AI.pem" -p 22 ubuntu@10.11.4.180
-Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-1016-aws aarch64)
+free -h
+docker stats --no-stream --format "table {{.Name}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.CPUPerc}}"
+ps aux --sort=-%mem | head -12
+dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
- * Documentation:  https://docs.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/pro
+  docker compose up -d --force-recreate web
+  docker compose logs -f --tail=30 web
 
- System information as of Thu Nov  5 17:03:05 UTC 2026
+    docker compose restart backend
 
-  System load:  0.26               Temperature:           -273.1 C
-  Usage of /:   14.2% of 95.82GB   Processes:             286
-  Memory usage: 88%                Users logged in:       0
-  Swap usage:   0%                 IPv4 address for ens5: 10.11.4.180
+    fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+free -h
 
-  => There is 1 zombie process.
 
+    curl --noproxy '*' -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:3000/login
 
-Expanded Security Maintenance for Applications is not enabled.
-
-7 updates can be applied immediately.
-3 of these updates are standard security updates.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
+    
 
 
 Last login: Thu Nov  5 17:09:08 2026 from 10.10.96.34
