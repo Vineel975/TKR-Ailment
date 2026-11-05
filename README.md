@@ -1,4 +1,4 @@
-CLAIM=26110544139; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
+CLAIM=26110544142; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
 
 
 CLAIMAI_AUTO_INSURER_CONTAINS=*
@@ -42,3 +42,9 @@ echo "   INSURER_CONTAINS=$(printenv CLAIMAI_AUTO_INSURER_CONTAINS)  BILL_LOWEST
    docker tag claim-processing-stage:previous claim-processing-stage:preauth-finals
    docker compose up -d web
    docker compose logs -f --tail=50 web
+
+
+
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# CLAIM=26110544142; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
+2026-11-05T10:31:55.809862563Z [staging/result] autoDecision claim 26110544142 -> refer_crm | amount 24000 | basis tariff | Patient age differs from the policy by more than 5 years.
+2026-11-05T10:32:00.690225427Z [auto-run] on claim 26110544142/1: doctor (crm), saved - saved; claim 26110544142/1: crm - not done: Spectra did not complete the action - see results.; Adjudication_Actions_Insert: Procedure or function 'USP_ClaimReason_Insert' expects parameter '@GroundofRepudiation', which was not supplied.; open stages now 5  [reason CRM Clarification; pre-fill on the claim]
