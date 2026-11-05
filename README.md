@@ -1,4 +1,1 @@
-Add CLAIMAI_AUTO_RUN=on.
-Add CLAIMAI_AUTO_USER_REGION_ID=11645.
-Delete CLAIMAI_AUTO_INSURER_CONTAINS and CLAIMAI_AUTO_BILL_LOWEST if they’re there.
-Leave everything else as it is
+<img width="1212" height="45" alt="image" src="https://github.com/user-attachments/assets/db00bcef-f4dd-4959-9a89-b2a8da4b2407" />
