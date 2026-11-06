@@ -82,9 +82,9 @@ free -h
 
     
 
-   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# grep -n "CLAIMAI_PREAUTH_FINALS\|CLAIMAI_AUTO" .env
-44:CLAIMAI_AUTO_RUN=on
-45:CLAIMAI_AUTO_USER_REGION_ID=11645
-46:CLAIMAI_AUTO_INSURER_CONTAINS=*
-47:CLAIMAI_AUTO_BILL_LOWEST=off
-52:CLAIMAI_PREAUTH_FINALS=on
+      docker pull ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
+
+         head -3 Dockerfile.stage.coderefactor
+
+            grep -n "image:" docker-compose.yml
+   docker inspect claim-processing-web-1 --format '{{.Config.Image}}'
