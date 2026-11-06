@@ -70,21 +70,41 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     docker compose restart backend
 
-    fallocate -l 4G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo '/swapfile none swap sw 0 0' >> /etc/fstab
-free -h
-
-
-    curl --noproxy '*' -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:3000/login
+   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        96G   19G   78G  20% /
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker pull ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
+feature-coderefactor: Pulling from adityamiskin/claim-processing/next-convex
+2d66c782e484: Already exists
+e1fa61ef5c24: Already exists
+a044f3bd5c10: Already exists
+33ea1952272f: Already exists
+b8da3bb2ce20: Already exists
+e6b8ab86c56c: Already exists
+cce5e5c639c5: Pull complete
+c7bcca0ba5c0: Pull complete
+b5706c861090: Pull complete
+3cd7d58f6d42: Pull complete
+12141004e33f: Pull complete
+a2cf7efbc6d6: Pull complete
+84b0a62f1d10: Pull complete
+5a968682f857: Pull complete
+a06d4bb4561e: Pull complete
+239ee7219094: Pull complete
+a5907b13d718: Pull complete
+Digest: sha256:c8875ae9c3731edcc0b7a2e52a0e16edcefea6e92cb974dc1c3804a8deb48eb0
+Status: Downloaded newer image for ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
+ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# head -3 Dockerfile.stage.coderefactor
+FROM ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
+RUN grep -rlE "claims-backend-helixview[.]fhpl[.]net|http://127[.]0[.]0[.]1:3210" /app/.next | xargs -r sed -i -e "s#claims-backend-helixview[.]fhpl[.]net#claims-backend-helixview-stage.fhpl.net#g" -e "s#http://127[.]0[.]0[.]1:3210#https://claims-backend-helixview-stage.fhpl.net#g"
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#  grep -n "image:" docker-compose.yml
+4:    image: ghcr.io/get-convex/convex-backend:latest
+66:    image: ghcr.io/get-convex/convex-dashboard:latest
+76:    image: postgres:16-alpine
+100:    image: ${NEXT_IMAGE:-claim-processing-local}
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#    docker inspect claim-processing-web-1 --format '{{.Config.Image}}'
+claim-processing-stage:preauth-finals
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#
 
     
-
-      docker pull ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor
-
-         head -3 Dockerfile.stage.coderefactor
-
-            grep -n "image:" docker-compose.yml
-   docker inspect claim-processing-web-1 --format '{{.Config.Image}}'
