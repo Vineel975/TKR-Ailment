@@ -70,8 +70,5 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     docker compose restart backend
 
-   (1 row affected)
-Msg 3701, Level 14, State 20, Procedure USP_ClaimAI_GetStagingBatch, Line 13 [Batch Start Line 61]
-Cannot alter the procedure 'USP_ClaimAI_GetStagingBatch', because it does not exist or you do not have permission.
-
-Completion time: 2026-11-06T07:12:44.0178522+05:30
+     CLAIM=26110544139
+   docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
