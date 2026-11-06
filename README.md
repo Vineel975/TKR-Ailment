@@ -70,43 +70,8 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     docker compose restart backend
 
-    root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# grep -n "^NEXT_IMAGE" .env
-21:NEXT_IMAGE="claim-processing-stage:preauth-finals"
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker build -t claim-processing-stage:preauth-finals - < Dockerfile.stage.coderefactor
-[+] Building 2.0s (6/6) FINISHED                                                                         docker:default
- => [internal] load build definition from Dockerfile                                                               0.0s
- => => transferring dockerfile: 398B                                                                               0.0s
- => [internal] load metadata for ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor            0.0s
- => [internal] load .dockerignore                                                                                  0.0s
- => => transferring context: 2B                                                                                    0.0s
- => [1/2] FROM ghcr.io/adityamiskin/claim-processing/next-convex:feature-coderefactor                              0.2s
- => [2/2] RUN grep -rlE "claims-backend-helixview[.]fhpl[.]net|http://127[.]0[.]0[.]1:3210" /app/.next | xargs -r  1.3s
- => exporting to image                                                                                             0.3s
- => => exporting layers                                                                                            0.2s
- => => writing image sha256:f004c0f5140fb04278523b190069538a1cb81cce169b8a16257a68608727e210                       0.0s
- => => naming to docker.io/library/claim-processing-stage:preauth-finals                                           0.0s
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose up -d web
-WARN[0000] service "web": deploy.labels: deploy.labels are only applied to Swarm services
-WARN[0000] service "web": deploy.rollback_config: deploy.rollback_config only applies to rolling updates in Swarm mode
-WARN[0000] service "web": deploy.update_config: deploy.update_config only applies to rolling updates in Swarm mode
-[+] up 3/3
- ✔ Container claim-processing-backend-1  Running                                                                    0.0s
- ✔ Container claim-processing-postgres-1 Running                                                                    0.0s
- ✔ Container claim-processing-web-1      Started                                                                    1.8s
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose ps web
-   docker exec claim-processing-web-1 printenv CLAIMAI_PREAUTH_FINALS
-   docker exec claim-processing-web-1 sh -c 'grep -rl "CLAIMAI_PREAUTH_FINALS" /app/.next/server | wc -l'
-   docker exec claim-processing-web-1 sh -c 'grep -rlE "claims-backend-helixview-stage[.]fhpl[.]net" /app/.next | wc -l'
-   docker exec claim-processing-web-1 sh -c 'grep -rlE "claims-backend-helixview[.]fhpl[.]net" /app/.next | wc -l'
-   docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/auto/run',{method:'POST'}).then(r=>console.log(r.status))"
-NAME                     IMAGE                                   COMMAND                  SERVICE   CREATED          STATUS                    PORTS
-claim-processing-web-1   claim-processing-stage:preauth-finals   "/bin/sh /entrypoint…"   web       49 seconds ago   Up 47 seconds (healthy)   127.0.0.1:3100->3000/tcp
-on
-1
-24
-0
-401
+   (1 row affected)
+Msg 3701, Level 14, State 20, Procedure USP_ClaimAI_GetStagingBatch, Line 13 [Batch Start Line 61]
+Cannot alter the procedure 'USP_ClaimAI_GetStagingBatch', because it does not exist or you do not have permission.
 
-   
-
-    
+Completion time: 2026-11-06T07:12:44.0178522+05:30
