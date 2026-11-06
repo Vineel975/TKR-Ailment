@@ -70,5 +70,5 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     docker compose restart backend
 
-     CLAIM=26110544139
+     CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
