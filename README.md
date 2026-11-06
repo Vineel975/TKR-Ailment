@@ -73,6 +73,6 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
      CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
 
-<img width="899" height="79" alt="image" src="https://github.com/user-attachments/assets/5a061420-ef83-40c6-b78e-351ed5541d54" />
-
+   CLAIM=26110644150
+   docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
