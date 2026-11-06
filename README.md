@@ -82,38 +82,9 @@ free -h
 
     
 
-   grep -n swapfile /etc/fstab
-   cp /etc/fstab /etc/fstab.bak
-   awk '$1=="/swapfile" { if (seen++) next } { print }' /etc/fstab.bak > /etc/fstab
-   grep -n swapfile /etc/fstab
-   findmnt --verify
-
-   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# grep -n swapfile /etc/fstab
-   cp /etc/fstab /etc/fstab.bak
-   awk '$1=="/swapfile" { if (seen++) next } { print }' /etc/fstab.bak > /etc/fstab
-   grep -n swapfile /etc/fstab
-   findmnt --verify
-4:/swapfile none swap sw 0 0
-5:/swapfile none swap sw 0 0
-6:/swapfile none swap sw 0 0
-4:/swapfile none swap sw 0 0
-none
-   [W] non-bind mount source /swapfile is a directory or regular file
-   [W] your fstab has been modified, but systemd still uses the old version;
-       use 'systemctl daemon-reload' to reload
-
-0 parse errors, 0 errors, 2 warnings
-
-      cat /proc/sys/vm/swappiness
-
-         sysctl vm.swappiness=30
-   echo 'vm.swappiness=30' > /etc/sysctl.d/99-swappiness.conf
-
-      docker compose ps
-   curl --noproxy '*' -s -o /dev/null -w "app: %{http_code}\n" http://127.0.0.1:3000/login
-   curl --noproxy '*' -s -o /dev/null -w "convex: %{http_code}\n" http://127.0.0.1:3210/version
-
-      ps -o pid,user,lstart,cmd -p 29395
-   ls -l /proc/29395/cwd
-
-     printf '\nCLAIMAI_PREAUTH_FINALS=on\n' >> .env
+   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# grep -n "CLAIMAI_PREAUTH_FINALS\|CLAIMAI_AUTO" .env
+44:CLAIMAI_AUTO_RUN=on
+45:CLAIMAI_AUTO_USER_REGION_ID=11645
+46:CLAIMAI_AUTO_INSURER_CONTAINS=*
+47:CLAIMAI_AUTO_BILL_LOWEST=off
+52:CLAIMAI_PREAUTH_FINALS=on
