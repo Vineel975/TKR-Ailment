@@ -74,8 +74,4 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
 
 
-    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
-[audit/start] claim 26110644150: flow=initial slNo=1 requestTypeId=1 isFinal=false
-[audit/start] final approvals for claim 26110644150 : bill 45000, tariff 42000, sublimit 45000 -> tariff 42000, approved 42000
-[staging/result] autoDecision claim 26110644150 -> refer_crm | amount 42000 | basis tariff | Patient age differs from the policy by more than 5 years.
-[auto-run] on claim 26110644150/1: done (crm), saved - save: Hospital Estimate 45000, approved 42000 (tariff), procedure 497 Cataract Surgery Phacoemulsification -Unifocal Lens-Left, ICD H25.812; claim 26110644150/1: crm - DONE; Adjudication_Actions_Insert: "Saved Successfully"; open stages now 10  [reason CRM Clarification; pre-fill on the claim]
+    <img width="912" height="78" alt="image" src="https://github.com/user-attachments/assets/21263f79-72ea-448d-adaf-c91af201a0ab" />
