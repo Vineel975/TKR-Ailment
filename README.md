@@ -76,4 +76,6 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
+      docker compose exec -it web node /opt/convex-deploy/lib/rules/portal/scripts/admin-cli.mjs create-admin
+
           
