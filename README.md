@@ -76,12 +76,11 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-      chmod 600 /tmp/rules-app.pem
-
-         echo >> .env
+     root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#  chmod 600 /tmp/rules-app.pem
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# echo >> .env
    echo 'RULES_PORTAL_ENABLED=true' >> .env
    echo 'RULES_PORTAL_ORIGIN=https://claims-helixview-stage.fhpl.net' >> .env
    grep '^RULES_PORTAL' .env
-
-
+RULES_PORTAL_ENABLED=true
+RULES_PORTAL_ORIGIN=https://claims-helixview-stage.fhpl.net
 
