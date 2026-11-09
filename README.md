@@ -76,18 +76,12 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# ls -l /tmp/rules-app.pem
-   grep -c '^CONVEX_SELF_HOSTED_ADMIN_KEY=.' .env
-   grep -E '^CLAIMAI_(AUTO_RUN|PREAUTH_FINALS)=' .env
-   grep -oE '^RULES_[A-Z_]+' .env
-   grep -n "X-Real-IP" /etc/nginx/conf.d/claims-helixview.conf
--rw-rw-r-- 1 ubuntu ubuntu 1679 Nov  9 06:23 /tmp/rules-app.pem
-1
-CLAIMAI_AUTO_RUN=on
-CLAIMAI_PREAUTH_FINALS=on
-35:        proxy_set_header X-Real-IP $remote_addr;
-62:        proxy_set_header X-Real-IP $remote_addr;
-89:        proxy_set_header X-Real-IP $remote_addr;
+      chmod 600 /tmp/rules-app.pem
+
+         echo >> .env
+   echo 'RULES_PORTAL_ENABLED=true' >> .env
+   echo 'RULES_PORTAL_ORIGIN=https://claims-helixview-stage.fhpl.net' >> .env
+   grep '^RULES_PORTAL' .env
 
 
 
