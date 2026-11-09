@@ -76,11 +76,7 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-      root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose exec -it web node /opt/convex-deploy/lib/rules/portal/scripts/admin-cli.mjs create-admin
-Username (small letters, digits, . - _): vineel
-Name shown in the portal: vineel kakara
-New password (not shown):
-Type it again:
-Admin "vineel" created. Sign in at /rules/sign-in.
+<img width="498" height="348" alt="image" src="https://github.com/user-attachments/assets/72ecacf1-969e-4cfb-9fdb-55e6dea754f7" />
+
 
           
