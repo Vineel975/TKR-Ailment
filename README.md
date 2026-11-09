@@ -78,5 +78,12 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
 <img width="498" height="348" alt="image" src="https://github.com/user-attachments/assets/72ecacf1-969e-4cfb-9fdb-55e6dea754f7" />
 
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose ps
+NAME                          IMAGE                                      COMMAND                  SERVICE    CREATED       STATUS                        PORTS
+claim-processing-backend-1    ghcr.io/get-convex/convex-backend:latest   "./run_backend.sh"       backend    7 days ago    Up About a minute (healthy)   127.0.0.1:3310->3210/tcp, 127.0.0.1:3311->3211/tcp
+claim-processing-postgres-1   postgres:16-alpine                         "docker-entrypoint.s…"   postgres   9 days ago    Up 2 hours (healthy)          127.0.0.1:6544->5432/tcp
+claim-processing-web-1        claim-processing-stage:preauth-finals      "/bin/sh /entrypoint…"   web        5 hours ago   Up About a minute (healthy)   127.0.0.1:3100->3000/tcp
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#
+
 
           
