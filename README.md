@@ -76,7 +76,65 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-           docker compose up -d --force-recreate web
-   docker compose logs -f --tail=80 web
-
-      docker compose pss
+          root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#  docker compose up -d --force-recreate web
+WARN[0000] service "web": deploy.labels: deploy.labels are only applied to Swarm services
+WARN[0000] service "web": deploy.rollback_config: deploy.rollback_config only applies to rolling updates in Swarm mode
+WARN[0000] service "web": deploy.update_config: deploy.update_config only applies to rolling updates in Swarm mode
+[+] up 3/3
+ ✔ Container claim-processing-postgres-1 Running                    0.0s
+ ✔ Container claim-processing-backend-1  Running                    0.0s
+ ✔ Container claim-processing-web-1      Started                    1.7s
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#    docker compose logs -f --tail=80 web
+web-1  | [entrypoint] Waiting for Convex backend at http://backend:3210/version ...
+web-1  | [entrypoint] Deploying Convex functions (self-hosted)...
+web-1  | [entrypoint] Syncing Convex deployment env...
+web-1  | ✔ Successfully set OPENROUTER_API_KEY
+web-1  | ✔ Successfully set MEMBER_DB_SERVER
+web-1  | ✔ Successfully set MEMBER_DB_PORT
+web-1  | ✔ Successfully set MEMBER_DB_DATABASE
+web-1  | ✔ Successfully set MEMBER_DB_USER
+web-1  | ✔ Successfully set MEMBER_DB_USERNAME
+web-1  | ✔ Successfully set MEMBER_DB_PASSWORD
+web-1  | ✔ Successfully set MEMBER_DB_AUTH
+web-1  | - Deploying to http://backend:3210...
+web-1  |
+web-1  | ✔ No indexes are deleted by this push
+web-1  | Uploading functions to Convex...
+web-1  | Generating TypeScript bindings...
+web-1  | Running TypeScript...
+web-1  | Pushing code to your Convex deployment...
+web-1  | Schema validation complete.
+web-1  | Finalizing push...
+web-1  | ✔ Added table indexes:
+web-1  |   [+] rulesPortalAudit.by_kind   kind, at, _creationTime
+web-1  |   [+] rulesPortalChangeRequests.by_page   tab, ailment, _creationTime
+web-1  |   [+] rulesPortalChangeRequests.by_requestId   requestId, _creationTime
+web-1  |   [+] rulesPortalChangeRequests.by_status   status, _creationTime
+web-1  |   [+] rulesPortalDrafts.by_page   tab, ailment, _creationTime
+web-1  |   [+] rulesPortalDrafts.by_user_page   userId, tab, ailment, _creationTime
+web-1  |   [+] rulesPortalRuleHistory.by_rule   ruleId, at, _creationTime
+web-1  |   [+] rulesPortalSessions.by_tokenHash   tokenHash, _creationTime
+web-1  |   [+] rulesPortalSessions.by_userId   userId, _creationTime
+web-1  |   [+] rulesPortalUsers.by_username   username, _creationTime
+web-1  | ✔ Deployed Convex functions to http://backend:3210
+web-1  | ▲ Next.js 16.1.1
+web-1  | - Local:         http://localhost:3000
+web-1  | - Network:       http://0.0.0.0:3000
+web-1  |
+web-1  | ✓ Starting...
+web-1  | ✓ Ready in 315ms
+web-1  | [audit/start] Startup config: {
+web-1  |   IN_DOCKER: true,
+web-1  |   IS_DOCKER_HOSTNAME: true,
+web-1  |   RAW_INTERNAL: 'http://backend:3210',
+web-1  |   RAW_PUBLIC: 'https://claims-backend-helixview-stage.fhpl.net',
+web-1  |   CHOSEN: 'http://backend:3210'
+web-1  | }
+^C
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose ps
+NAME                           IMAGE                                        COMMAND                  SERVICE     CREATED              STATUS                        PORTS
+claim-processing-backend-1     ghcr.io/get-convex/convex-backend:latest     "./run_backend.sh"       backend     6 days ago           Up 3 days (healthy)           127.0.0.1:3310->3210/tcp, 127.0.0.1:3311->3211/tcp
+claim-processing-dashboard-1   ghcr.io/get-convex/convex-dashboard:latest   "node ./server.js"       dashboard   9 days ago           Up 9 days                     127.0.0.1:6792->6791/tcp
+claim-processing-postgres-1    postgres:16-alpine                           "docker-entrypoint.s…"   postgres    9 days ago           Up 9 days (healthy)           127.0.0.1:6544->5432/tcp
+claim-processing-web-1         claim-processing-stage:preauth-finals        "/bin/sh /entrypoint…"   web         About a minute ago   Up About a minute (healthy)   127.0.0.1:3100->3000/tcp
+root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#
