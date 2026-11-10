@@ -73,17 +73,31 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
      CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
 
-   CLAIM=26110644150
+   CLAIM=26111044157
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-<img width="498" height="348" alt="image" src="https://github.com/user-attachments/assets/72ecacf1-969e-4cfb-9fdb-55e6dea754f7" />
-
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# docker compose ps
-NAME                          IMAGE                                      COMMAND                  SERVICE    CREATED       STATUS                        PORTS
-claim-processing-backend-1    ghcr.io/get-convex/convex-backend:latest   "./run_backend.sh"       backend    7 days ago    Up About a minute (healthy)   127.0.0.1:3310->3210/tcp, 127.0.0.1:3311->3211/tcp
-claim-processing-postgres-1   postgres:16-alpine                         "docker-entrypoint.s…"   postgres   9 days ago    Up 2 hours (healthy)          127.0.0.1:6544->5432/tcp
-claim-processing-web-1        claim-processing-stage:preauth-finals      "/bin/sh /entrypoint…"   web        5 hours ago   Up About a minute (healthy)   127.0.0.1:3100->3000/tcp
-root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing#
+Remove first 2 grids and give Patient Info here.. as in PA request and make it collapsible
+Doc checklist from last PA to be preselected...
+Reverified Section- Label changes - DOA/DOD
+Requirements to be drafted- comparing initial vs final 
+Request- DOD is not mandate... it will be blank.. show difference when DOD is available in PA request (vs Final)
+Final document checklist-- Label change- Mandatory Documents can be moved below Document Checklist
+based on availability to be renamed as 'Submitted in last transaction'  (show the checks of doc availability)
+Supporting Report - submitted in last transaction- AScan
+Previous Approvals
+stage can be removed
+This Final column to be removed..redesign in 2 lines..
+Need to give a quick view reference of previous approval
+Final Bill break up
+Spectra bill services to be removed
+Identifier- Hospital Estimate belongs to current Sno.
+Approvals section to have 2 columns
+Previously Approved and current Approvals.
+Previous Deductions to be shown in the approvals section itself.
+Bill break down to be moved to Financial Section (Approval) under Hospital Estimate... (replace hospital estimate with this section)O
+Old screen to remain the same...UX.. lets no change it.
+Incorrect query for Claim form...Get KYC from previous transaction.. if its not, raise a query.
+Lens cost max logic to get deductions-must be done
 
 
           
