@@ -77,6 +77,10 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
 
-   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# scp -i KP-AWS-PreProd-Cashless-AI.pem "C:\Users\satyavineel.k\Downloads\claimai-preauth-rules.2026-11-08.private-key.pem" ubuntu@10.11.4.180:/tmp/rules-app.pem
-Warning: Identity file KP-AWS-PreProd-Cashless-AI.pem not accessible: No such file or directory.
-The authenticity of host '10.11.4.180 (10.11.4.180)' can't be established
+      ls -l /tmp/rules-app.pem
+   sed -i '/^RULES_GITHUB_PRIVATE_KEY_BASE64=/d' .env
+   echo "RULES_GITHUB_PRIVATE_KEY_BASE64=$(base64 -w0 /tmp/rules-app.pem)" >> .env
+   grep -c '^RULES_GITHUB_PRIVATE_KEY_BASE64=.' .env
+   grep -c '^RULES_GITHUB_' .env
+   shred -u /tmp/rules-app.pem
+   docker compose up -d --force-recreate web
