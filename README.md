@@ -76,28 +76,11 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26111044157
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-Remove first 2 grids and give Patient Info here.. as in PA request and make it collapsible
-Doc checklist from last PA to be preselected...
-Reverified Section- Label changes - DOA/DOD
-Requirements to be drafted- comparing initial vs final 
-Request- DOD is not mandate... it will be blank.. show difference when DOD is available in PA request (vs Final)
-Final document checklist-- Label change- Mandatory Documents can be moved below Document Checklist
-based on availability to be renamed as 'Submitted in last transaction'  (show the checks of doc availability)
-Supporting Report - submitted in last transaction- AScan
-Previous Approvals
-stage can be removed
-This Final column to be removed..redesign in 2 lines..
-Need to give a quick view reference of previous approval
-Final Bill break up
-Spectra bill services to be removed
-Identifier- Hospital Estimate belongs to current Sno.
-Approvals section to have 2 columns
-Previously Approved and current Approvals.
-Previous Deductions to be shown in the approvals section itself.
-Bill break down to be moved to Financial Section (Approval) under Hospital Estimate... (replace hospital estimate with this section)O
-Old screen to remain the same...UX.. lets no change it.
-Incorrect query for Claim form...Get KYC from previous transaction.. if its not, raise a query.
-Lens cost max logic to get deductions-must be done
 
-
-          
+   echo 'RULES_GITHUB_APP_ID=5676092' >> .env
+   echo 'RULES_GITHUB_INSTALLATION_ID=<installation ID>' >> .env
+   echo "RULES_GITHUB_PRIVATE_KEY_BASE64=$(base64 -w0 /tmp/rules-app.pem)" >> .env
+   echo 'RULES_GITHUB_REPO=adityamiskin/claim-processing' >> .env
+   echo 'RULES_GITHUB_BASE_BRANCH=users/kakaravineel/preauth-rules-e2e' >> .env
+   shred -u /tmp/rules-app.pem
+   grep -c '^RULES_GITHUB_' .env
