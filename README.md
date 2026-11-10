@@ -76,10 +76,9 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    CLAIM=26111044157
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
-  <img width="994" height="592" alt="image" src="https://github.com/user-attachments/assets/2db109d9-e61b-41a9-a468-3c77864d61eb" />
-
-  <img width="979" height="352" alt="image" src="https://github.com/user-attachments/assets/3918ca7f-62ec-4781-91fe-2907acf231d5" />
-
-
+    cd /home/ubuntu/claim-processing
+   sed -i 's#^RULES_GITHUB_BASE_BRANCH=.*#RULES_GITHUB_BASE_BRANCH=feature/coderefactor#' .env
+   grep '^RULES_GITHUB_BASE_BRANCH=' .env
+   docker compose up -d --force-recreate web
 
 
