@@ -77,10 +77,8 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
 
-      ls -l /tmp/rules-app.pem
-   sed -i '/^RULES_GITHUB_PRIVATE_KEY_BASE64=/d' .env
-   echo "RULES_GITHUB_PRIVATE_KEY_BASE64=$(base64 -w0 /tmp/rules-app.pem)" >> .env
-   grep -c '^RULES_GITHUB_PRIVATE_KEY_BASE64=.' .env
-   grep -c '^RULES_GITHUB_' .env
-   shred -u /tmp/rules-app.pem
-   docker compose up -d --force-recreate web
+     <img width="1018" height="546" alt="image" src="https://github.com/user-attachments/assets/8aea73a5-f5bb-4d1d-9652-dd6a881d4c91" />
+
+     <img width="979" height="263" alt="image" src="https://github.com/user-attachments/assets/c3d70233-79e3-42b7-81b9-5dd4be679b13" />
+
+
