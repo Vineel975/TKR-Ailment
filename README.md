@@ -77,10 +77,6 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
 
-   echo 'RULES_GITHUB_APP_ID=5676092' >> .env
-   echo 'RULES_GITHUB_INSTALLATION_ID=<installation ID>' >> .env
-   echo "RULES_GITHUB_PRIVATE_KEY_BASE64=$(base64 -w0 /tmp/rules-app.pem)" >> .env
-   echo 'RULES_GITHUB_REPO=adityamiskin/claim-processing' >> .env
-   echo 'RULES_GITHUB_BASE_BRANCH=users/kakaravineel/preauth-rules-e2e' >> .env
-   shred -u /tmp/rules-app.pem
-   grep -c '^RULES_GITHUB_' .env
+   root@AWS-PreProd-Cashless-AI:/home/ubuntu/claim-processing# scp -i KP-AWS-PreProd-Cashless-AI.pem "C:\Users\satyavineel.k\Downloads\claimai-preauth-rules.2026-11-08.private-key.pem" ubuntu@10.11.4.180:/tmp/rules-app.pem
+Warning: Identity file KP-AWS-PreProd-Cashless-AI.pem not accessible: No such file or directory.
+The authenticity of host '10.11.4.180 (10.11.4.180)' can't be established
