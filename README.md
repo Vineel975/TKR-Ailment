@@ -91,7 +91,11 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    grep '^RULES_GITHUB_BASE_BRANCH=' .env
    docker compose up -d --force-recreate web
 
-  The coding agent could not make this change, and changed nothing: Procedure id 500 is a Spectra master-data id that cannot be verified from this repository, and the catch-all id (currently 403) is developer-managed. ClaimAI's own unmatched-maternity coding uses a separate fallback (1147), so this value would only affect external /api/rules consumers. Please have a developer confirm id 500 in Spectra and make the change.
+     New rule for Cataract Initials (pre-auth only): when the documents show surgery on both eyes in the same pre-auth (the extracted eye type is "both eyes"), do not approve both eyes together.
+   1. Raise a query to the hospital: "Simultaneous bilateral cataract surgery cannot be approved under one pre-auth. Please confirm which eye will be operated first and send a separate pre-auth for the second eye."
+   2. Show a clear flag on the AI Summary: "Both eyes requested in one pre-auth - query raised".
+   3. Do not change the approved amount calculation.
+   Finals, reimbursement and all other ailments must stay exactly as they are. Add tests for: both eyes (query and flag), one eye (no query), and eye not determined (no query).
 
 
 
