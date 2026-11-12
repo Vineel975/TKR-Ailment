@@ -73,6 +73,16 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
      CLAIM=26110644150
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
 
+
+      cp .env .env.bak-$(date +%Y%m%d-%H%M)
+
+         grep '^RULES_GITHUB_BASE_BRANCH=' .env
+   grep -c '^RULES_AGENT_ENABLED=' .env
+   grep -c '^RULES_ASSIST_ENABLED=' .env
+   docker compose exec web sh -c 'test -n "$OPENROUTER_API_KEY" && echo key-set || echo key-missing'
+
+      grep -E '^RULES_GITHUB_BASE_BRANCH=|^RULES_AGENT_ENABLED=|^RULES_ASSIST_ENABLED=' .env
+
    CLAIM=26111044157
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|FINAL|final approvals|autoDecision|auto-run" | tail -20
 
