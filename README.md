@@ -88,15 +88,11 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     cd /home/ubuntu/claim-processing
    sed -i 's#^RULES_GITHUB_BASE_BRANCH=.*#RULES_GITHUB_BASE_BRANCH=feature/coderefactor#' .env
-   grep '^RULES_GITHUB_BASE_BRANCH=' .env
+   grep '^RULES_GITHUB_BASE_BRANCH=' .env<img width="1841" height="710" alt="image" src="https://github.com/user-attachments/assets/1aa14d07-0729-4280-8811-f03af0a450dc" />
+
    docker compose up -d --force-recreate web
 
-     New rule for Cataract Initials (pre-auth only): when the documents show surgery on both eyes in the same pre-auth (the extracted eye type is "both eyes"), do not approve both eyes together.
-   1. Raise a query to the hospital: "Simultaneous bilateral cataract surgery cannot be approved under one pre-auth. Please confirm which eye will be operated first and send a separate pre-auth for the second eye."
-   2. Show a clear flag on the AI Summary: "Both eyes requested in one pre-auth - query raised".
-   3. Do not change the approved amount calculation.
-   Finals, reimbursement and all other ailments must stay exactly as they are. Add tests for: both eyes (query and flag), one eye (no query), and eye not determined (no query).
-
+     
 
 
 
