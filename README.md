@@ -97,3 +97,4 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
 
 
+<img width="1163" height="333" alt="image" src="https://github.com/user-attachments/assets/9adaa16e-13c1-4f1b-a2a7-295572a3c6d6" />
