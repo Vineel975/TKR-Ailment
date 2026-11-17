@@ -100,3 +100,5 @@ docker images | grep -E "next-convex|claim-processing-stage"
 docker run --rm --entrypoint /bin/sh <the next-convex image:tag you pulled> -c 'echo pulled image ok'
 docker run --rm --entrypoint /bin/sh claim-processing-stage:preauth-finals -c 'echo stage image ok'
 
+<img width="1098" height="423" alt="image" src="https://github.com/user-attachments/assets/5db31fa7-1e2b-4804-b84c-820f49606e27" />
+
