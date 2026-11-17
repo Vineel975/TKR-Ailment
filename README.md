@@ -94,3 +94,5 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
 EXEC sp_helptext 'dbo.USP_SAA_Reviewdremarks_Insert';
 
+<img width="1098" height="216" alt="image" src="https://github.com/user-attachments/assets/0787a1cd-22fe-4849-9616-85f97dcac6c7" />
+
