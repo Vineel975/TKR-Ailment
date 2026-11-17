@@ -96,3 +96,7 @@ EXEC sp_helptext 'dbo.USP_SAA_Reviewdremarks_Insert';
 
 <img width="1098" height="216" alt="image" src="https://github.com/user-attachments/assets/0787a1cd-22fe-4849-9616-85f97dcac6c7" />
 
+docker images | grep -E "next-convex|claim-processing-stage"
+docker run --rm --entrypoint /bin/sh <the next-convex image:tag you pulled> -c 'echo pulled image ok'
+docker run --rm --entrypoint /bin/sh claim-processing-stage:preauth-finals -c 'echo stage image ok'
+
