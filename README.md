@@ -92,13 +92,8 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
    docker compose up -d --force-recreate web
 
-EXEC sp_helptext 'dbo.USP_SAA_Reviewdremarks_Insert';
+<img width="1101" height="175" alt="image" src="https://github.com/user-attachments/assets/2b092824-89d3-4ba7-831b-5095ec07c276" />
 
-<img width="1098" height="216" alt="image" src="https://github.com/user-attachments/assets/0787a1cd-22fe-4849-9616-85f97dcac6c7" />
-
-docker images | grep -E "next-convex|claim-processing-stage"
-docker run --rm --entrypoint /bin/sh <the next-convex image:tag you pulled> -c 'echo pulled image ok'
-docker run --rm --entrypoint /bin/sh claim-processing-stage:preauth-finals -c 'echo stage image ok'
 
 <img width="1098" height="423" alt="image" src="https://github.com/user-attachments/assets/5db31fa7-1e2b-4804-b84c-820f49606e27" />
 
