@@ -91,5 +91,6 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
    grep '^RULES_GITHUB_BASE_BRANCH=' .env<img width="1841" height="710" alt="image" src="https://github.com/user-attachments/assets/1aa14d07-0729-4280-8811-f03af0a450dc" />
 
    docker compose up -d --force-recreate web
-<img width="1120" height="206" alt="image" src="https://github.com/user-attachments/assets/70199da3-5997-45ad-a966-b548a3dd124d" />
+
+EXEC sp_helptext 'dbo.USP_SAA_Reviewdremarks_Insert';
 
