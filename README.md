@@ -103,3 +103,7 @@ if (-not $k) { $k = ($cfg.configuration.appSettings.add | Where-Object key -eq '
 $k = "$k".Trim()
 $h = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($k))).Replace('-','').ToLower().Substring(0,12)
 "length $($k.Length) fingerprint $h"
+
+
+<img width="1107" height="237" alt="image" src="https://github.com/user-attachments/assets/10981fca-5e82-4fc6-8100-aba3d74b5bc5" />
+
