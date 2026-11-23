@@ -110,4 +110,7 @@ docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_UR
 
 docker exec claim-processing-web-1 node -e "fetch('https://checkip.amazonaws.com').then(r=>r.text()).then(t=>console.log('public IP',t.trim()))"
 
+<img width="1116" height="313" alt="image" src="https://github.com/user-attachments/assets/bf6ad052-7ba0-4fc2-a367-1e37be1a3481" />
+
+
 
