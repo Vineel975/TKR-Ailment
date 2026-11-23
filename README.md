@@ -92,5 +92,6 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
    docker compose up -d --force-recreate web
 
-<img width="1096" height="192" alt="image" src="https://github.com/user-attachments/assets/c2d695e7-8f7f-4b11-a08f-18b8e8606c9b" />
+docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/checks/calculate?mode=now&claims=26112144187/1',{headers:{'x-claimai-check':process.env.CLAIMAI_CHECK_KEY||''}}).then(r=>r.text()).then(console.log)"
 
+docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');console.log('SPECTRA_BASE_URL set:',!!b);for(const p of ['ClaimAI','MedicalScrutiny'])fetch(b+'/'+p+'/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>console.log(p,r.status,r.headers.get('content-type'),(await r.text()).slice(0,150))).catch(e=>console.log(p,'ERR',e.message,e.cause&&e.cause.code))"
