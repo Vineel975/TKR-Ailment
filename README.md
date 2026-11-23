@@ -1,3 +1,4 @@
+
 CLAIM=26110544147; docker logs -t claim-processing-web-1 --since 24h 2>&1 | grep -E "autoDecision claim $CLAIM|auto-run.*$CLAIM|adjudicate.*$CLAIM|coding-shadow.*$CLAIM"
 
 
@@ -92,5 +93,13 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
    docker compose up -d --force-recreate web
 
-<img width="1100" height="405" alt="image" src="https://github.com/user-attachments/assets/3fc48043-4e23-4496-adb6-9463197bfab3" />
+docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');for(const p of ['ClaimAI','MedicalScrutiny'])fetch(b+'/'+p+'/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>console.log(p,r.status,r.headers.get('content-type'),(await r.text()).slice(0,150))).catch(e=>console.log(p,'ERR',e.message))"
 
+docker exec claim-processing-web-1 node -e "const k=process.env.STAGING_API_KEY||'';console.log('length',k.length,'fingerprint',require('crypto').createHash('sha256').update(k).digest('hex').slice(0,12))"
+
+$cfg = [xml](Get-Content 'D:\<spectra site>\Web.config')
+$k = ($cfg.configuration.appSettings.add | Where-Object key -eq 'ClaimAIBsiApiKey').value
+if (-not $k) { $k = ($cfg.configuration.appSettings.add | Where-Object key -eq 'StagingApiKey').value }
+$k = "$k".Trim()
+$h = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($k))).Replace('-','').ToLower().Substring(0,12)
+"length $($k.Length) fingerprint $h"
