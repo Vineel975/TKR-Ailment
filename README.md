@@ -70,7 +70,7 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
     docker compose restart backend
 
-     CLAIM=26110644150
+     CLAIM=26112144190
    docker logs claim-processing-web-1 2>&1 | grep "$CLAIM" | grep -E "flow=|final approvals|autoDecision|auto-run"
 
 
@@ -92,8 +92,5 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
    docker compose up -d --force-recreate web
 
-<img width="1101" height="175" alt="image" src="https://github.com/user-attachments/assets/2b092824-89d3-4ba7-831b-5095ec07c276" />
-
-
-<img width="1098" height="423" alt="image" src="https://github.com/user-attachments/assets/5db31fa7-1e2b-4804-b84c-820f49606e27" />
+<img width="1096" height="192" alt="image" src="https://github.com/user-attachments/assets/c2d695e7-8f7f-4b11-a08f-18b8e8606c9b" />
 
