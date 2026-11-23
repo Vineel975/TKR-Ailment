@@ -110,7 +110,6 @@ docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_UR
 
 docker exec claim-processing-web-1 node -e "fetch('https://checkip.amazonaws.com').then(r=>r.text()).then(t=>console.log('public IP',t.trim()))"
 
-<img width="1116" height="313" alt="image" src="https://github.com/user-attachments/assets/bf6ad052-7ba0-4fc2-a367-1e37be1a3481" />
-
+docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');const ua={'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'};const go=(n,u,h)=>fetch(u,{headers:h||{},redirect:'manual'}).then(async r=>{const t=await r.text();console.log(n,'->',r.status,(t.match(/<title>([^<]*)/i)||[])[1]||'')}).catch(e=>console.log(n,'ERR',e.message));go('1 home page',b+'/').then(()=>go('2 home page, browser UA',b+'/',ua)).then(()=>go('3 BSI, browser UA',b+'/ClaimAI/GetBSIForAI?ClaimID=26112144187&SlNo=1',Object.assign({'x-staging-key':process.env.STAGING_API_KEY||''},ua)))"
 
 
