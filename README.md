@@ -105,5 +105,9 @@ $h = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHa
 "length $($k.Length) fingerprint $h"
 
 
-<img width="1107" height="237" alt="image" src="https://github.com/user-attachments/assets/10981fca-5e82-4fc6-8100-aba3d74b5bc5" />
+docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');fetch(b+'/ClaimAI/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>{const t=await r.text();console.log(r.status,'server:',r.headers.get('server'),'cf-ray:',r.headers.get('cf-ray'));console.log('title:',(t.match(/<title>([^<]*)/i)||[])[1]);console.log('error:',(t.match(/Error\s*(?:code)?\s*:?\s*(\d{3,4})/i)||[])[0]);console.log('ray:',(t.match(/Ray ID:?\s*(?:<[^>]+>)?\s*([0-9a-f]+)/i)||[])[1])})"
+
+
+docker exec claim-processing-web-1 node -e "fetch('https://checkip.amazonaws.com').then(r=>r.text()).then(t=>console.log('public IP',t.trim()))"
+
 
