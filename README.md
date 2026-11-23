@@ -110,6 +110,11 @@ docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_UR
 
 docker exec claim-processing-web-1 node -e "fetch('https://checkip.amazonaws.com').then(r=>r.text()).then(t=>console.log('public IP',t.trim()))"
 
-<img width="1098" height="199" alt="image" src="https://github.com/user-attachments/assets/66c5b90a-c9b1-47c8-9ac5-194ee9940ad0" />
+docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');for(const p of 
+['ClaimAI','MedicalScrutiny'])fetch(b+'/'+p+'/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>console.log(p,r.status,r.headers.get('content-type'),(await r.text()).slice(0,150))).catch(e=>console.log(p,'ERR',e.message))"
 
+
+docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/checks/calculate?mode=now&claims=26112144187/1',{headers:{'x-claimai-check':process.env.CLAIMAI_CHECK_KEY||''}}).then(r=>r.text()).then(console.log)"
+
+docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/checks/adjudicate?claims=26112144187/1',{headers:{'x-claimai-check':process.env.CLAIMAI_CHECK_KEY||''}}).then(r=>r.text()).then(console.log)"
 
