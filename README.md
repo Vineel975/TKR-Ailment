@@ -93,28 +93,34 @@ dmesg -T | grep -i -E "out of memory|killed process" | tail -5
 
    docker compose up -d --force-recreate web
 
-docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');for(const p of ['ClaimAI','MedicalScrutiny'])fetch(b+'/'+p+'/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>console.log(p,r.status,r.headers.get('content-type'),(await r.text()).slice(0,150))).catch(e=>console.log(p,'ERR',e.message))"
+/* Automatic-run status for chosen claims. Read-only.
+   Put the claim IDs below, one per row: (ClaimID, SlNo). SlNo is usually 1. */
+DECLARE @Claims TABLE (ClaimID bigint, SlNo int);
+INSERT INTO @Claims (ClaimID, SlNo) VALUES
+    (26112444211, 1),
+    (26112144187, 1);
+    -- add more: , (ClaimID, SlNo)
 
-docker exec claim-processing-web-1 node -e "const k=process.env.STAGING_API_KEY||'';console.log('length',k.length,'fingerprint',require('crypto').createHash('sha256').update(k).digest('hex').slice(0,12))"
+SELECT c.ClaimID, c.SlNo,
+       e.CreatedAt                                  AS RunAt,
+       ISNULL(e.AIValue, '(no AUTO_RUN row)')       AS Outcome,     -- done / doctor / skipped / error / dry
+       e.FieldName                                  AS Action,
+       e.UserValue                                  AS Message,     -- why, or the error
+       r.ProcessingStatus                           AS StagingStatus,
+       JSON_VALUE(r.J, '$.autoDecision.action')     AS DecidedAction,
+       JSON_VALUE(r.J, '$.autoDecision.amount')     AS DecidedAmount,
+       JSON_VALUE(r.J, '$.autoDecision.basis')      AS DecidedBasis,
+       JSON_VALUE(r.J, '$.autoDecision.reasons[0]') AS DecisionReason
+FROM @Claims c
+LEFT JOIN dbo.ClaimAI_EventLog e WITH (NOLOCK)
+       ON e.ClaimID = c.ClaimID AND ISNULL(e.SlNo, 1) = c.SlNo AND e.EventType = 'AUTO_RUN'
+OUTER APPLY (SELECT TOP 1 x.ProcessingStatus,
+                    CASE WHEN ISJSON(x.AnalysisJson) = 1 THEN x.AnalysisJson END AS J
+             FROM dbo.ClaimAI_Results x WITH (NOLOCK)
+             WHERE x.ClaimID = c.ClaimID AND ISNULL(x.SlNo, 1) = c.SlNo
+             ORDER BY x.ID DESC) r
+ORDER BY c.ClaimID, c.SlNo, e.CreatedAt DESC;
 
-$cfg = [xml](Get-Content 'D:\<spectra site>\Web.config')
-$k = ($cfg.configuration.appSettings.add | Where-Object key -eq 'ClaimAIBsiApiKey').value
-if (-not $k) { $k = ($cfg.configuration.appSettings.add | Where-Object key -eq 'StagingApiKey').value }
-$k = "$k".Trim()
-$h = [BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($k))).Replace('-','').ToLower().Substring(0,12)
-"length $($k.Length) fingerprint $h"
 
 
-docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');fetch(b+'/ClaimAI/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>{const t=await r.text();console.log(r.status,'server:',r.headers.get('server'),'cf-ray:',r.headers.get('cf-ray'));console.log('title:',(t.match(/<title>([^<]*)/i)||[])[1]);console.log('error:',(t.match(/Error\s*(?:code)?\s*:?\s*(\d{3,4})/i)||[])[0]);console.log('ray:',(t.match(/Ray ID:?\s*(?:<[^>]+>)?\s*([0-9a-f]+)/i)||[])[1])})"
-
-
-docker exec claim-processing-web-1 node -e "fetch('https://checkip.amazonaws.com').then(r=>r.text()).then(t=>console.log('public IP',t.trim()))"
-
-docker exec claim-processing-web-1 node -e "const b=(process.env.SPECTRA_BASE_URL||'').replace(/\/+$/,'');for(const p of 
-['ClaimAI','MedicalScrutiny'])fetch(b+'/'+p+'/GetBSIForAI?ClaimID=26112144187&SlNo=1',{headers:{'x-staging-key':process.env.STAGING_API_KEY||''},redirect:'manual'}).then(async r=>console.log(p,r.status,r.headers.get('content-type'),(await r.text()).slice(0,150))).catch(e=>console.log(p,'ERR',e.message))"
-
-
-docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/checks/calculate?mode=now&claims=26112144187/1',{headers:{'x-claimai-check':process.env.CLAIMAI_CHECK_KEY||''}}).then(r=>r.text()).then(console.log)"
-
-docker exec claim-processing-web-1 node -e "fetch('http://localhost:3000/api/checks/adjudicate?claims=26112144187/1',{headers:{'x-claimai-check':process.env.CLAIMAI_CHECK_KEY||''}}).then(r=>r.text()).then(console.log)"
 
