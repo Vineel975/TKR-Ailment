@@ -122,5 +122,8 @@ OUTER APPLY (SELECT TOP 1 x.ProcessingStatus,
 ORDER BY c.ClaimID, c.SlNo, e.CreatedAt DESC;
 
 
+<img width="1363" height="161" alt="image" src="https://github.com/user-attachments/assets/85b50c7a-9bd4-4124-9bce-e3a067f2e360" />
+
+
 
 
