@@ -122,8 +122,13 @@ OUTER APPLY (SELECT TOP 1 x.ProcessingStatus,
 ORDER BY c.ClaimID, c.SlNo, e.CreatedAt DESC;
 
 
-<img width="1363" height="161" alt="image" src="https://github.com/user-attachments/assets/85b50c7a-9bd4-4124-9bce-e3a067f2e360" />
-
+SELECT c.ID AS ClaimID, p.PolicyNo, mc.Name AS CorporateName
+FROM dbo.Claims c WITH (NOLOCK)
+LEFT JOIN dbo.MemberPolicy mp WITH (NOLOCK) ON mp.ID = c.MemberPolicyID
+LEFT JOIN dbo.Policy p WITH (NOLOCK) ON p.ID = mp.PolicyID
+LEFT JOIN dbo.Mst_Corporate mc WITH (NOLOCK) ON mc.ID = mp.CorpID
+WHERE c.ID IN (26112744386, 26112544286, <an SBI corporate claim ID>)
+  AND ISNULL(c.Deleted, 0) = 0;
 
 
 
